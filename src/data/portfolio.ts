@@ -55,9 +55,10 @@ export const portfolioData: PortfolioData = {
     tagline: "Building elegant solutions to complex problems",
     email: "talcohen318@example.com",
     location: "Israel",
+    phone: "+972) 50-8177730",
     bio: "Software Developer with a B.Sc. in Computer Science, specializing in Python development, Linux-based environments, and\n" +
-        "scalable infrastructure. Procient in automating workows, optimizing backend systems, and collaborating on data-driven\n" +
-        "projects. Skilled in designing ecient solutions for real-time systems and leveraging cutting-edge technologies to deliver\n" +
+        "scalable infrastructure. Proficient in automating workflows, optimizing backend systems, and collaborating on data-driven\n" +
+        "projects. Skilled in designing efficient solutions for real-time systems and leveraging cutting-edge technologies to deliver\n" +
         "high-impact results. Passionate about contributing to the AI-driven revolution through innovative software development.",
     avatar: "https://media.licdn.com/dms/image/v2/D4D03AQH5iPNeEkNbIw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1718234050977?e=1743638400&v=beta&t=pV3P0AtcVhkOe36o6FSKFm-wpkyf47K1eXYO_ak9zlg",
     socialLinks: {
@@ -68,25 +69,34 @@ export const portfolioData: PortfolioData = {
     interests: ["Open Source", "AI/ML", "Cloud Architecture", "Tech Mentoring"]
   },
   skills: [
+    { name: "Python", proficiency: 90, category: "technical" },
+    { name: "C++", proficiency: 70, category: "technical" },
+    { name: "Java", proficiency: 70, category: "technical" },
+    { name: "C#", proficiency: 70, category: "technical" },
     { name: "React", proficiency: 90, category: "technical" },
     { name: "TypeScript", proficiency: 85, category: "technical" },
+    { name: "JavaScript", proficiency: 85, category: "technical" },
     { name: "Node.js", proficiency: 88, category: "technical" },
     { name: "AWS", proficiency: 75, category: "technical" },
     { name: "Problem Solving", proficiency: 95, category: "soft" },
     { name: "Communication", proficiency: 90, category: "soft" },
-    { name: "Docker", proficiency: 80, category: "tool" },
-    { name: "Git", proficiency: 92, category: "tool" }
+    { name: "SQL", proficiency: 85, category: "tool" },
+    { name: "MongoDB", proficiency: 85, category: "tool" },
+    { name: "Git", proficiency: 92, category: "tool" },
+    { name: "Linux", proficiency: 90, category: "tool" }
   ],
   projects: [
     {
       id: "1",
-      title: "E-Commerce Platform",
-      description: "A full-stack e-commerce solution with real-time inventory management",
-      technologies: ["React", "Node.js", "MongoDB", "Redux"],
-      image: "https://images.unsplash.com/photo-1661956602116-aa6865609028?auto=format&fit=crop&q=80&w=800",
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com",
-      category: "Full Stack"
+      title: "Yad2 Apartment Finder Bot",
+      description: "- Developed a Python bot for real-time apartment tracking with automated data retrieval and user notifications.\n" +
+          "- Designed scalable data pipelines using MongoDB to handle concurrent processing." +
+          "                                                                                     " +
+          "",
+      technologies: ["Python", "MongoDB", "Telegram API"],
+      image: "src/data/yad2-proj-1.png",
+      githubUrl: "https://github.com/talco318/yad2-bot",
+      category: "Automation"
     },
     {
       id: "2",
@@ -95,7 +105,7 @@ export const portfolioData: PortfolioData = {
           "- Enhanced system performance by optimizing component-based architecture and API integration." +
           "- Ensured responsive design for seamless interaction across device.",
       technologies: ["React", "Node.JS", "TypeScript"],
-      image: "https://private-user-images.githubusercontent.com/12784722/306246175-cab56570-5c89-4281-a070-1f54ffe37c60.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MzgxNDU4NjQsIm5iZiI6MTczODE0NTU2NCwicGF0aCI6Ii8xMjc4NDcyMi8zMDYyNDYxNzUtY2FiNTY1NzAtNWM4OS00MjgxLWEwNzAtMWY1NGZmZTM3YzYwLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTAxMjklMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwMTI5VDEwMTI0NFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTEyMzRjZjI5NzA5OWFjNmM5NzUwNWNhNDBhM2Q0Nzg3ZDNkYWQxMDA2Y2QyZjljM2Q1Y2M2OTI2N2ZhMWE5Y2ImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.odFplGELeN-pSp5eezT9mRr-bJPsBTZB8HHmseW-wPY",
+      image: "src/data/mentor-proj-1.png",
       liveUrl: "https://codefed.onrender.com/",
       githubUrl: "https://github.com/talco318/Code-Environment",
       category: "AI/ML"
@@ -104,28 +114,31 @@ export const portfolioData: PortfolioData = {
   experience: [
     {
       id: "1",
-      company: "Tech Innovators Inc.",
-      position: "Senior Full Stack Developer",
-      startDate: "2020-01",
+      company: "SAS Israel",
+      position: "Python Developer with SAS Infrastructure Expertise",
+      startDate: "2023-02",
       endDate: "Present",
-      description: "Lead developer for enterprise-scale web applications",
+      description: "Automated infrastructure processes using Python and Bash in Linux environments, increasing system efficiency by 20%.\n" +
+          "Designed and deployed REST APIs, handling JSON data for seamless communication in a scalable microservices architecture.\n" +
+          "Configured infrastructure on Linux servers, including bash scripting for automation and system maintenance, to ensure seamless integration with distributed systems and real-time communication.",
       achievements: [
-        "Reduced application load time by 40%",
-        "Implemented CI/CD pipeline reducing deployment time by 60%",
-        "Mentored junior developers and led technical training sessions"
+        "Automated infrastructure processes using Python and Bash in Linux environments, increasing system efficiency by 20%.",
+        "Designed and deployed REST APIs, handling JSON data for seamless communication in a scalable microservices architecture.",
+        "Configured infrastructure on Linux servers, including bash scripting for automation and system maintenance, to ensure seamless integration with distributed systems and real-time communication."
       ]
     },
     {
       id: "2",
-      company: "Digital Solutions Ltd.",
-      position: "Full Stack Developer",
-      startDate: "2018-03",
-      endDate: "2019-12",
-      description: "Developed and maintained multiple client projects",
+      company: "Self-employed",
+      position: "Technical Account Manager",
+      startDate: "2020-05",
+      endDate: "2023-02",
+      description: "Built and maintained responsive web applications, designed and deployed automation scripts and integrated multiple APIs.",
       achievements: [
-        "Successfully delivered 15+ client projects",
-        "Implemented automated testing reducing bugs by 30%",
-        "Optimized database queries improving performance by 50%"
+        "Built and maintained responsive web applications using React (TypeScript and JavaScript), including JSON data handling.",
+        "Designed and deployed automation scripts in Python to streamline backend processes and data management.",
+        "Integrated over 10 third-party and RESTful APIs to enhance system functionality and user engagement.",
+        "Enhanced system stability through troubleshooting and performance optimizations."
       ]
     }
   ]
