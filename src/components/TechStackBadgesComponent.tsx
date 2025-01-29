@@ -4,7 +4,7 @@ type TechStackBadgesProps = {
     technologies: string[];
 };
 
-const TechStackBadges: React.FC<TechStackBadgesProps> = ({ technologies }) => {
+const TechStackBadgesComponent: React.FC<TechStackBadgesProps> = ({ technologies }) => {
     return (
         <motion.div className="flex flex-wrap gap-2">
             {technologies.map((tech) => (
@@ -21,4 +21,4 @@ const TechStackBadges: React.FC<TechStackBadgesProps> = ({ technologies }) => {
     );
 };
 
-export default TechStackBadges;
+export default TechStackBadgesComponent;

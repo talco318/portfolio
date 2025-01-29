@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { portfolioData } from '../data/portfolio';
 import { staggerContainer, springHover, fadeInUp } from '../animations';
 
-export const HeroSection = () => {
+export const HeroComponent = () => {
     return (
         <motion.section
             className="pt-20 pb-32 px-4"

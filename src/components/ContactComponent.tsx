@@ -3,7 +3,7 @@ import { Github, Linkedin } from 'lucide-react';
 import { portfolioData } from '../data/portfolio';
 import { staggerContainer, fadeInUp } from '../animations';
 
-export const ContactSection = () => {
+export const ContactComponent = () => {
     return (
         <motion.section
             id="contact"

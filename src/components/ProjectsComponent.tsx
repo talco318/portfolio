@@ -2,9 +2,9 @@ import { motion } from 'framer-motion';
 import { portfolioData } from '../data/portfolio';
 import { staggerContainer, fadeInUp } from '../animations';
 import {ExternalLink, Github} from "lucide-react";
-import TechStackBadges from "./TechStackBadges";
+import TechStackBadgesComponent from "./TechStackBadgesComponent.tsx";
 
-export const ProjectsSection = () => {
+export const ProjectsComponent = () => {
     return (
         <motion.section
             id="projects"
@@ -57,7 +57,7 @@ export const ProjectsSection = () => {
                                 <div className="flex-grow"></div>
 
                                 {/* Tech Stack Badges */}
-                                <TechStackBadges technologies={project.technologies}/>
+                                <TechStackBadgesComponent technologies={project.technologies}/>
 
                                 <div className="flex mt-4 gap-4">
                                     {project.liveUrl && (
