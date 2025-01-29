@@ -1,6 +1,7 @@
 import { Navbar } from './components/Navbar';
 import { portfolioData } from './data/portfolio';
-import { Github, Linkedin, ExternalLink } from 'lucide-react';
+import { Github, Linkedin } from 'lucide-react';
+import { ProjectsSection } from './components/ProjectsSection';
 
 function App() {
   return (
@@ -64,65 +65,7 @@ function App() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-8">Projects</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {portfolioData.projects.map((project) => (
-              <div
-                key={project.id}
-                className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg transition-transform hover:scale-105"
-              >
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-48 object-cover"
-                />
-                <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                  <p className="text-gray-600 dark:text-gray-400 mb-4">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="flex gap-4">
-                    {project.liveUrl && (
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-blue-600 hover:text-blue-700"
-                      >
-                        <ExternalLink className="w-4 h-4" />
-                        Live Demo
-                      </a>
-                    )}
-                    {project.githubUrl && (
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
-                      >
-                        <Github className="w-4 h-4" />
-                        Code
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+        <ProjectsSection />
 
       {/* Skills Section */}
       <section id="skills" className="py-20 bg-white dark:bg-gray-800">
