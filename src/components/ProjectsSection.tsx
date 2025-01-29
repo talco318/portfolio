@@ -4,7 +4,7 @@ import { staggerContainer, fadeInUp } from '../animations';
 import {ExternalLink, Github} from "lucide-react";
 import TechStackBadgesComponent from "./TechStackBadgesComponent.tsx";
 
-export const ProjectsComponent = () => {
+export const ProjectsSection = () => {
     return (
         <motion.section
             id="projects"

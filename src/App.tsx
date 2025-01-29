@@ -1,8 +1,8 @@
 import { Navbar } from './components/Navbar';
 import { portfolioData } from './data/portfolio';
-import { ProjectsComponent } from './components/ProjectsComponent.tsx';
-import {ContactComponent} from "./components/ContactComponent.tsx";
-import {HeroComponent} from "./components/HeroComponent.tsx";
+import { ProjectsSection } from './components/ProjectsSection.tsx';
+import {ContactSection} from "./components/ContactSection.tsx";
+import {HeroSection} from "./components/HeroSection.tsx";
 import {SkillsComponent} from "./components/SkillsComponent.tsx";
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
       <Navbar />
       
       {/* Hero Section */}
-        <HeroComponent/>
+        <HeroSection/>
 
       {/* About Section */}
       <section id="about" className="py-20 bg-white dark:bg-gray-800">
@@ -33,7 +33,7 @@ function App() {
       </section>
 
       {/* Projects Section */}
-        <ProjectsComponent/>
+        <ProjectsSection/>
 
       {/* Skills Section */}
         <SkillsComponent skills={portfolioData.skills}/>
@@ -69,7 +69,7 @@ function App() {
       </section>
 
       {/* Contact Section */}
-      { <ContactComponent />}
+      { <ContactSection />}
 
     </div>
   );
