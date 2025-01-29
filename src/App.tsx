@@ -1,7 +1,6 @@
-import React from 'react';
 import { Navbar } from './components/Navbar';
 import { portfolioData } from './data/portfolio';
-import { Github, Linkedin, Twitter, ExternalLink } from 'lucide-react';
+import { Github, Linkedin, ExternalLink } from 'lucide-react';
 
 function App() {
   return (
@@ -224,7 +223,6 @@ function App() {
                       rel="noopener noreferrer"
                       className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
                     >
-                      <Twitter className="w-6 h-6" />
                     </a>
                   )}
                 </div>
