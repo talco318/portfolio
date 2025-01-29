@@ -1,8 +1,9 @@
 import { Navbar } from './components/Navbar';
 import { portfolioData } from './data/portfolio';
-import { ProjectsSection } from './components/ProjectsSection';
-import {ContactSection} from "./components/ContactSection.tsx";
-import {HeroSection} from "./components/HeroSection.tsx";
+import { ProjectsComponent } from './components/ProjectsComponent.tsx';
+import {ContactComponent} from "./components/ContactComponent.tsx";
+import {HeroComponent} from "./components/HeroComponent.tsx";
+import {SkillsComponent} from "./components/SkillsComponent.tsx";
 
 function App() {
   return (
@@ -10,7 +11,7 @@ function App() {
       <Navbar />
       
       {/* Hero Section */}
-      <HeroSection/>
+        <HeroComponent/>
 
       {/* About Section */}
       <section id="about" className="py-20 bg-white dark:bg-gray-800">
@@ -32,31 +33,12 @@ function App() {
       </section>
 
       {/* Projects Section */}
-      <ProjectsSection/>
+        <ProjectsComponent/>
 
       {/* Skills Section */}
+        <SkillsComponent skills={portfolioData.skills}/>
 
-      <section id="skills" className="py-20 bg-white dark:bg-gray-800">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-8">Skills</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {portfolioData.skills.map((skill) => (
-              <div
-                key={skill.name}
-                className="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-lg transition-transform hover:scale-105"
-              >
-                <h3 className="text-lg font-semibold mb-4">{skill.name}</h3>
-                <div className="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5">
-                  <div
-                    className="bg-blue-600 h-2.5 rounded-full transition-all duration-500"
-                    style={{ width: `${skill.proficiency}%` }}
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       {/* Experience Section */}
       <section id="experience" className="py-20">
@@ -87,7 +69,7 @@ function App() {
       </section>
 
       {/* Contact Section */}
-      { <ContactSection />}
+      { <ContactComponent />}
 
     </div>
   );
