@@ -1,16 +1,29 @@
 import { portfolioData } from '../data/portfolio';
 import { ExternalLink, Github, ChevronLeft, ChevronRight } from "lucide-react";
 import TechStackBadgesComponent from "./TechStackBadgesComponent.tsx";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export const ProjectsSection = () => {
     const [currentPage, setCurrentPage] = useState(0);
     const [isAnimating, setIsAnimating] = useState(false);
     const [direction, setDirection] = useState(0);
+    const [projectsPerPage, setProjectsPerPage] = useState(window.innerWidth < 768 ? 1 : 2);
 
-    // Dynamically set projects per page based on screen size
-    const projectsPerPage = window.innerWidth < 768 ? 1 : 2;  // 1 project per page on mobile, 2 on larger screens
+
+    const calculateProjectsPerPage = useCallback(() => {
+        setProjectsPerPage(window.innerWidth < 768 ? 1 : 2);
+    }, []);
+
+    useEffect(() => {
+        calculateProjectsPerPage();
+        const handleResize = () => {
+            calculateProjectsPerPage();
+        };
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, [calculateProjectsPerPage]);
+
 
     const totalPages = Math.ceil(portfolioData.projects.length / projectsPerPage);
 
@@ -33,18 +46,17 @@ export const ProjectsSection = () => {
     useEffect(() => {
         const timer = setTimeout(() => {
             setIsAnimating(false);
-        }, 400); // Increased duration for a smoother effect
+        }, 400);
         return () => clearTimeout(timer);
     }, [currentPage]);
 
-    // Ensure correct slicing of projects per page
     const visibleProjects = portfolioData.projects.slice(
         currentPage * projectsPerPage,
         currentPage * projectsPerPage + projectsPerPage
     );
 
     return (
-        <section id="projects" className="py-10 dark:bg-gray-800">
+        <section id="projects" className="py-10 bg-indigo-20 dark:bg-slate-800">
             <div className="section-container">
                 <h2 className="text-3xl font-bold mb-8">Projects</h2>
 
@@ -71,8 +83,8 @@ export const ProjectsSection = () => {
 
                     <AnimatePresence mode="wait">
                         <motion.div
-                            key={currentPage} // Helps with smooth animation transitions
-                            className="grid grid-cols-1 md:grid-cols-2 gap-8 overflow-hidden"
+                            key={currentPage}
+                            className={`grid gap-8 overflow-hidden ${projectsPerPage === 1 ? "grid-cols-1" : "grid-cols-1 md:grid-cols-2"}`}
                             initial={{ opacity: 0, x: direction * 100 }}
                             animate={{ opacity: 1, x: 0 }}
                             exit={{ opacity: 0, x: -direction * 100 }}
@@ -94,7 +106,7 @@ export const ProjectsSection = () => {
                                             {project.description}
                                         </p>
 
-                                        <TechStackBadgesComponent technologies={project.technologies}/>
+                                        <TechStackBadgesComponent technologies={project.technologies} />
 
                                         <div className="flex mt-4 gap-4">
                                             {project.liveUrl && (
@@ -104,7 +116,7 @@ export const ProjectsSection = () => {
                                                     rel="noopener noreferrer"
                                                     className="flex items-center gap-2 text-blue-600 hover:text-blue-700"
                                                 >
-                                                    <ExternalLink className="w-4 h-4"/>
+                                                    <ExternalLink className="w-4 h-4" />
                                                     Live Demo
                                                 </a>
                                             )}
@@ -115,7 +127,7 @@ export const ProjectsSection = () => {
                                                     rel="noopener noreferrer"
                                                     className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
                                                 >
-                                                    <Github className="w-4 h-4"/>
+                                                    <Github className="w-4 h-4" />
                                                     Code
                                                 </a>
                                             )}
@@ -147,5 +159,4 @@ export const ProjectsSection = () => {
         </section>
     );
 };
-
 export default ProjectsSection;
