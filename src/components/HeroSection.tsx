@@ -1,18 +1,19 @@
 import { motion } from 'framer-motion';
 import { portfolioData } from '../data/portfolio';
 import { staggerContainer, springHover, fadeInUp } from '../animations';
+import { Github, Linkedin } from 'lucide-react'; // Correct icon import
 
 export const HeroSection = () => {
     return (
         <motion.section
-            className="pt-20 pb-32 px-4 bg-gradient-to-r from-purple-600 via-indigo-500 to-blue-600 dark:from-blue-900 dark:via-purple-800 dark:to-gray-800"
+            className="h-screen flex items-center justify-center bg-gradient-to-r from-purple-600 via-indigo-500 to-blue-600 dark:from-blue-900 dark:via-purple-800 dark:to-gray-800"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
         >
-            <div className="max-w-7xl mx-auto">
+            <div className="max-w-7xl mx-auto flex flex-col items-center justify-center px-4">
                 <motion.div
-                    className="flex flex-col md:flex-row items-center gap-8"
+                    className="flex flex-col items-center justify-center gap-8 text-center"
                     variants={staggerContainer}
                     initial="initial"
                     animate="animate"
@@ -40,7 +41,7 @@ export const HeroSection = () => {
                             <p className="text-lg text-gray-200 dark:text-gray-300 mb-8">{portfolioData.personal.tagline}</p>
                         </motion.div>
                         <motion.div
-                            className="flex gap-4"
+                            className="flex gap-4 items-center justify-center"
                             variants={springHover}
                         >
                             <motion.a
@@ -60,23 +61,50 @@ export const HeroSection = () => {
                                 Contact Me
                             </motion.a>
                         </motion.div>
+
+                        {/* Social Media Icons */}
+                        <motion.div
+                            className="flex gap-4 mt-6 items-center justify-center"
+                            variants={staggerContainer}
+                        >
+                            <motion.a
+                                href={portfolioData.personal.socialLinks.github}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-gray-800 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+                                whileHover={{ scale: 1.2 }}
+                            >
+                                <Github className="w-6 h-6" />
+                            </motion.a>
+                            <motion.a
+                                href={portfolioData.personal.socialLinks.linkedin}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-gray-800 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+                                whileHover={{ scale: 1.2 }}
+                            >
+                                <Linkedin className="w-6 h-6" />
+                            </motion.a>
+                        </motion.div>
                     </motion.div>
+
                     <motion.div
                         className="flex-1 flex justify-center"
                         initial={{ opacity: 0, scale: 0.5 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.8, type: "spring" }}
                     >
-                        {/*<motion.img*/}
-                        {/*    src={portfolioData.personal.avatar}*/}
-                        {/*    alt={portfolioData.personal.name}*/}
-                        {/*    className="w-64 h-64 rounded-full object-cover shadow-2xl"*/}
-                        {/*    whileHover={{*/}
-                        {/*        scale: 1.1,*/}
-                        {/*        rotate: 5,*/}
-                        {/*        transition: { type: "spring", stiffness: 300 }*/}
-                        {/*    }}*/}
-                        {/*/>*/}
+                        {/* Avatar Image (commented out in original) */}
+                        {/* <motion.img
+                            src={portfolioData.personal.avatar}
+                            alt={portfolioData.personal.name}
+                            className="w-64 h-64 rounded-full object-cover shadow-2xl"
+                            whileHover={{
+                                scale: 1.1,
+                                rotate: 5,
+                                transition: { type: "spring", stiffness: 300 }
+                            }}
+                        /> */}
                     </motion.div>
                 </motion.div>
             </div>
