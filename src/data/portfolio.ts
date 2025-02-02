@@ -90,9 +90,7 @@ export const portfolioData: PortfolioData = {
       id: "1",
       title: "Yad2 Apartment Finder Bot",
       description: "- Developed a Python bot for real-time apartment tracking with automated data retrieval and user notifications.\n" +
-          "- Designed scalable data pipelines using MongoDB to handle concurrent processing." +
-          "                                                                                     " +
-          "",
+          "- Designed scalable data pipelines using MongoDB to handle concurrent processing.",
       technologies: ["Python", "MongoDB", "Telegram API"],
       image: "src/data/yad2-proj-1.png",
       githubUrl: "https://github.com/talco318/yad2-bot",
@@ -101,6 +99,18 @@ export const portfolioData: PortfolioData = {
     {
       id: "2",
       title: "Mentor-Mentee Online Collaborative Coding: React Frontend",
+      description: "- Built a dynamic UI with real-time collaboration features using React and TypeScript." +
+          "- Enhanced system performance by optimizing component-based architecture and API integration." +
+          "- Ensured responsive design for seamless interaction across device.",
+      technologies: ["React", "Node.JS", "TypeScript"],
+      image: "src/data/mentor-proj-1.png",
+      liveUrl: "https://codefed.onrender.com/",
+      githubUrl: "https://github.com/talco318/Code-Environment",
+      category: "AI/ML"
+    },
+    {
+      id: "3",
+      title: "this is a test",
       description: "- Built a dynamic UI with real-time collaboration features using React and TypeScript." +
           "- Enhanced system performance by optimizing component-based architecture and API integration." +
           "- Ensured responsive design for seamless interaction across device.",
