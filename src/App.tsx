@@ -14,7 +14,7 @@ function App() {
         <HeroSection/>
 
       {/* About Section */}
-      <section id="about" className="py-20 bg-white dark:bg-gray-800">
+      <section id="about" className="py-10 bg-indigo-50 dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-3xl font-bold mb-8">About Me</h2>
           <p className="text-lg mb-8">{portfolioData.personal.bio}</p>
@@ -33,14 +33,14 @@ function App() {
       </section>
 
         {/* Experience Section */}
-        <section id="experience" className="py-20">
-            <div className="max-w-7xl mx-auto px-4">
+        <section id="experience" className="py-5 bg-indigo-50 dark:bg-slate-800">
+            <div className="max-w-7xl mx-auto px-4 ">
                 <h2 className="text-3xl font-bold mb-8">Experience</h2>
                 <div className="space-y-8">
                     {portfolioData.experience.map((exp) => (
                         <div
                             key={exp.id}
-                            className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg"
+                            className="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-lg"
                         >
                             <h3 className="text-xl font-bold mb-2">{exp.position}</h3>
                             <p className="text-gray-600 dark:text-gray-400 mb-4">

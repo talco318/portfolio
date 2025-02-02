@@ -44,7 +44,7 @@ export const ProjectsSection = () => {
     );
 
     return (
-        <section id="projects" className="py-20">
+        <section id="projects" className="py-10 dark:bg-gray-800">
             <div className="section-container">
                 <h2 className="text-3xl font-bold mb-8">Projects</h2>
 
@@ -54,7 +54,7 @@ export const ProjectsSection = () => {
                             <button
                                 onClick={prevPage}
                                 disabled={isAnimating}
-                                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 bg-white dark:bg-gray-800 p-2 rounded-full shadow-lg z-10 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors disabled:opacity-50"
+                                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 bg-white dark:bg-gray-900 p-2 rounded-full shadow-lg z-10 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors disabled:opacity-50"
                             >
                                 <ChevronLeft className="w-6 h-6" />
                             </button>
@@ -62,7 +62,7 @@ export const ProjectsSection = () => {
                             <button
                                 onClick={nextPage}
                                 disabled={isAnimating}
-                                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 bg-white dark:bg-gray-800 p-2 rounded-full shadow-lg z-10 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors disabled:opacity-50"
+                                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 bg-white dark:bg-gray-900 p-2 rounded-full shadow-lg z-10 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors disabled:opacity-50"
                             >
                                 <ChevronRight className="w-6 h-6" />
                             </button>
@@ -81,7 +81,7 @@ export const ProjectsSection = () => {
                             {visibleProjects.map((project) => (
                                 <div
                                     key={project.id}
-                                    className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-2"
+                                    className="bg-white dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-2"
                                 >
                                     <img
                                         src={project.image}
