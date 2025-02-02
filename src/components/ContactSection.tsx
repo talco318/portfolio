@@ -7,7 +7,7 @@ export const ContactSection = () => {
     return (
         <motion.section
             id="contact"
-            className="py-20 bg-white dark:bg-gray-800"
+            className="py-20 bg-white dark:bg-gray-900"
             initial="initial"
             whileInView="animate"
             viewport={{ once: true }}

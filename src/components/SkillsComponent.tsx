@@ -44,7 +44,7 @@ const SkillsComponent: React.FC<SkillsSectionProps> = ({ skills }) => {
                             <h3 className="text-lg font-semibold mb-4">{skill.name}</h3>
                             <div className="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5">
                                 <div
-                                    className="bg-purple-600 h-2.5 rounded-full transition-all duration-500"
+                                    className="bg-blue-600 h-2.5 rounded-full transition-all duration-500"
                                     style={{ width: `${skill.proficiency}%` }}
                                 />
                             </div>

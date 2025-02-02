@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
 
@@ -12,22 +12,50 @@ const navItems = [
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isNavbarVisible, setIsNavbarVisible] = useState(true); // Initialize to 'true'
+  const [lastScrollTop, setLastScrollTop] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+      if (scrollTop < lastScrollTop && scrollTop > 100) {
+        //Scrolling up and not at the top
+        setIsNavbarVisible(false);
+      } else if(scrollTop > lastScrollTop || scrollTop <= 100){
+        //Scrolling down OR at the top
+        setIsNavbarVisible(true);
+      }
+      setLastScrollTop(scrollTop);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      //Cleanup - removing event listener to prevent memory leaks
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [lastScrollTop]);
 
   return (
-      <nav className="fixed top-0 left-0 right-0 bg-gradient-to-r from-purple-600 via-indigo-500 to-blue-600 dark:from-gray-900 dark:via-gray-800 dark:to-gray-700 shadow-sm z-50">
+      <nav
+          className={`fixed top-0 left-0 right-0 bg-gradient-to-r from-purple-600 via-indigo-500 to-blue-600 dark:from-gray-900 dark:via-gray-800 dark:to-gray-700 shadow-sm z-50 transition-all ${
+              isNavbarVisible ? '' : '-translate-y-full'
+          }`}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex items-center">
               <a
                   href="#"
-                  className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600 dark:from-blue-400 dark:to-pink-600"
+                  className="text-xl font-bold bg-clip-text text-white dark:from-blue-400 dark:to-pink-600"
               >
-                Portfolio
+                Tal Cohen - Software Developer
               </a>
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8" >
+            <div className="hidden md:flex items-center space-x-8">
               {navItems.map((item) => (
                   <a
                       key={item.label}
