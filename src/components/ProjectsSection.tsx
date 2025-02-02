@@ -8,7 +8,10 @@ export const ProjectsSection = () => {
     const [currentPage, setCurrentPage] = useState(0);
     const [isAnimating, setIsAnimating] = useState(false);
     const [direction, setDirection] = useState(0);
-    const projectsPerPage = 2;  // Adjust this to control how many projects are visible per page
+
+    // Dynamically set projects per page based on screen size
+    const projectsPerPage = window.innerWidth < 768 ? 1 : 2;  // 1 project per page on mobile, 2 on larger screens
+
     const totalPages = Math.ceil(portfolioData.projects.length / projectsPerPage);
 
     const nextPage = () => {
