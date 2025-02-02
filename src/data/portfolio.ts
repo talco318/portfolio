@@ -127,9 +127,7 @@ export const portfolioData: PortfolioData = {
       position: "Python Developer with SAS Infrastructure Expertise",
       startDate: "2023-02",
       endDate: "Present",
-      description: "Automated infrastructure processes using Python and Bash in Linux environments, increasing system efficiency by 20%.\n" +
-          "Designed and deployed REST APIs, handling JSON data for seamless communication in a scalable microservices architecture.\n" +
-          "Configured infrastructure on Linux servers, including bash scripting for automation and system maintenance, to ensure seamless integration with distributed systems and real-time communication.",
+      description: "Automated Linux infrastructure using Python and Bash, boosting system efficiency by 20%. Developed REST APIs and configured Linux servers with bash scripting for seamless integration within a distributed, real-time microservices architecture.",
       achievements: [
         "Automated infrastructure processes using Python and Bash in Linux environments, increasing system efficiency by 20%.",
         "Designed and deployed REST APIs, handling JSON data for seamless communication in a scalable microservices architecture.",
