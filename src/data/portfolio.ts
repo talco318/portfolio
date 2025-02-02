@@ -35,7 +35,7 @@ export interface PortfolioData {
     phone?: string;
     location: string;
     bio: string;
-    avatar: string;
+    // avatar: string;
     socialLinks: {
       github: string;
       linkedin: string;
@@ -53,14 +53,13 @@ export const portfolioData: PortfolioData = {
     name: "Tal Cohen",
     title: "Full Stack Developer",
     tagline: "Building elegant solutions to complex problems",
-    email: "talcohen318@example.com",
+    email: "talcohen318@gmail.com",
     location: "Israel",
-    phone: "+972) 50-8177730",
     bio: "Software Developer with a B.Sc. in Computer Science, specializing in Python development, Linux-based environments, and\n" +
         "scalable infrastructure. Proficient in automating workflows, optimizing backend systems, and collaborating on data-driven\n" +
         "projects. Skilled in designing efficient solutions for real-time systems and leveraging cutting-edge technologies to deliver\n" +
         "high-impact results. Passionate about contributing to the AI-driven revolution through innovative software development.",
-    avatar: "https://media.licdn.com/dms/image/v2/D4D03AQH5iPNeEkNbIw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1718234050977?e=1743638400&v=beta&t=pV3P0AtcVhkOe36o6FSKFm-wpkyf47K1eXYO_ak9zlg",
+    // avatar: "https://media.licdn.com/dms/image/v2/D4D03AQH5iPNeEkNbIw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1718234050977?e=1743638400&v=beta&t=pV3P0AtcVhkOe36o6FSKFm-wpkyf47K1eXYO_ak9zlg",
     socialLinks: {
       github: "https://github.com/talco318",
       linkedin: "https://www.linkedin.com/in/talco318/",
