@@ -36,7 +36,7 @@ export interface PortfolioData {
     phone?: string;
     location: string;
     bio: string;
-    // avatar: string;
+    backgroundImage: string;
     socialLinks: {
       github: string;
       linkedin: string;
@@ -57,6 +57,7 @@ export const portfolioData: PortfolioData = {
     tagline: "Building elegant solutions to complex problems",
     email: "talcohen318@gmail.com",
     location: "Israel",
+    backgroundImage: "https://lh3.googleusercontent.com/d/1_Geshyn3WEDM7U9UnDuDZYbUhngvysLj",
     bio: "Software Developer with a B.Sc. in Computer Science, specializing in Python development, Linux-based environments, and\n" +
         "scalable infrastructure. Proficient in automating workflows, optimizing backend systems, and collaborating on data-driven\n" +
         "projects. Skilled in designing efficient solutions for real-time systems and leveraging cutting-edge technologies to deliver\n" +

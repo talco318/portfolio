@@ -1,17 +1,35 @@
 import { motion } from 'framer-motion';
 import { portfolioData } from '../data/portfolio';
 import { staggerContainer, springHover, fadeInUp } from '../animations';
-import { Github, Linkedin } from 'lucide-react'; // Correct icon import
+import { Github, Linkedin } from 'lucide-react';
 
 export const HeroSection = () => {
     return (
         <motion.section
-            className="h-screen flex items-center justify-center  bg-gradient-to-r from-purple-600 via-indigo-500 to-blue-600 dark:from-blue-900 dark:via-purple-800 dark:to-gray-800"
+            className="relative h-screen flex items-center justify-center bg-gradient-to-r from-purple-600 via-indigo-500 to-blue-600 dark:from-blue-900 dark:via-purple-800 dark:to-gray-800 overflow-hidden"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
         >
-            <div className="max-w-7xl mx-auto flex flex-col items-center justify-center px-4">
+
+            {/* Background Image Layer */}
+            <div
+                className="absolute inset-0 z-0"
+                style={{
+                    backgroundImage: `url('${portfolioData.personal.backgroundImage}')`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
+                    opacity: 0.10,
+
+                    //Try these if there's a problem with the image covering the whole screen.
+                    height: '100%',
+                    width: '100%',
+                }}
+            ></div>
+
+            {/* Content */}
+            <div className="max-w-7xl mx-auto flex flex-col items-center justify-center px-4 relative z-10">
                 <motion.div
                     className="flex flex-col items-center justify-center gap-8 text-center"
                     variants={staggerContainer}
@@ -96,15 +114,15 @@ export const HeroSection = () => {
                     >
                         {/* Avatar Image (commented out in original) */}
                         {/* <motion.img
-                            src={portfolioData.personal.avatar}
-                            alt={portfolioData.personal.name}
-                            className="w-64 h-64 rounded-full object-cover shadow-2xl"
-                            whileHover={{
-                                scale: 1.1,
-                                rotate: 5,
-                                transition: { type: "spring", stiffness: 300 }
-                            }}
-                        /> */}
+              src={portfolioData.personal.avatar}
+              alt={portfolioData.personal.name}
+              className="w-64 h-64 rounded-full object-cover shadow-2xl"
+              whileHover={{
+                scale: 1.1,
+                rotate: 5,
+                transition: { type: "spring", stiffness: 300 }
+              }}
+            /> */}
                     </motion.div>
                 </motion.div>
             </div>
