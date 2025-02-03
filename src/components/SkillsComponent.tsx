@@ -15,7 +15,7 @@ type SkillsSectionProps = {
 
 const TechStackBadges: React.FC<TechStackBadgesProps> = ({ technologies }) => {
     return (
-        <motion.div className="flex flex-wrap gap-2">
+        <motion.div className="flex flex-wrap gap-2 ">
             {technologies.map((tech) => (
                 <motion.span
                     key={tech}
@@ -32,7 +32,7 @@ const TechStackBadges: React.FC<TechStackBadgesProps> = ({ technologies }) => {
 
 const SkillsComponent: React.FC<SkillsSectionProps> = ({ skills }) => {
     return (
-        <section id="skills" className="py-20 bg-white dark:bg-gray-800">
+        <section id="skills" className="py-20 bg-indigo-50 dark:bg-slate-800">
             <div className="max-w-7xl mx-auto px-4">
                 <h2 className="text-3xl font-bold mb-8">Skills</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

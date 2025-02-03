@@ -14,7 +14,7 @@ function App() {
         <HeroSection/>
 
       {/* About Section */}
-      <section id="about" className="py-10 bg-indigo-50 dark:bg-gray-800">
+      <section id="about" className="py-10 bg-indigo-100 dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-3xl font-bold mb-8">About Me</h2>
           <p className="text-lg mb-8">{portfolioData.personal.bio}</p>

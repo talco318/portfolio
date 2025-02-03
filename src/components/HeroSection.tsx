@@ -6,7 +6,7 @@ import { Github, Linkedin } from 'lucide-react'; // Correct icon import
 export const HeroSection = () => {
     return (
         <motion.section
-            className="h-screen flex items-center justify-center bg-gradient-to-r from-purple-600 via-indigo-500 to-blue-600 dark:from-blue-900 dark:via-purple-800 dark:to-gray-800"
+            className="h-screen flex items-center justify-center  bg-gradient-to-r from-purple-600 via-indigo-500 to-blue-600 dark:from-blue-900 dark:via-purple-800 dark:to-gray-800"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
