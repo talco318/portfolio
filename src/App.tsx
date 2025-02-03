@@ -13,24 +13,36 @@ function App() {
       {/* Hero Section */}
         <HeroSection/>
 
-      {/* About Section */}
-      <section id="about" className="py-10 bg-indigo-100 dark:bg-gray-800">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-8">About Me</h2>
-          <p className="text-lg mb-8">{portfolioData.personal.bio}</p>
-          <div className="flex flex-wrap gap-4">
-            {portfolioData.personal.interests.map((interest) => (
-                <span
-                    key={interest}
-                    className="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full"
-                >
-                {interest}
-              </span>
-            ))}
-          </div>
+        {/* About Section */}
+        <section id="about" className="py-10 bg-indigo-100 dark:bg-gray-800">
+            <div className="max-w-7xl mx-auto px-4">
+                <div className="flex justify-between items-start">  {/* Added flex container */}
+                    <div className="w-2/3">  {/* Content on the left */}
+                        <h2 className="text-3xl font-bold mb-8">About Me</h2>
+                        <p className="text-lg mb-8">{portfolioData.personal.bio}</p>
+                        <div className="flex flex-wrap gap-4">
+                            {portfolioData.personal.interests.map((interest) => (
+                                <span
+                                    key={interest}
+                                    className="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full"
+                                >
+              {interest}
+            </span>
+                            ))}
+                        </div>
+                    </div>
 
-        </div>
-      </section>
+                    {/* Circular image on the right */}
+                    <div className="w-1/4">
+                        <img
+                            src="https://lh3.googleusercontent.com/d/1nb5RBI6Wmo1pfr2yFswFDeY1D0ONuYPE"
+                            alt="Profile"
+                            className="rounded-full w-48 h-48 "
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
 
         {/* Experience Section */}
         <section id="experience" className="py-5 bg-indigo-50 dark:bg-slate-800">
