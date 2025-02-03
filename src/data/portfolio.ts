@@ -116,16 +116,23 @@ export const portfolioData: PortfolioData = {
     },
     {
       id: "3",
-      title: "this is a test",
-      description: "- Built a dynamic UI with real-time collaboration features using React and TypeScript." +
-          "- Enhanced system performance by optimizing component-based architecture and API integration." +
-          "- Ensured responsive design for seamless interaction across device.",
-      technologies: ["React", "Node.JS", "TypeScript"],
-      image: "https://lh3.googleusercontent.com/d/1BphxwbLAQOFYwCoLvysudJVFd3Fgaiue",
-      liveUrl: "https://codefed.onrender.com/",
-      githubUrl: "https://github.com/talco318/Code-Environment",
+      title: "Tomorrowland Festival LineUp vs Spotify playlist bot",
+      description: "Developed a personalized music recommendation system with Spotify API, Telegram Bot API, and JSON database. Cross-referenced Spotify playlist artists with Tomorrowland Festival lineup.",
+      technologies: ["Python", "Spotify API", "Google AI Studio API"],
+      image: "https://lh3.googleusercontent.com/d/103C0arvOTdomwkmoG3tCI5m0XRAAYY4t",
+      githubUrl: "https://github.com/talco318/LineUp_vs_spotify_bot",
+      category: "AI/ML"
+    },
+    {
+      id: "4",
+      title: "ParkHere Bot",
+      description: "Developed a Telegram Bot for parking detection using Python and the YOLOv5 computer vision algorithm. Integrated Firebase for data storage and Google Maps API for real-time navigation to enhance parking search efficiency.",
+      technologies: ["Python","YOLOv5 (Computer vision)",],
+      image: "https://lh3.googleusercontent.com/d/1TL7nPjQNMnlR9pSUtd5aJKRYuVfimc1B",
+      githubUrl: "https://github.com/talco318/ParkHere_FinalProject",
       category: "AI/ML"
     }
+
   ],
   experience: [
     {
