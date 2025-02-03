@@ -91,7 +91,7 @@ export const portfolioData: PortfolioData = {
       description: "- Developed a Python bot for real-time apartment tracking with automated data retrieval and user notifications.\n" +
           "- Designed scalable data pipelines using MongoDB to handle concurrent processing.",
       technologies: ["Python", "MongoDB", "Telegram API"],
-      image: "src/data/yad2-proj-1.png",
+      image: "https://lh3.googleusercontent.com/d/1nb5RBI6Wmo1pfr2yFswFDeY1D0ONuYPE",
       githubUrl: "https://github.com/talco318/yad2-bot",
       category: "Automation"
     },
@@ -102,7 +102,7 @@ export const portfolioData: PortfolioData = {
           "- Enhanced system performance by optimizing component-based architecture and API integration." +
           "- Ensured responsive design for seamless interaction across device.",
       technologies: ["React", "Node.JS", "TypeScript"],
-      image: "src/data/mentor-proj-1.png",
+      image: "https://lh3.googleusercontent.com/d/1BphxwbLAQOFYwCoLvysudJVFd3Fgaiue",
       liveUrl: "https://codefed.onrender.com/",
       githubUrl: "https://github.com/talco318/Code-Environment",
       category: "AI/ML"
@@ -114,7 +114,7 @@ export const portfolioData: PortfolioData = {
           "- Enhanced system performance by optimizing component-based architecture and API integration." +
           "- Ensured responsive design for seamless interaction across device.",
       technologies: ["React", "Node.JS", "TypeScript"],
-      image: "src/data/mentor-proj-1.png",
+      image: "https://lh3.googleusercontent.com/d/1BphxwbLAQOFYwCoLvysudJVFd3Fgaiue",
       liveUrl: "https://codefed.onrender.com/",
       githubUrl: "https://github.com/talco318/Code-Environment",
       category: "AI/ML"
