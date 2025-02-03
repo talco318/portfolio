@@ -49,6 +49,11 @@ export interface PortfolioData {
   experience: Experience[];
 }
 
+export interface SocialLinks {
+  github?: string;
+  linkedin?: string;
+}
+
 export const portfolioData: PortfolioData = {
   personal: {
     name: "Tal Cohen",
