@@ -1,12 +1,8 @@
 import { motion } from "framer-motion";
+import { Skill } from '../data/portfolio'; // Import Skill from portfolio.ts
 
 type TechStackBadgesProps = {
     technologies: string[];
-};
-
-type Skill = {
-    name: string;
-    proficiency: number;
 };
 
 type SkillsSectionProps = {
