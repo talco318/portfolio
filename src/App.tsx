@@ -33,9 +33,9 @@ function App() {
                     </div>
 
                     {/* Circular image on the right */}
-                    <div className="w-1/4">
+                    <div className="w-1/4 py-10">
                         <img
-                            src="https://lh3.googleusercontent.com/d/1nb5RBI6Wmo1pfr2yFswFDeY1D0ONuYPE"
+                            src="https://media.licdn.com/dms/image/v2/D4D03AQH5iPNeEkNbIw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1718234050977?e=1744243200&v=beta&t=u72sdTU_2sL2tG10UhXOMWINI-H1jSLhsOziJRP6wPw"
                             alt="Profile"
                             className="rounded-full w-48 h-48 "
                         />
