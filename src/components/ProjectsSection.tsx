@@ -1,8 +1,8 @@
 import { portfolioData } from '../data/portfolio';
 import { ExternalLink, Github, ChevronLeft, ChevronRight } from "lucide-react";
-import TechStackBadgesComponent from "./TechStackBadgesComponent.tsx";
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import {TechStackBadges} from "./SkillsComponent.tsx";
 
 export const ProjectsSection = () => {
     const [currentPage, setCurrentPage] = useState(0);
@@ -106,7 +106,7 @@ export const ProjectsSection = () => {
                                             {project.description}
                                         </p>
 
-                                        <TechStackBadgesComponent technologies={project.technologies} />
+                                        <TechStackBadges technologies={project.technologies} />
 
                                         <div className="flex mt-4 gap-4">
                                             {project.liveUrl && (
