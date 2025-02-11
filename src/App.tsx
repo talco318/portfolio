@@ -3,10 +3,10 @@ import { Navbar } from './components/Navbar';
 import { ProjectsSection } from './components/ProjectsSection.tsx';
 import { ContactSection } from "./components/ContactSection.tsx";
 import { HeroSection } from "./components/HeroSection.tsx";
-import { SkillsComponent } from "./components/SkillsComponent.tsx";
 import AboutSection from "./components/AboutSection.tsx";
 import ExperienceSection from "./components/ExperienceSection.tsx";
 import SocialButtons from './components/SocialButtons.jsx';
+import SkillsSection from "./components/SkillsSection.tsx";
 function App() {
   return (
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
@@ -25,7 +25,7 @@ function App() {
         <ProjectsSection />
 
         {/* Skills Section */}
-        <SkillsComponent skills={portfolioData.skills} />
+        <SkillsSection />
 
         {/* Contact Section */}
         <ContactSection />

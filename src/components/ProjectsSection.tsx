@@ -1,8 +1,7 @@
 import { portfolioData } from '../data/portfolio';
-import { ExternalLink, Github, ChevronLeft, ChevronRight } from "lucide-react";
+import {ExternalLink, ChevronLeft, ChevronRight, GithubIcon} from "lucide-react";
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import {TechStackBadges} from "./SkillsComponent.tsx";
 
 export const ProjectsSection = () => {
     const [currentPage, setCurrentPage] = useState(0);
@@ -10,6 +9,9 @@ export const ProjectsSection = () => {
     const [direction, setDirection] = useState(0);
     const [projectsPerPage, setProjectsPerPage] = useState(window.innerWidth < 768 ? 1 : 2);
 
+    type TechStackBadgesProps = {
+        technologies: string[];
+    };
 
     const calculateProjectsPerPage = useCallback(() => {
         setProjectsPerPage(window.innerWidth < 768 ? 1 : 2);
@@ -55,6 +57,22 @@ export const ProjectsSection = () => {
         currentPage * projectsPerPage + projectsPerPage
     );
 
+    const TechStackBadges: React.FC<TechStackBadgesProps> = ({ technologies }) => {
+        return (
+            <motion.div className="flex flex-wrap gap-2 ">
+                {technologies.map((tech) => (
+                    <motion.span
+                        key={tech}
+                        className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm"
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        {tech}
+                    </motion.span>
+                ))}
+            </motion.div>
+        );
+    };
     return (
         <section id="projects" className="py-10 bg-indigo-20 dark:bg-slate-800">
             <div className="section-container">
@@ -102,7 +120,7 @@ export const ProjectsSection = () => {
                                     />
                                     <div className="p-6">
                                         <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                                        <p className="text-gray-600 dark:text-gray-400 mb-4">
+                                        <p className="text-gray-600 dark:text-gray-400 mb-4" style={{ whiteSpace: 'pre-line' }}>
                                             {project.description}
                                         </p>
 
@@ -127,7 +145,7 @@ export const ProjectsSection = () => {
                                                     rel="noopener noreferrer"
                                                     className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
                                                 >
-                                                    <Github className="w-4 h-4" />
+                                                    <GithubIcon className="w-4 h-4" />
                                                     Code
                                                 </a>
                                             )}
