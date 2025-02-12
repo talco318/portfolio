@@ -2,8 +2,76 @@ import { motion } from 'framer-motion';
 import { Github, Linkedin } from 'lucide-react';
 import { portfolioData } from '../data/portfolio';
 import { staggerContainer, fadeInUp } from '../animations';
+import { useEffect, useRef, useCallback } from 'react';
+import emailjs from '@emailjs/browser';
 
 export const ContactSection = () => {
+    const form = useRef(null);
+    const isSubmitting = useRef(false);
+
+    const handleSubmit = useCallback(async (event: { preventDefault: () => void; }) => {
+        event.preventDefault();
+
+        if (isSubmitting.current) {
+            return; // Prevent multiple submissions
+        }
+
+        const contactForm = document.getElementById('contact-form');
+
+        if (!contactForm || !(contactForm instanceof HTMLFormElement)) {
+            console.error("Contact form is not an HTMLFormElement or not found.");
+            alert("An error occurred. Please try again later.");
+            return;
+        }
+
+        isSubmitting.current = true;
+        try {
+            const result = await emailjs.sendForm(
+                import.meta.env.VITE_EMAILJS_SERVICE_ID,
+                import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+                contactForm
+            ); // Use the form ref
+
+            console.log('SUCCESS!', result.text);
+            contactForm.reset();
+            alert('Message sent successfully!');
+        } catch (error) {
+            console.error('FAILED...', error);
+            alert('Failed to send message. Please try again later.');
+        } finally {
+            isSubmitting.current = false;
+        }
+    }, []);
+
+
+    useEffect(() => {
+
+        const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+        console.log('Public key:', publicKey);
+
+
+        if (!publicKey) {
+            console.error('EmailJS public key is not defined in environment variables');
+            return;
+        }
+
+        emailjs.init({
+            publicKey: publicKey,
+        });
+
+        const contactForm = document.getElementById('contact-form');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', handleSubmit);
+
+            return () => {
+                contactForm.removeEventListener('submit', handleSubmit);
+            };
+        }
+
+    }, [handleSubmit]); // Dependency on handleSubmit
+
+
     return (
         <motion.section
             id="contact"
@@ -69,6 +137,8 @@ export const ContactSection = () => {
                     <motion.form
                         className="space-y-6"
                         variants={fadeInUp}
+                        id="contact-form" // Add the ID to the form
+                        ref={form} // Attach the ref to the form
                     >
                         <div>
                             <label
@@ -80,7 +150,7 @@ export const ContactSection = () => {
                             <motion.input
                                 type="text"
                                 id="name"
-                                name="name"
+                                name="user_name" // Changed name attribute to match emailjs template
                                 className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 focus:ring-2 focus:ring-blue-500 outline-none transition-colors"
                                 whileFocus={{ scale: 1.01 }}
                             />
@@ -95,7 +165,7 @@ export const ContactSection = () => {
                             <motion.input
                                 type="email"
                                 id="email"
-                                name="email"
+                                name="user_email"  // Changed name attribute to match emailjs template
                                 className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 focus:ring-2 focus:ring-blue-500 outline-none transition-colors"
                                 whileFocus={{ scale: 1.01 }}
                             />
@@ -109,7 +179,7 @@ export const ContactSection = () => {
                             </label>
                             <motion.textarea
                                 id="message"
-                                name="message"
+                                name="message"  // Changed name attribute to match emailjs template
                                 rows={4}
                                 className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 focus:ring-2 focus:ring-blue-500 outline-none transition-colors"
                                 whileFocus={{ scale: 1.01 }}
