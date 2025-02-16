@@ -4,7 +4,7 @@ import {ContactSectionNew} from "./components/ContactSectionNew.tsx";
 
 function App() {
   return (
-      <BrowserRouter>
+      <BrowserRouter basename={""}>
           <div>
               <Routes>
                   <Route path="/" element={<MainPage/>}></Route>
