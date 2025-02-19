@@ -47,7 +47,6 @@ export const ContactSection = () => {
     useEffect(() => {
 
         const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-        console.log('Public key:', publicKey);
 
 
         if (!publicKey) {
