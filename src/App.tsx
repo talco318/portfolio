@@ -1,18 +1,18 @@
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import MainPage from "./components/MainPage.tsx";
-import {ContactSectionNew} from "./components/ContactSectionNew.tsx";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import MainPage from './components/MainPage'; // Assuming MainPage.tsx exists
+import { ContactSectionNew } from './components/ContactSectionNew'; // Assuming ContactSectionNew.tsx exists
 
 function App() {
-  return (
-      <BrowserRouter basename={""}>
-          <div>
-              <Routes>
-                  <Route path="/" element={<MainPage/>}></Route>
-                  <Route path="/copy" element={<ContactSectionNew/>}></Route>
-              </Routes>
-          </div>
-      </BrowserRouter>
-  );
+    return (
+        <BrowserRouter basename="">
+            <div>
+                <Routes>
+                    <Route path="/" element={<MainPage />} />
+                    <Route path="/copy" element={<ContactSectionNew />} />
+                </Routes>
+            </div>
+        </BrowserRouter>
+    );
 }
 
 export default App;
