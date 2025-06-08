@@ -8,6 +8,7 @@ function App() {
             <div>
                 <Routes>
                     <Route path="/" element={<MainPage />} />
+                    <Route path="/linkedin" element={<LinkedinRedirect />} />
                 </Routes>
             </div>
         </BrowserRouter>
