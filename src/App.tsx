@@ -8,7 +8,7 @@ function App() {
             <div>
                 <Routes>
                     <Route path="/" element={<MainPage />} />
-                    <Route path="/copy" element={<ContactSectionNew />} />
+                    <Route path="/linkedin" element={<Linkedin />} />
                 </Routes>
             </div>
         </BrowserRouter>
