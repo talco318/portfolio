@@ -1,7 +1,7 @@
 import {
     Code2, Database, Globe, Layout,
-    Terminal, Cloud, Laptop,
-    Languages, FileJson, Server, GithubIcon,
+    Terminal, Cloud,
+    Languages, Server, GithubIcon,
     ChevronRight, Cpu, Smartphone, Settings, Bot
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -86,7 +86,7 @@ const SkillsSection = ({ skills }: SkillsSectionProps) => {
     if (!categories.length) return null;
 
     return (
-        <motion.div
+        <motion.section
             id="skills"
             className="w-full max-w-7xl mx-auto p-4 md:p-6 my-8 md:my-14"
             variants={containerVariants}
@@ -200,7 +200,7 @@ const SkillsSection = ({ skills }: SkillsSectionProps) => {
                     ))}
                 </div>
             </div>
-        </motion.div>
+        </motion.section>
     );
 };
 
