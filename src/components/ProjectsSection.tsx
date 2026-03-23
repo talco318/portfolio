@@ -106,16 +106,20 @@ export const ProjectsSection = () => {
                                 onClick={prevPage}
                                 disabled={isAnimating}
                                 className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 bg-white dark:bg-gray-900 p-2 rounded-full shadow-lg z-10 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors disabled:opacity-50"
+                                aria-label="Previous project"
                             >
                                 <ChevronLeft className="w-6 h-6" />
+                                <span className="sr-only">Previous project</span>
                             </button>
 
                             <button
                                 onClick={nextPage}
                                 disabled={isAnimating}
                                 className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 bg-white dark:bg-gray-900 p-2 rounded-full shadow-lg z-10 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors disabled:opacity-50"
+                                aria-label="Next project"
                             >
                                 <ChevronRight className="w-6 h-6" />
+                                <span className="sr-only">Next project</span>
                             </button>
                         </>
                     )}
@@ -199,14 +203,17 @@ export const ProjectsSection = () => {
                                 <button
                                     key={index}
                                     onClick={() => !isAnimating && setCurrentPage(index)}
-                                    className={`h-2.5 rounded-full transition-all duration-300 ${
+                                    className="p-2 group flex items-center justify-center transition-all"
+                                    disabled={isAnimating}
+                                    aria-label={`Go to project page ${index + 1}`}
+                                    aria-current={currentPage === index}
+                                >
+                                    <span className={`h-2.5 rounded-full transition-all duration-300 ${
                                         currentPage === index
                                             ? 'bg-blue-600 w-6'
-                                            : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500 w-2.5'
-                                    }`}
-                                    disabled={isAnimating}
-                                    aria-label={`Go to page ${index + 1}`}
-                                />
+                                            : 'bg-gray-300 dark:bg-gray-600 group-hover:bg-gray-400 w-2.5'
+                                    }`} />
+                                </button>
                             ))}
                         </div>
                     )}
