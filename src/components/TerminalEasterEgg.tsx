@@ -1,5 +1,6 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { portfolioData } from "../data/portfolio";
 
 interface Line {
     type: "input" | "output" | "error" | "system";
@@ -7,45 +8,45 @@ interface Line {
 }
 
 export const TerminalEasterEgg = () => {
+    // Generate skill string from data
+    const skillListStr = useMemo(() => 
+        `[ ${portfolioData.skills.slice(0, 10).map(s => `'${s.name}'`).join(', ')} ... ]`, 
+    []);
+
     const [lines, setLines] = useState<Line[]>([
-        { type: "system", text: "Welcome to TalOS v2.4.9" },
+        { type: "system", text: `Welcome to TalOS v${new Date().getFullYear()}.3.21` },
         { type: "system", text: "Type 'help' to see available commands." },
     ]);
     const [input, setInput] = useState("");
     const containerRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
 
-    // Auto-scroll to bottom of terminal ONLY (without jumping the whole page)
     useEffect(() => {
         if (containerRef.current) {
             containerRef.current.scrollTop = containerRef.current.scrollHeight;
         }
     }, [lines]);
 
-
-
     const handleCommand = (cmd: string) => {
         const trimmed = cmd.trim().toLowerCase();
-        
         const newLines = [...lines, { type: "input", text: `guest@talcohen:~$ ${cmd}` } as Line];
         
+        const personal = portfolioData.personal;
+
         switch (trimmed) {
             case "help":
-                newLines.push({ type: "output", text: "Available commands:\n  whoami      - display current user\n  skills      - run tal.print_skills()\n  experience  - load work history\n  education   - load degrees\n  ls          - list directory contents\n  pwd         - print working directory\n  date        - print system date\n  clear       - clear terminal" });
+                newLines.push({ type: "output", text: "Available commands:\n  whoami      - display current user\n  skills      - run tal.print_skills()\n  experience  - load work history\n  ls          - list directory contents\n  pwd         - print working directory\n  date        - print system date\n  clear       - clear terminal" });
                 break;
             case "who":
             case "whoami":
-                newLines.push({ type: "output", text: "Tal Cohen - Full Stack Developer & Tech Enthusiast." });
+                newLines.push({ type: "output", text: `${personal.name} - ${personal.title} stationed in ${personal.location}.` });
                 break;
             case "skills":
             case "tal.print_skills()":
-                newLines.push({ type: "output", text: "[ 'Python', 'React', 'Node.js', 'TypeScript', 'AWS', 'Docker', 'Linux' ]" });
+                newLines.push({ type: "output", text: skillListStr });
                 break;
             case "experience":
-                newLines.push({ type: "output", text: "Loading timeline...\n- Backend Optimization\n- Workflow Automation\n- Scalable Infrastructure Engineering" });
-                break;
-            case "education":
-                newLines.push({ type: "output", text: "B.Sc. in Computer Science" });
+                newLines.push({ type: "output", text: `Loading timeline...\n${portfolioData.experience.map(exp => `- ${exp.position} @ ${exp.company}`).join('\n')}` });
                 break;
             case "pwd":
                 newLines.push({ type: "output", text: "/home/guest/portfolio" });
@@ -55,40 +56,14 @@ export const TerminalEasterEgg = () => {
                 break;
             case "ls":
             case "ls -la":
-            case "ll":
-                newLines.push({ type: "output", text: "drwxr-xr-x 4 guest guest 4096 Mar 23 20:55 .\ndrwxr-xr-x 3 root  root  4096 Mar 23 20:00 ..\ndrwxr-xr-x 2 guest guest 4096 Mar 23 20:55 projects\n-rw-r--r-- 1 guest guest   42 Mar 23 20:55 resume.pdf\n-rwxr-xr-x 1 guest guest   75 Mar 23 20:55 skills.py\ndrwx------ 2 guest guest 4096 Mar 23 20:55 top_secret_hacks" });
-                break;
-            case "cat top_secret_hacks/":
-            case "cat top_secret_hacks":
-            case "more top_secret_hacks":
-            case "less top_secret_hacks":
-            case "cd top_secret_hacks":
-            case "cd top_secret_hacks/":
-            case "cd top_secert_hacks": // Typo support for user tests :)
-            case "cd top_secert_hacks/":
-                newLines.push({ type: "error", text: "bash: top_secret_hacks: Permission denied. Clearance level 'Recruiter' required." });
+                newLines.push({ type: "output", text: `drwxr-xr-x 4 guest guest 4096 ${new Date().toLocaleDateString()} .\ndrwxr-xr-x 3 root  root  4096 ${new Date().toLocaleDateString()} ..\ndrwxr-xr-x 2 guest guest 4096 projects\n-rw-r--r-- 1 guest guest   42 resume.pdf\n-rwxr-xr-x 1 guest guest   75 skills.py` });
                 break;
             case "cat resume.pdf":
-            case "more resume.pdf":
-            case "less resume.pdf":
-            case "open resume.pdf":
-            case "resume.pdf":
-                newLines.push({ type: "output", text: "Downloading resume... Just kidding, I haven't uploaded it here yet. DM me on LinkedIn!" });
-                break;
-            case "cat skills.py":
-            case "more skills.py":
-            case "less skills.py":
-                newLines.push({ type: "output", text: "import awesomeness\n\ndef hire_tal():\n    return 'Great success!'" });
+                newLines.push({ type: "output", text: `Objective: ${personal.tagline}\nBio: ${personal.bio.slice(0, 50)}... [TRUNCATED]` });
                 break;
             case "python skills.py":
-            case "python3 skills.py":
             case "./skills.py":
-                newLines.push({ type: "output", text: "[ 'Python', 'React', 'Node.js', 'TypeScript', 'AWS', 'Docker', 'Linux', 'Great Success' ]" });
-                break;
-            case "cd":
-            case "cd ~":
-            case "cd /":
-                newLines.push({ type: "output", text: "You are already at home." });
+                newLines.push({ type: "output", text: "Great success! All systems operational." });
                 break;
             case "cd projects":
             case "cd projects/":
@@ -98,54 +73,22 @@ export const TerminalEasterEgg = () => {
                     if (el) el.scrollIntoView({ behavior: "smooth" });
                 }, 800);
                 break;
-            case "sudo make me a sandwich":
-                newLines.push({ type: "output", text: "I'm a Next-Gen React Terminal, not your butler. Make it yourself 🥪" });
-                break;
-            case "sudo su":
-            case "sudo":
-                newLines.push({ type: "error", text: "Nice try. This incident will be reported to Santa 🎅." });
-                break;
-            case "rm -rf /":
-            case "sudo rm -rf /":
-                newLines.push({ type: "error", text: "Terminal wiped... just kidding. You can't delete my portfolio that easily!" });
-                break;
             case "clear":
                 setLines([]);
                 setInput("");
-                return; // skip setting newLines
+                return;
             case "exit":
                 newLines.push({ type: "system", text: "You can't escape the TalOS Bento Box! 😈" });
                 break;
             case "uname":
             case "uname -a":
-                newLines.push({ type: "output", text: "Linux TalOS 5.15.0-60-generic #66-Ubuntu SMP x86_64 GNU/Linux" });
-                break;
-            case "history":
-                newLines.push({ type: "output", text: "1. whoami\n2. ls\n3. python skills.py\n4. clear\n... wait, I'm not saving your history." });
+                newLines.push({ type: "output", text: "Linux TalOS 5.15.0-60-generic #66-Ubuntu SMP x86_64" });
                 break;
             case "":
                 break;
             default:
-                if (trimmed.startsWith("cd ")) {
-                    const dir = trimmed.split("cd ")[1];
-                    newLines.push({ type: "error", text: `bash: cd: ${dir}: No such file or directory` });
-                } else if (trimmed.startsWith("cat ") || trimmed.startsWith("more ") || trimmed.startsWith("less ") || trimmed.startsWith("nano ") || trimmed.startsWith("vim ")) {
-                    const file = trimmed.split(" ")[1];
-                    if (["resume.pdf", "skills.py", "top_secret_hacks", "projects"].includes(file)) {
-                        newLines.push({ type: "error", text: `bash: ${file}: Is a directory or cannot be parsed.` });
-                    } else {
-                        newLines.push({ type: "error", text: `bash: ${file}: No such file or directory` });
-                    }
-                } else if (trimmed.startsWith("python ")) {
-                    const file = trimmed.split("python ")[1];
-                    newLines.push({ type: "error", text: `python: can't open file '${file}': [Errno 2] No such file or directory` });
-                } else if (trimmed.startsWith("echo ")) {
+                if (trimmed.startsWith("echo ")) {
                     newLines.push({ type: "output", text: cmd.slice(5) });
-                } else if (trimmed.startsWith("ping ")) {
-                    const host = trimmed.split("ping ")[1];
-                    newLines.push({ type: "output", text: `PING ${host} (192.168.1.1): 56 data bytes\n64 bytes from 192.168.1.1: icmp_seq=0 ttl=64 time=1.234 ms\n--- ${host} ping statistics ---\n1 packets transmitted, 1 packets received, 0.0% packet loss` });
-                } else if (trimmed.startsWith("mkdir ") || trimmed.startsWith("touch ") || trimmed.startsWith("rm ")) {
-                    newLines.push({ type: "error", text: `bash: Read-only file system. Cannot alter portfolio structure.` });
                 } else {
                     newLines.push({ type: "error", text: `bash: ${trimmed}: command not found` });
                 }
@@ -176,7 +119,7 @@ export const TerminalEasterEgg = () => {
                     <div className="flex gap-2">
                         <div className="w-3.5 h-3.5 rounded-full bg-red-500" title="Close" />
                         <div className="w-3.5 h-3.5 rounded-full bg-yellow-500" />
-                    <div className="w-3.5 h-3.5 rounded-full bg-green-500" />
+                        <div className="w-3.5 h-3.5 rounded-full bg-green-500" />
                     </div>
                     <div className="mx-auto text-gray-400 text-xs tracking-wider opacity-60">guest@talcohen:~</div>
                 </div>

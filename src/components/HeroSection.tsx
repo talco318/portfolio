@@ -7,12 +7,7 @@ import { MagneticWrapper } from './MagneticWrapper';
 
 export const HeroSection = () => {
     const { displayText, isDeleting } = useTypewriter({
-        texts: [
-            portfolioData.personal.tagline,
-            'Building scalable web applications 🚀',
-            'Passionate about clean code ✨',
-            'Always learning, always growing 💡',
-        ],
+        texts: portfolioData.personal.heroTexts,
         typingSpeed: 55,
         deletingSpeed: 30,
         pauseAfterType: 2000,
@@ -174,17 +169,6 @@ export const HeroSection = () => {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.8, type: "spring" }}
                     >
-                        {/* Avatar Image (commented out in original) */}
-                        {/* <motion.img
-              src={portfolioData.personal.avatar}
-              alt={portfolioData.personal.name}
-              className="w-64 h-64 rounded-full object-cover shadow-2xl"
-              whileHover={{
-                scale: 1.1,
-                rotate: 5,
-                transition: { type: "spring", stiffness: 300 }
-              }}
-            /> */}
                     </motion.div>
                 </motion.div>
             </div>
