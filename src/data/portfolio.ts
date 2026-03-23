@@ -57,7 +57,7 @@ export interface SocialLinks {
 export const portfolioData: PortfolioData = {
   personal: {
     name: "Tal Cohen",
-    avatar: "https://media.licdn.com/dms/image/v2/D4D03AQFJPHmRkFD10g/profile-displayphoto-crop_800_800/B4DZroBA7sIAAI-/0/1764829173906?e=1775692800&v=beta&t=A-XE4wxbykr1NvZn5yQDrxxRD20m_V2QmgpbkNCuSPQ",
+    avatar: "https://media.licdn.com/dms/image/v2/D4D03AQFu2_H_jwtH6A/profile-displayphoto-crop_800_800/B4DZ0cOHTXGUAI-/0/1774294967966?e=1775692800&v=beta&t=bGZ3YZzEFlJDX8nBsTXHTtcJ32dJUKn-QauuzFu-iFw",
     title: "Full Stack Developer",
     tagline: "Building elegant solutions to complex problems",
     email: "talcohen318@gmail.com",
