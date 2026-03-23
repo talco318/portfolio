@@ -3,6 +3,7 @@ import { portfolioData } from '../data/portfolio';
 import { staggerContainer, springHover, fadeInUp } from '../animations';
 import { Github, Linkedin } from 'lucide-react';
 import { useTypewriter } from '../hooks/useTypewriter';
+import { MagneticWrapper } from './MagneticWrapper';
 
 export const HeroSection = () => {
     const { displayText, isDeleting } = useTypewriter({
@@ -113,22 +114,26 @@ export const HeroSection = () => {
                             className="flex gap-4 items-center justify-center"
                             variants={springHover}
                         >
-                            <motion.a
-                                href="#projects"
-                                className="px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg hover:from-pink-600 hover:to-purple-700 transition-all"
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                            >
-                                View Projects
-                            </motion.a>
-                            <motion.a
-                                href="#contact"
-                                className="px-6 py-3 bg-white/20 backdrop-blur-sm border-2 border-white/60 text-white rounded-lg hover:bg-white hover:text-purple-700 transition-all font-semibold"
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                            >
-                                Contact Me
-                            </motion.a>
+                            <MagneticWrapper>
+                                <motion.a
+                                    href="#projects"
+                                    className="px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg hover:from-pink-600 hover:to-purple-700 transition-all inline-block"
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                >
+                                    View Projects
+                                </motion.a>
+                            </MagneticWrapper>
+                            <MagneticWrapper>
+                                <motion.a
+                                    href="#contact"
+                                    className="px-6 py-3 bg-white/20 backdrop-blur-sm border-2 border-white/60 text-white rounded-lg hover:bg-white hover:text-purple-700 transition-all font-semibold inline-block"
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                >
+                                    Contact Me
+                                </motion.a>
+                            </MagneticWrapper>
                         </motion.div>
 
                         {/* Social Media Icons */}
@@ -136,26 +141,30 @@ export const HeroSection = () => {
                             className="flex gap-4 mt-6 items-center justify-center"
                             variants={staggerContainer}
                         >
-                            <motion.a
-                                href={portfolioData.personal.socialLinks.github}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label="View my GitHub profile"
-                                className="text-gray-800 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
-                                whileHover={{ scale: 1.2 }}
-                            >
-                                <Github className="w-6 h-6" />
-                            </motion.a>
-                            <motion.a
-                                href={portfolioData.personal.socialLinks.linkedin}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label="View my LinkedIn profile"
-                                className="text-gray-800 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
-                                whileHover={{ scale: 1.2 }}
-                            >
-                                <Linkedin className="w-6 h-6" />
-                            </motion.a>
+                            <MagneticWrapper strength={0.2}>
+                                <motion.a
+                                    href={portfolioData.personal.socialLinks.github}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label="View my GitHub profile"
+                                    className="text-gray-800 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white inline-block p-2"
+                                    whileHover={{ scale: 1.2 }}
+                                >
+                                    <Github className="w-6 h-6" />
+                                </motion.a>
+                            </MagneticWrapper>
+                            <MagneticWrapper strength={0.2}>
+                                <motion.a
+                                    href={portfolioData.personal.socialLinks.linkedin}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label="View my LinkedIn profile"
+                                    className="text-gray-800 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white inline-block p-2"
+                                    whileHover={{ scale: 1.2 }}
+                                >
+                                    <Linkedin className="w-6 h-6" />
+                                </motion.a>
+                            </MagneticWrapper>
                         </motion.div>
                     </motion.div>
 
