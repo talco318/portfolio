@@ -88,14 +88,14 @@ const SkillsSection = ({ skills }: SkillsSectionProps) => {
     return (
         <motion.div
             id="skills"
-            className="w-full max-w-7xl mx-auto p-4 md:p-6 my-10 md:my-20"
+            className="w-full max-w-7xl mx-auto p-4 md:p-6 my-8 md:my-14"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
         >
             <motion.div 
-                className="flex items-center gap-4 mb-10 md:mb-16"
+                className="flex items-center gap-4 mb-8 md:mb-10"
                 variants={cardVariants}
             >
                 <div className="h-px bg-gray-300 dark:bg-gray-700 flex-1" />
@@ -104,7 +104,7 @@ const SkillsSection = ({ skills }: SkillsSectionProps) => {
             </motion.div>
 
             {/* Mobile Tabs Wrapper */}
-            <div className="md:hidden mb-8">
+            <div className="md:hidden mb-6">
                 <div 
                     ref={tabsRef}
                     className="flex overflow-x-auto no-scrollbar gap-2 pb-2 px-1 snap-x"
@@ -174,7 +174,7 @@ const SkillsSection = ({ skills }: SkillsSectionProps) => {
                             variants={cardVariants}
                             whileHover={{ y: -6, boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}
                         >
-                            <h3 className="text-lg font-black mb-6 text-gray-900 dark:text-white flex items-center gap-2 group-hover:text-purple-500 transition-colors">
+                            <h3 className="text-lg font-black mb-5 text-gray-900 dark:text-white flex items-center gap-2 group-hover:text-purple-500 transition-colors">
                                 <span className="w-1.5 h-6 bg-gradient-to-b from-purple-500 to-blue-500 rounded-full" />
                                 {category.title}
                             </h3>
