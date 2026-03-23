@@ -2,7 +2,7 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { TerminalEasterEgg } from './TerminalEasterEgg';
 import { GitHubCalendar } from 'react-github-calendar';
 import { Globe, Cpu, Database, Server, Layout, Code2, Bot, Terminal, Globe2 } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { PortfolioData } from '../data/portfolio';
 
 interface AboutSectionProps {
