@@ -2,73 +2,55 @@ import { motion } from 'framer-motion';
 import { Github, Linkedin } from 'lucide-react';
 import { portfolioData } from '../data/portfolio';
 import { staggerContainer, fadeInUp } from '../animations';
-import { useEffect, useRef, useCallback } from 'react';
-import emailjs from '@emailjs/browser';
+import { useRef, useCallback, useState } from 'react';
 
 export const ContactSection = () => {
-    const form = useRef(null);
+    const form = useRef<HTMLFormElement>(null);
     const isSubmitting = useRef(false);
+    const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
-    const handleSubmit = useCallback(async (event: { preventDefault: () => void; }) => {
+    const handleSubmit = useCallback(async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        if (isSubmitting.current) {
-            return; // Prevent multiple submissions
-        }
+        if (isSubmitting.current) return;
 
-        const contactForm = document.getElementById('contact-form');
-
-        if (!contactForm || !(contactForm instanceof HTMLFormElement)) {
-            console.error("Contact form is not an HTMLFormElement or not found.");
-            alert("An error occurred. Please try again later.");
+        const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+        if (!accessKey) {
+            console.error('Web3Forms access key is not defined in environment variables');
+            setStatus('error');
             return;
         }
 
         isSubmitting.current = true;
-        try {
-            const result = await emailjs.sendForm(
-                import.meta.env.VITE_EMAILJS_SERVICE_ID,
-                import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-                contactForm
-            ); // Use the form ref
+        setStatus('loading');
 
-            console.log('SUCCESS!', result.text);
-            contactForm.reset();
-            alert('Message sent successfully!');
+        try {
+            const formData = new FormData(form.current!);
+            formData.append('access_key', accessKey);
+
+            const response = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formData,
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                console.log('SUCCESS!', data);
+                form.current?.reset();
+                setStatus('success');
+                setTimeout(() => setStatus('idle'), 5000);
+            } else {
+                throw new Error(data.message || 'Submission failed');
+            }
         } catch (error) {
             console.error('FAILED...', error);
-            alert('Failed to send message. Please try again later.');
+            setStatus('error');
+            setTimeout(() => setStatus('idle'), 5000);
         } finally {
             isSubmitting.current = false;
         }
     }, []);
-
-
-    useEffect(() => {
-
-        const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-
-
-        if (!publicKey) {
-            console.error('EmailJS public key is not defined in environment variables');
-            return;
-        }
-
-        emailjs.init({
-            publicKey: publicKey,
-        });
-
-        const contactForm = document.getElementById('contact-form');
-
-        if (contactForm) {
-            contactForm.addEventListener('submit', handleSubmit);
-
-            return () => {
-                contactForm.removeEventListener('submit', handleSubmit);
-            };
-        }
-
-    }, [handleSubmit]); // Dependency on handleSubmit
 
 
     return (
@@ -136,9 +118,20 @@ export const ContactSection = () => {
                     <motion.form
                         className="space-y-6"
                         variants={fadeInUp}
-                        id="contact-form" // Add the ID to the form
-                        ref={form} // Attach the ref to the form
+                        id="contact-form"
+                        ref={form}
+                        onSubmit={handleSubmit}
                     >
+                        {status === 'success' && (
+                            <div className="p-4 rounded-lg bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 text-sm font-medium">
+                                ✅ Message sent successfully! I'll get back to you soon.
+                            </div>
+                        )}
+                        {status === 'error' && (
+                            <div className="p-4 rounded-lg bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300 text-sm font-medium">
+                                ❌ Failed to send message. Please try again later.
+                            </div>
+                        )}
                         <div>
                             <label
                                 htmlFor="name"
@@ -186,11 +179,12 @@ export const ContactSection = () => {
                         </div>
                         <motion.button
                             type="submit"
-                            className="w-full px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
+                            disabled={status === 'loading'}
+                            className="w-full px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                            whileHover={status !== 'loading' ? { scale: 1.05 } : {}}
+                            whileTap={status !== 'loading' ? { scale: 0.95 } : {}}
                         >
-                            Send Message
+                            {status === 'loading' ? 'Sending...' : 'Send Message'}
                         </motion.button>
                     </motion.form>
                 </div>
