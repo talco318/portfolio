@@ -115,7 +115,7 @@ export const ProjectsSection = () => {
                         <AnimatePresence mode="popLayout" custom={direction}>
                             <motion.div
                                 key={currentPage}
-                                className={`grid gap-8 ${projectsPerPage === 1 ? "grid-cols-1" : "grid-cols-1 md:grid-cols-2 w-full"}`}
+                                className={`grid gap-8 cursor-grab active:cursor-grabbing select-none touch-pan-y ${projectsPerPage === 1 ? "grid-cols-1" : "grid-cols-1 md:grid-cols-2 w-full"}`}
                                 initial={{ opacity: 0, x: direction * 50, scale: 0.95 }}
                                 animate={{ opacity: 1, x: 0, scale: 1 }}
                                 exit={{ opacity: 0, x: -direction * 50, scale: 0.95 }}
@@ -138,7 +138,8 @@ export const ProjectsSection = () => {
                                             src={project.image}
                                             alt={project.title}
                                             loading="lazy"
-                                            className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                                            draggable={false}
+                                            className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110 pointer-events-none"
                                         />
                                         {/* Dark overlay */}
                                         <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
