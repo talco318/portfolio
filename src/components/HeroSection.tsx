@@ -42,30 +42,30 @@ export const HeroSection = () => {
             ></div>
 
             {/* Glowing Aurora Background Effect */}
-            <div className="absolute inset-0 overflow-hidden z-0 pointer-events-none blur-3xl opacity-40">
+            <div className="absolute inset-0 overflow-hidden z-0 pointer-events-none blur-[100px] opacity-70">
                 <motion.div
-                    className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-pink-500 rounded-full mix-blend-screen"
+                    className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-teal-400/60 rounded-full"
                     animate={{
-                        x: [0, 100, 0],
-                        y: [0, -50, 0],
-                        scale: [1, 1.1, 1],
+                        x: [0, 150, 0],
+                        y: [0, -100, 0],
+                        scale: [1, 1.2, 1],
                     }}
                     transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
                 />
                 <motion.div
-                    className="absolute top-1/3 right-1/4 w-[400px] h-[400px] bg-purple-500 rounded-full mix-blend-screen"
+                    className="absolute top-1/3 right-1/4 w-[500px] h-[500px] bg-indigo-500/60 rounded-full"
                     animate={{
-                        x: [0, -80, 0],
-                        y: [0, 100, 0],
-                        scale: [1, 1.2, 1],
+                        x: [0, -150, 0],
+                        y: [0, 150, 0],
+                        scale: [1, 1.3, 1],
                     }}
                     transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
                 />
                 <motion.div
-                    className="absolute bottom-1/4 left-1/2 w-[600px] h-[600px] bg-blue-500 rounded-full mix-blend-screen"
+                    className="absolute bottom-1/4 left-1/3 w-[600px] h-[600px] bg-pink-500/50 rounded-full"
                     animate={{
-                        x: [0, 50, 0],
-                        y: [0, -100, 0],
+                        x: [0, 100, 0],
+                        y: [0, -150, 0],
                         scale: [1, 1.1, 1],
                     }}
                     transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut', delay: 4 }}

@@ -105,10 +105,10 @@ export const ProjectsSection = () => {
                             <motion.div
                                 key={currentPage}
                                 className={`grid gap-8 ${projectsPerPage === 1 ? "grid-cols-1" : "grid-cols-1 md:grid-cols-2 w-full"}`}
-                                initial={{ opacity: 0, x: direction * 50, filter: "blur(4px)" }}
-                                animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-                                exit={{ opacity: 0, x: -direction * 50, filter: "blur(4px)" }}
-                                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                                initial={{ opacity: 0, x: direction * 50, scale: 0.95 }}
+                                animate={{ opacity: 1, x: 0, scale: 1 }}
+                                exit={{ opacity: 0, x: -direction * 50, scale: 0.95 }}
+                                transition={{ type: "spring", stiffness: 400, damping: 40 }}
                             >
                             {visibleProjects.map((project) => (
                                 <motion.div
