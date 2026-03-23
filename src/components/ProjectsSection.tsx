@@ -1,7 +1,7 @@
 import { portfolioData } from '../data/portfolio';
 import {ExternalLink, ChevronLeft, ChevronRight, GithubIcon} from "lucide-react";
 import { useState, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, PanInfo } from 'framer-motion';
 
 export const ProjectsSection = () => {
     const [currentPage, setCurrentPage] = useState(0);
@@ -42,6 +42,17 @@ export const ProjectsSection = () => {
             setIsAnimating(true);
             setDirection(-1);
             setCurrentPage((prev) => (prev - 1 + totalPages) % totalPages);
+        }
+    };
+
+    const handleDragEnd = (_event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+        const offset = info.offset.x;
+        const velocity = info.velocity.x;
+
+        if (offset < -50 || velocity < -500) {
+            nextPage();
+        } else if (offset > 50 || velocity > 500) {
+            prevPage();
         }
     };
 
@@ -109,6 +120,10 @@ export const ProjectsSection = () => {
                                 animate={{ opacity: 1, x: 0, scale: 1 }}
                                 exit={{ opacity: 0, x: -direction * 50, scale: 0.95 }}
                                 transition={{ type: "spring", stiffness: 400, damping: 40 }}
+                                drag="x"
+                                dragConstraints={{ left: 0, right: 0 }}
+                                dragElastic={0.5}
+                                onDragEnd={handleDragEnd}
                             >
                             {visibleProjects.map((project) => (
                                 <motion.div
