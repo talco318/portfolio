@@ -1,7 +1,7 @@
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { TerminalEasterEgg } from './TerminalEasterEgg';
 import { GitHubCalendar } from 'react-github-calendar';
-import { Globe, Cpu, Database, Server, Smartphone, Layout, Code2, Bot, GithubIcon, Terminal, Globe2 } from 'lucide-react';
+import { Globe, Cpu, Database, Server, Layout, Code2, Bot, Terminal, Globe2 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { PortfolioData } from '../data/portfolio';
 
@@ -95,13 +95,13 @@ export const AboutSection = ({ personal, skills }: AboutSectionProps) => {
     return (
         <motion.section 
             id="about"
-            className="w-full max-w-7xl mx-auto p-4 md:p-6 my-4 md:my-20"
+            className="w-full max-w-7xl mx-auto p-4 md:p-6 my-6 md:my-14"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.05 }}
         >
-            <motion.div className="flex items-center gap-4 mb-6 md:mb-12 px-2 md:px-4" variants={fadeUp}>
+            <motion.div className="flex items-center gap-4 mb-10 md:mb-12 px-2 md:px-4" variants={fadeUp}>
                 <div className="h-px bg-gray-200 dark:bg-gray-800 flex-1" />
                 <h2 className="text-3xl md:text-5xl font-black text-gray-900 dark:text-white uppercase transition-all hover:tracking-widest duration-500">About</h2>
                 <div className="h-px bg-gray-200 dark:bg-gray-800 flex-1" />
