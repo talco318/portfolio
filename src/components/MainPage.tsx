@@ -7,6 +7,7 @@ import AboutSection from "./AboutSection.tsx";
 import ExperienceSection from "./ExperienceSection.tsx";
 import SocialButtons from './SocialButtons.jsx';
 import SkillsSection from './SkillsSection.tsx';
+import { Footer } from './Footer.tsx';
 
 function App() {
     return (
@@ -31,6 +32,9 @@ function App() {
 
             {/* Contact Section */}
             <ContactSection />
+
+            {/* Footer */}
+            <Footer />
 
             {/* Social Buttons */}
             <SocialButtons socialLinks={portfolioData.personal.socialLinks} />
