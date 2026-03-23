@@ -23,6 +23,7 @@ export interface Skill {
   name: string;
   proficiency: number;
   category: 'technical' | 'soft' | 'tool';
+  group?: string;
   icon?: string;
 }
 
@@ -32,10 +33,11 @@ export interface PortfolioData {
     avatar: string;
     title: string;
     tagline: string;
+    heroTexts: string[];
     email: string;
-    phone?: string;
     location: string;
-    bio: string;
+    locationDetail: string;
+    githubUsername: string;
     backgroundImage: string;
     socialLinks: {
       github: string;
@@ -43,6 +45,7 @@ export interface PortfolioData {
       twitter?: string;
     };
     interests: string[];
+    bio: string;
   };
   skills: Skill[];
   projects: Project[];
@@ -60,36 +63,57 @@ export const portfolioData: PortfolioData = {
     avatar: "https://media.licdn.com/dms/image/v2/D4D03AQFu2_H_jwtH6A/profile-displayphoto-crop_800_800/B4DZ0cOHTXGUAI-/0/1774294967966?e=1775692800&v=beta&t=bGZ3YZzEFlJDX8nBsTXHTtcJ32dJUKn-QauuzFu-iFw",
     title: "Full Stack Developer",
     tagline: "Building elegant solutions to complex problems",
+    heroTexts: [
+        "Building scalable web applications 🚀",
+        "Passionate about clean code ✨",
+        "Always learning, always growing 💡",
+        "B.Sc. in Computer Science 🎓"
+    ],
     email: "talcohen318@gmail.com",
-    location: "Israel",
+    location: "Tel Aviv, Israel",
+    locationDetail: "Remote-first mindset",
+    githubUsername: "talco318",
     backgroundImage: "https://lh3.googleusercontent.com/d/1_Geshyn3WEDM7U9UnDuDZYbUhngvysLj",
-    bio: "Software Developer with a B.Sc. in Computer Science, specializing in Python development, Linux-based environments, and\n" +
-        "scalable infrastructure. Proficient in automating workflows, optimizing backend systems, and collaborating on data-driven\n" +
-        "projects. Skilled in designing efficient solutions for real-time systems and leveraging cutting-edge technologies to deliver\n" +
-        "high-impact results. Passionate about contributing to the AI-driven revolution through innovative software development.",
+    bio: "Software Developer with a B.Sc. in Computer Science, specializing in Python development, Linux-based environments, and scalable infrastructure. Proficient in automating workflows, optimizing backend systems, and collaborating on data-driven projects. Skilled in designing efficient solutions for real-time systems and leveraging cutting-edge technologies to deliver high-impact results. Passionate about contributing to the AI-driven revolution through innovative software development.",
     socialLinks: {
       github: "https://github.com/talco318",
       linkedin: "https://www.linkedin.com/in/talco318/",
-
     },
     interests: ["Open Source", "AI/ML", "Cloud Architecture", "Tech Mentoring"]
   },
   skills: [
-    { name: "Python", proficiency: 90, category: "technical" },
-    { name: "C++", proficiency: 70, category: "technical" },
-    { name: "Java", proficiency: 70, category: "technical" },
-    { name: "C#", proficiency: 70, category: "technical" },
-    { name: "React", proficiency: 90, category: "technical" },
-    { name: "TypeScript", proficiency: 85, category: "technical" },
-    { name: "JavaScript", proficiency: 85, category: "technical" },
-    { name: "Node.js", proficiency: 88, category: "technical" },
-    { name: "AWS", proficiency: 75, category: "technical" },
-    { name: "Problem Solving", proficiency: 95, category: "soft" },
-    { name: "Communication", proficiency: 90, category: "soft" },
-    { name: "SQL", proficiency: 85, category: "tool" },
-    { name: "MongoDB", proficiency: 85, category: "tool" },
-    { name: "Git", proficiency: 92, category: "tool" },
-    { name: "Linux", proficiency: 90, category: "tool" }
+    { name: "Python", proficiency: 95, category: "technical", group: "Programming" },
+    { name: "C++", proficiency: 70, category: "technical", group: "Programming" },
+    { name: "Java", proficiency: 70, category: "technical", group: "Programming" },
+    { name: "C#", proficiency: 70, category: "technical", group: "Programming" },
+    { name: "C", proficiency: 70, category: "technical", group: "Programming" },
+    { name: "JavaScript", proficiency: 85, category: "technical", group: "Programming" },
+    { name: "TypeScript", proficiency: 85, category: "technical", group: "Programming" },
+    
+    { name: "React", proficiency: 92, category: "technical", group: "Web Dev" },
+    { name: "Node.js", proficiency: 88, category: "technical", group: "Web Dev" },
+    { name: "HTML", proficiency: 95, category: "technical", group: "Web Dev" },
+    { name: "CSS", proficiency: 90, category: "technical", group: "Web Dev" },
+    { name: "Tailwind", proficiency: 85, category: "technical", group: "Web Dev" },
+
+    { name: "SQL", proficiency: 88, category: "tool", group: "Databases" },
+    { name: "MySQL", proficiency: 85, category: "tool", group: "Databases" },
+    { name: "MongoDB", proficiency: 85, category: "tool", group: "Databases" },
+    { name: "MS SQL Server", proficiency: 80, category: "tool", group: "Databases" },
+
+    { name: "AWS", proficiency: 75, category: "tool", group: "Cloud" },
+    { name: "GCP", proficiency: 75, category: "tool", group: "Cloud" },
+    { name: "Linux (Bash)", proficiency: 90, category: "tool", group: "Cloud" },
+    { name: "Firebase", proficiency: 82, category: "tool", group: "Cloud" },
+
+    { name: "Generative AI", proficiency: 85, category: "technical", group: "Tools & AI" },
+    { name: "Git", proficiency: 92, category: "tool", group: "Tools & AI" },
+    { name: "RESTful APIs", proficiency: 90, category: "technical", group: "Tools & AI" },
+    { name: "Selenium", proficiency: 75, category: "tool", group: "Tools & AI" },
+    { name: "Postman", proficiency: 85, category: "tool", group: "Tools & AI" },
+
+    { name: "Hebrew (Native)", proficiency: 100, category: "soft", group: "Languages" },
+    { name: "English (Fluent)", proficiency: 95, category: "soft", group: "Languages" }
   ],
   projects: [
     {
