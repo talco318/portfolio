@@ -121,7 +121,9 @@ export function Navbar() {
               onClick={() => setIsOpen(!isOpen)}
               className="ml-2 p-2 rounded-md text-white hover:text-pink-300 transition-all"
               whileTap={{ scale: 0.9 }}
+              aria-label={isOpen ? "Close main menu" : "Open main menu"}
             >
+              <span className="sr-only">{isOpen ? "Close main menu" : "Open main menu"}</span>
               <AnimatePresence mode="wait" initial={false}>
                 {isOpen ? (
                   <motion.span
