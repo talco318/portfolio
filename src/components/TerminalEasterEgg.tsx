@@ -155,6 +155,7 @@ export const TerminalEasterEgg = () => {
                             className="bg-transparent outline-none flex-1 text-gray-300 caret-emerald-500 font-bold"
                             spellCheck="false"
                             autoComplete="off"
+                            aria-label="Terminal command input"
                         />
                     </div>
                 </div>
