@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { TerminalEasterEgg } from './TerminalEasterEgg';
 
 interface PersonalData {
     bio: string;
@@ -62,6 +63,8 @@ const AboutSection = ({ personal }: AboutSectionProps) => {
                                 </motion.span>
                             ))}
                         </motion.div>
+                        
+                        <TerminalEasterEgg />
                     </div>
 
                     <div className="hidden md:block w-1/4 py-10">
