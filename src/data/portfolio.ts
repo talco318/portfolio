@@ -130,7 +130,7 @@ export const portfolioData: PortfolioData = {
       description: "- Developed a Python bot for real-time apartment tracking with automated data retrieval and user notifications.\n" +
         "- Designed scalable data pipelines using MongoDB to handle concurrent processing.",
       technologies: ["Python", "MongoDB", "Telegram API"],
-      image: "https://lh3.googleusercontent.com/d/1nb5RBI6Wmo1pfr2yFswFDeY1D0ONuYPE",
+      image: "https://lh3.googleusercontent.com/d/1nb5RBI6Wmo1pfr2yFswFDeY1D0ONuYPE=s800",
       githubUrl: "https://github.com/talco318/yad2-bot",
       category: "Automation"
     },
@@ -141,7 +141,7 @@ export const portfolioData: PortfolioData = {
         "- Enhanced system performance by optimizing component-based architecture and API integration.\n" +
         "- Ensured responsive design for seamless interaction across device.",
       technologies: ["React", "Node.JS", "TypeScript"],
-      image: "https://lh3.googleusercontent.com/d/1BphxwbLAQOFYwCoLvysudJVFd3Fgaiue",
+      image: "https://lh3.googleusercontent.com/d/1BphxwbLAQOFYwCoLvysudJVFd3Fgaiue=s800",
       liveUrl: "https://codefed.onrender.com/",
       githubUrl: "https://github.com/talco318/Code-Environment",
       category: "AI/ML"
@@ -152,7 +152,7 @@ export const portfolioData: PortfolioData = {
       description: "- Developed a personalized music recommendation system with Spotify API, Telegram Bot API, and JSON database.\n" +
         "- Cross-referenced Spotify playlist artists with Tomorrowland Festival lineup.",
       technologies: ["Python", "Spotify API", "Google AI Studio API"],
-      image: "https://lh3.googleusercontent.com/d/103C0arvOTdomwkmoG3tCI5m0XRAAYY4t",
+      image: "https://lh3.googleusercontent.com/d/103C0arvOTdomwkmoG3tCI5m0XRAAYY4t=s800",
       githubUrl: "https://github.com/talco318/LineUp_vs_spotify_bot",
       category: "AI/ML"
     },
@@ -162,7 +162,7 @@ export const portfolioData: PortfolioData = {
       description: "- Developed a Telegram Bot for parking detection using Python and the YOLOv5 computer vision algorithm.\n" +
         "- Integrated Firebase for data storage and Google Maps API for real-time navigation to enhance parking search efficiency.",
       technologies: ["Python", "YOLOv5 (Computer vision)",],
-      image: "https://lh3.googleusercontent.com/d/1TL7nPjQNMnlR9pSUtd5aJKRYuVfimc1B",
+      image: "https://lh3.googleusercontent.com/d/1TL7nPjQNMnlR9pSUtd5aJKRYuVfimc1B=s800",
       githubUrl: "https://github.com/talco318/ParkHere_FinalProject",
       category: "AI/ML"
     }
