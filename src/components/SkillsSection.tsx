@@ -3,33 +3,51 @@ import {
     Terminal, Cloud, Laptop,
     Languages, FileJson, Server, GithubIcon
 } from 'lucide-react';
+import { motion } from 'framer-motion';
+
+const containerVariants = {
+    hidden: {},
+    visible: {
+        transition: { staggerChildren: 0.08 },
+    },
+};
+
+const cardVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: 'easeOut' } },
+};
+
+const skillVariants = {
+    hidden: { opacity: 0, x: -10 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.3 } },
+};
 
 const SkillsSection = () => {
     const categories = [
         {
-            title: "Programming Languages",  // More specific
+            title: "Programming Languages",
             skills: [
                 { name: 'Python', icon: Code2 },
                 { name: 'C', icon: Code2 },
                 { name: 'C++', icon: Code2 },
                 { name: 'C#', icon: Code2 },
                 { name: 'Java', icon: Code2 },
-                { name: 'JavaScript', icon: FileJson }, // JavaScript is a programming language
-                { name: 'TypeScript', icon: FileJson }, // TypeScript is a programming language
+                { name: 'JavaScript', icon: FileJson },
+                { name: 'TypeScript', icon: FileJson },
             ]
         },
         {
-            title: "Web Development", // Broader, encompasses both front-end and back-end
+            title: "Web Development",
             skills: [
                 { name: 'React', icon: Layout },
                 { name: 'HTML', icon: Code2 },
                 { name: 'CSS', icon: Layout },
-                { name: 'JSON', icon: FileJson }, // JSON is data format commonly used in web dev
-                { name: 'Node.js', icon: Server }, // Node.js is a back-end runtime environment
+                { name: 'JSON', icon: FileJson },
+                { name: 'Node.js', icon: Server },
             ]
         },
         {
-            title: "Databases", // Separate category for databases
+            title: "Databases",
             skills: [
                 { name: 'SQL (MySQL)', icon: Database },
                 { name: 'SQL (Microsoft SQL Server)', icon: Database },
@@ -37,21 +55,21 @@ const SkillsSection = () => {
             ]
         },
         {
-            title: "Cloud & Infrastructure", // Clearer title
+            title: "Cloud & Infrastructure",
             skills: [
                 { name: 'AWS', icon: Cloud },
-                { name: 'Firebase', icon: Cloud }, // Firebase is a Backend-as-a-Service (BaaS) which falls under cloud
+                { name: 'Firebase', icon: Cloud },
                 { name: 'SAS', icon: Cloud },
-                { name: 'Linux (bash)', icon: Terminal }, // Linux is an OS, more related to infra
-                { name: 'Windows', icon: Laptop }, // Windows is an OS, more related to infra
+                { name: 'Linux (bash)', icon: Terminal },
+                { name: 'Windows', icon: Laptop },
             ]
         },
         {
-            title: "Tools", // More concise
+            title: "Tools",
             skills: [
                 { name: 'Git', icon: GithubIcon },
-                { name: 'Selemium', icon: Globe }, // Selenium is a tool for automating web browsers
-                { name: 'Postman', icon: Globe }, // Postman is a tool for API testing
+                { name: 'Selenium', icon: Globe },
+                { name: 'Postman', icon: Globe },
             ]
         },
         {
@@ -78,40 +96,60 @@ const SkillsSection = () => {
     }
 
     return (
-        <div id="skills" className="w-full max-w-7xl mx-auto p-6">
-            <h2 className="text-3xl font-bold mb-8 text-center dark:text-white">Skills</h2>
+        <motion.div
+            id="skills"
+            className="w-full max-w-7xl mx-auto p-6"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+        >
+            <motion.h2
+                className="text-3xl font-bold mb-8 text-center dark:text-white"
+                variants={cardVariants}
+            >
+                Skills
+            </motion.h2>
 
             {chunkedCategories.map((row, rowIndex) => (
                 <div key={rowIndex} className="grid md:grid-cols-3 gap-6 mb-6">
                     {row.map((category) => (
-                        <div
+                        <motion.div
                             key={category.title}
                             className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden"
+                            variants={cardVariants}
+                            whileHover={{ y: -4, boxShadow: '0 12px 30px rgba(0,0,0,0.12)' }}
+                            transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                         >
                             <div className="p-4 border-b border-gray-200 dark:border-gray-700">
                                 <h3 className="text-xl font-semibold dark:text-white">
                                     {category.title}
                                 </h3>
                             </div>
-                            <div className="p-4">
+                            <motion.div
+                                className="p-4"
+                                variants={containerVariants}
+                            >
                                 <div className="grid gap-3">
                                     {category.skills.map((skill) => (
-                                        <div
+                                        <motion.div
                                             key={skill.name}
-                                            className="flex items-center p-3 rounded-lg bg-gray-100 dark:bg-gray-700
-                                 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                                            className="flex items-center p-3 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors cursor-default"
+                                            variants={skillVariants}
+                                            whileHover={{ x: 4 }}
+                                            transition={{ type: 'spring', stiffness: 400, damping: 25 }}
                                         >
-                                            <skill.icon className="w-5 h-5 mr-3 text-blue-600 dark:text-blue-400" />
+                                            <skill.icon className="w-5 h-5 mr-3 text-blue-600 dark:text-blue-400 flex-shrink-0" />
                                             <span className="font-medium dark:text-white">{skill.name}</span>
-                                        </div>
+                                        </motion.div>
                                     ))}
                                 </div>
-                            </div>
-                        </div>
+                            </motion.div>
+                        </motion.div>
                     ))}
                 </div>
             ))}
-        </div>
+        </motion.div>
     );
 };
 

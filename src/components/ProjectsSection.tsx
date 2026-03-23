@@ -109,30 +109,29 @@ export const ProjectsSection = () => {
                             transition={{ duration: 0.4, ease: "easeInOut" }}
                         >
                             {visibleProjects.map((project) => (
-                                <div
+                                <motion.div
                                     key={project.id}
-                                    className="bg-white dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-2"
+                                    className="group bg-white dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg"
+                                    whileHover={{ y: -6, boxShadow: '0 16px 40px rgba(0,0,0,0.15)' }}
+                                    transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                                 >
-                                    <img
-                                        src={project.image}
-                                        alt={project.title}
-                                        className="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
-                                    />
-                                    <div className="p-6">
-                                        <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                                        <p className="text-gray-600 dark:text-gray-400 mb-4" style={{ whiteSpace: 'pre-line' }}>
-                                            {project.description}
-                                        </p>
-
-                                        <TechStackBadges technologies={project.technologies} />
-
-                                        <div className="flex mt-4 gap-4">
+                                    {/* Image + Overlay */}
+                                    <div className="relative overflow-hidden">
+                                        <img
+                                            src={project.image}
+                                            alt={project.title}
+                                            loading="lazy"
+                                            className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                                        />
+                                        {/* Dark overlay */}
+                                        <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
                                             {project.liveUrl && (
                                                 <a
                                                     href={project.liveUrl}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="flex items-center gap-2 text-blue-600 hover:text-blue-700"
+                                                    className="flex items-center gap-2 px-4 py-2 bg-white text-gray-900 rounded-full text-sm font-semibold hover:bg-purple-100 transition-colors"
+                                                    onClick={(e) => e.stopPropagation()}
                                                 >
                                                     <ExternalLink className="w-4 h-4" />
                                                     Live Demo
@@ -143,7 +142,8 @@ export const ProjectsSection = () => {
                                                     href={project.githubUrl}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
+                                                    className="flex items-center gap-2 px-4 py-2 bg-gray-900 text-white border border-white/30 rounded-full text-sm font-semibold hover:bg-gray-700 transition-colors"
+                                                    onClick={(e) => e.stopPropagation()}
                                                 >
                                                     <GithubIcon className="w-4 h-4" />
                                                     Code
@@ -151,23 +151,32 @@ export const ProjectsSection = () => {
                                             )}
                                         </div>
                                     </div>
-                                </div>
+
+                                    <div className="p-6">
+                                        <h3 className="text-xl font-bold mb-2">{project.title}</h3>
+                                        <p className="text-gray-600 dark:text-gray-400 mb-4" style={{ whiteSpace: 'pre-line' }}>
+                                            {project.description}
+                                        </p>
+                                        <TechStackBadges technologies={project.technologies} />
+                                    </div>
+                                </motion.div>
                             ))}
                         </motion.div>
                     </AnimatePresence>
 
                     {portfolioData.projects.length > projectsPerPage && (
-                        <div className="flex justify-center mt-8 gap-2">
+                    <div className="flex justify-center mt-8 gap-2 items-center">
                             {Array.from({ length: totalPages }).map((_, index) => (
                                 <button
                                     key={index}
                                     onClick={() => !isAnimating && setCurrentPage(index)}
-                                    className={`w-2 h-2 rounded-full transition-colors ${
+                                    className={`h-2.5 rounded-full transition-all duration-300 ${
                                         currentPage === index
-                                            ? 'bg-blue-600'
-                                            : 'bg-gray-300 dark:bg-gray-600'
+                                            ? 'bg-blue-600 w-6'
+                                            : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500 w-2.5'
                                     }`}
                                     disabled={isAnimating}
+                                    aria-label={`Go to page ${index + 1}`}
                                 />
                             ))}
                         </div>

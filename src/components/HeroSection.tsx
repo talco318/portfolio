@@ -2,8 +2,21 @@ import { motion } from 'framer-motion';
 import { portfolioData } from '../data/portfolio';
 import { staggerContainer, springHover, fadeInUp } from '../animations';
 import { Github, Linkedin } from 'lucide-react';
+import { useTypewriter } from '../hooks/useTypewriter';
 
 export const HeroSection = () => {
+    const { displayText, isDeleting } = useTypewriter({
+        texts: [
+            portfolioData.personal.tagline,
+            'Building scalable web applications 🚀',
+            'Passionate about clean code ✨',
+            'Always learning, always growing 💡',
+        ],
+        typingSpeed: 55,
+        deletingSpeed: 30,
+        pauseAfterType: 2000,
+    });
+
     return (
         <motion.section
             className="relative h-screen flex items-center justify-center bg-gradient-to-r from-purple-600 via-indigo-500 to-blue-600 dark:from-blue-900 dark:via-purple-800 dark:to-gray-800 overflow-hidden"
@@ -56,7 +69,14 @@ export const HeroSection = () => {
                             <h2 className="text-2xl md:text-3xl text-yellow-300 mb-6">
                                 {portfolioData.personal.title}
                             </h2>
-                            <p className="text-lg text-gray-200 dark:text-gray-300 mb-8">{portfolioData.personal.tagline}</p>
+                            <p className="text-lg text-gray-200 dark:text-gray-300 mb-8 min-h-[1.75rem]">
+                                {displayText}
+                                <span
+                                    className={`inline-block w-0.5 h-5 ml-0.5 align-middle ${
+                                        isDeleting ? 'bg-pink-300' : 'bg-white'
+                                    } animate-pulse`}
+                                />
+                            </p>
                         </motion.div>
                         <motion.div
                             className="flex gap-4 items-center justify-center"
@@ -72,7 +92,7 @@ export const HeroSection = () => {
                             </motion.a>
                             <motion.a
                                 href="#contact"
-                                className="px-6 py-3 border-2 border-gray-300 dark:border-gray-700 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-all"
+                                className="px-6 py-3 bg-white/20 backdrop-blur-sm border-2 border-white/60 text-white rounded-lg hover:bg-white hover:text-purple-700 transition-all font-semibold"
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                             >
@@ -89,6 +109,7 @@ export const HeroSection = () => {
                                 href={portfolioData.personal.socialLinks.github}
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                aria-label="View my GitHub profile"
                                 className="text-gray-800 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
                                 whileHover={{ scale: 1.2 }}
                             >
@@ -98,6 +119,7 @@ export const HeroSection = () => {
                                 href={portfolioData.personal.socialLinks.linkedin}
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                aria-label="View my LinkedIn profile"
                                 className="text-gray-800 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
                                 whileHover={{ scale: 1.2 }}
                             >

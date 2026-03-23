@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
-import { Github, Linkedin } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Github, Linkedin, Copy, Check } from 'lucide-react';
 import { portfolioData } from '../data/portfolio';
 import { staggerContainer, fadeInUp } from '../animations';
 import { useRef, useCallback, useState } from 'react';
@@ -8,6 +8,14 @@ export const ContactSection = () => {
     const form = useRef<HTMLFormElement>(null);
     const isSubmitting = useRef(false);
     const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+    const [copied, setCopied] = useState(false);
+
+    const handleCopyEmail = useCallback(() => {
+        navigator.clipboard.writeText(portfolioData.personal.email).then(() => {
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2500);
+        });
+    }, []);
 
     const handleSubmit = useCallback(async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -76,7 +84,7 @@ export const ContactSection = () => {
                             creative ideas, or opportunities to be part of your visions.
                         </p>
                         <div className="space-y-4">
-                            <p className="flex items-center gap-2">
+                            <div className="flex items-center gap-2 flex-wrap">
                                 <span className="font-semibold">Email:</span>
                                 <motion.a
                                     href={`mailto:${portfolioData.personal.email}`}
@@ -85,7 +93,26 @@ export const ContactSection = () => {
                                 >
                                     {portfolioData.personal.email}
                                 </motion.a>
-                            </p>
+                                <motion.button
+                                    onClick={handleCopyEmail}
+                                    className="ml-1 p-1 rounded text-gray-400 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors"
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.9 }}
+                                    title="Copy email"
+                                >
+                                    <AnimatePresence mode="wait" initial={false}>
+                                        {copied ? (
+                                            <motion.span key="check" initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }}>
+                                                <Check className="w-4 h-4 text-green-500" />
+                                            </motion.span>
+                                        ) : (
+                                            <motion.span key="copy" initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }}>
+                                                <Copy className="w-4 h-4" />
+                                            </motion.span>
+                                        )}
+                                    </AnimatePresence>
+                                </motion.button>
+                            </div>
                             <p className="flex items-center gap-2">
                                 <span className="font-semibold">Location:</span>
                                 {portfolioData.personal.location}
