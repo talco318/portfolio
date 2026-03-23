@@ -47,13 +47,19 @@ const BentoCard = ({ children, className, title }: { children: React.ReactNode, 
         setIsTouch('ontouchstart' in window || navigator.maxTouchPoints > 0);
     }, []);
 
+    const cardRef = useRef<HTMLDivElement>(null);
+    const rectRef = useRef<DOMRect | null>(null);
+
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
         if (isTouch) return;
-        const rect = e.currentTarget.getBoundingClientRect();
-        const width = rect.width;
-        const height = rect.height;
-        const mouseX = e.clientX - rect.left;
-        const mouseY = e.clientY - rect.top;
+        if (!rectRef.current && cardRef.current) {
+            rectRef.current = cardRef.current.getBoundingClientRect();
+        }
+        if (!rectRef.current) return;
+
+        const { left, top, width, height } = rectRef.current;
+        const mouseX = e.clientX - left;
+        const mouseY = e.clientY - top;
         const xPct = mouseX / width - 0.5;
         const yPct = mouseY / height - 0.5;
         x.set(xPct);
@@ -61,14 +67,19 @@ const BentoCard = ({ children, className, title }: { children: React.ReactNode, 
     };
 
     const handleMouseLeave = () => {
+        rectRef.current = null;
         x.set(0);
         y.set(0);
     };
 
     return (
         <motion.div
+            ref={cardRef}
             variants={fadeUp}
             onMouseMove={handleMouseMove}
+            onMouseEnter={() => {
+                if (cardRef.current) rectRef.current = cardRef.current.getBoundingClientRect();
+            }}
             onMouseLeave={handleMouseLeave}
             style={{ 
                 rotateX: isTouch ? 0 : rotateX, 
