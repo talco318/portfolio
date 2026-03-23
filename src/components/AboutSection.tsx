@@ -67,7 +67,7 @@ const AboutSection = ({ personal }: AboutSectionProps) => {
                     <div className="hidden md:block w-1/4 py-10">
                         <motion.img
                             src={personal.avatar}
-                            alt={personal.name}
+                            alt={`${personal.name} - Full Stack Software Developer Profile`}
                             loading="lazy"
                             className="w-48 h-48 rounded-full object-cover shadow-2xl"
                             variants={fadeUp}
