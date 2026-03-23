@@ -19,6 +19,13 @@ export interface Experience {
   achievements: string[];
 }
 
+export interface Education {
+  degree: string;
+  school: string;
+  years: string;
+  coursework?: string[];
+}
+
 export interface Skill {
   name: string;
   proficiency: number;
@@ -50,6 +57,7 @@ export interface PortfolioData {
   skills: Skill[];
   projects: Project[];
   experience: Experience[];
+  education: Education[];
 }
 
 export interface SocialLinks {
@@ -64,13 +72,13 @@ export const portfolioData: PortfolioData = {
     title: "Full Stack Developer",
     tagline: "Building elegant solutions to complex problems",
     heroTexts: [
-        "Building scalable web applications 🚀",
-        "Passionate about clean code ✨",
-        "Always learning, always growing 💡",
-        "B.Sc. in Computer Science 🎓"
+      "Building scalable web applications 🚀",
+      "Passionate about clean code ✨",
+      "Always learning, always growing 💡",
+      "B.Sc. in Computer Science 🎓"
     ],
     email: "talcohen318@gmail.com",
-    location: "Tel Aviv, Israel",
+    location: "Israel",
     locationDetail: "Remote-first mindset",
     githubUsername: "talco318",
     backgroundImage: "https://lh3.googleusercontent.com/d/1_Geshyn3WEDM7U9UnDuDZYbUhngvysLj",
@@ -89,7 +97,7 @@ export const portfolioData: PortfolioData = {
     { name: "C", proficiency: 70, category: "technical", group: "Programming" },
     { name: "JavaScript", proficiency: 85, category: "technical", group: "Programming" },
     { name: "TypeScript", proficiency: 85, category: "technical", group: "Programming" },
-    
+
     { name: "React", proficiency: 92, category: "technical", group: "Web Dev" },
     { name: "Node.js", proficiency: 88, category: "technical", group: "Web Dev" },
     { name: "HTML", proficiency: 95, category: "technical", group: "Web Dev" },
@@ -120,7 +128,7 @@ export const portfolioData: PortfolioData = {
       id: "1",
       title: "Yad2 Apartment Finder Bot",
       description: "- Developed a Python bot for real-time apartment tracking with automated data retrieval and user notifications.\n" +
-          "- Designed scalable data pipelines using MongoDB to handle concurrent processing.",
+        "- Designed scalable data pipelines using MongoDB to handle concurrent processing.",
       technologies: ["Python", "MongoDB", "Telegram API"],
       image: "https://lh3.googleusercontent.com/d/1nb5RBI6Wmo1pfr2yFswFDeY1D0ONuYPE",
       githubUrl: "https://github.com/talco318/yad2-bot",
@@ -130,8 +138,8 @@ export const portfolioData: PortfolioData = {
       id: "2",
       title: "Mentor-Mentee Online Collaborative Coding: React Frontend",
       description: "- Built a dynamic UI with real-time collaboration features using React and TypeScript.\n" +
-          "- Enhanced system performance by optimizing component-based architecture and API integration.\n" +
-          "- Ensured responsive design for seamless interaction across device.",
+        "- Enhanced system performance by optimizing component-based architecture and API integration.\n" +
+        "- Ensured responsive design for seamless interaction across device.",
       technologies: ["React", "Node.JS", "TypeScript"],
       image: "https://lh3.googleusercontent.com/d/1BphxwbLAQOFYwCoLvysudJVFd3Fgaiue",
       liveUrl: "https://codefed.onrender.com/",
@@ -142,7 +150,7 @@ export const portfolioData: PortfolioData = {
       id: "3",
       title: "Tomorrowland Festival LineUp vs Spotify playlist bot",
       description: "- Developed a personalized music recommendation system with Spotify API, Telegram Bot API, and JSON database.\n" +
-          "- Cross-referenced Spotify playlist artists with Tomorrowland Festival lineup.",
+        "- Cross-referenced Spotify playlist artists with Tomorrowland Festival lineup.",
       technologies: ["Python", "Spotify API", "Google AI Studio API"],
       image: "https://lh3.googleusercontent.com/d/103C0arvOTdomwkmoG3tCI5m0XRAAYY4t",
       githubUrl: "https://github.com/talco318/LineUp_vs_spotify_bot",
@@ -151,9 +159,9 @@ export const portfolioData: PortfolioData = {
     {
       id: "4",
       title: "ParkHere Bot",
-      description: "- Developed a Telegram Bot for parking detection using Python and the YOLOv5 computer vision algorithm.\n"+
-          "- Integrated Firebase for data storage and Google Maps API for real-time navigation to enhance parking search efficiency.",
-      technologies: ["Python","YOLOv5 (Computer vision)",],
+      description: "- Developed a Telegram Bot for parking detection using Python and the YOLOv5 computer vision algorithm.\n" +
+        "- Integrated Firebase for data storage and Google Maps API for real-time navigation to enhance parking search efficiency.",
+      technologies: ["Python", "YOLOv5 (Computer vision)",],
       image: "https://lh3.googleusercontent.com/d/1TL7nPjQNMnlR9pSUtd5aJKRYuVfimc1B",
       githubUrl: "https://github.com/talco318/ParkHere_FinalProject",
       category: "AI/ML"
@@ -186,6 +194,14 @@ export const portfolioData: PortfolioData = {
         "Integrated over 10 third-party and RESTful APIs to enhance system functionality and user engagement.",
         "Enhanced system stability through troubleshooting and performance optimizations."
       ]
+    }
+  ],
+  education: [
+    {
+      degree: "B.Sc. in Computer Science",
+      school: "Afeka College of Engineering",
+      years: "2019 — 2022",
+      coursework: ["Data Structures", "Algorithms", "Operating Systems", "Computer Vision", "Web Development"]
     }
   ]
 };

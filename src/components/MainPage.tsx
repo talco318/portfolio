@@ -27,6 +27,7 @@ function App() {
             {/* Experience Section */}
             <ExperienceSection 
                 experience={portfolioData.experience} 
+                education={portfolioData.education} 
             />
 
             {/* Projects Section */}
