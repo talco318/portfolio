@@ -99,15 +99,17 @@ export const ProjectsSection = () => {
                         </>
                     )}
 
-                    <AnimatePresence mode="wait">
-                        <motion.div
-                            key={currentPage}
-                            className={`grid gap-8 overflow-hidden ${projectsPerPage === 1 ? "grid-cols-1" : "grid-cols-1 md:grid-cols-2"}`}
-                            initial={{ opacity: 0, x: direction * 100 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            exit={{ opacity: 0, x: -direction * 100 }}
-                            transition={{ duration: 0.4, ease: "easeInOut" }}
-                        >
+                    {/* Overflow container fixes visual clipping when sliding and keeps layout stable */}
+                    <div className="relative overflow-hidden min-h-[500px]">
+                        <AnimatePresence mode="popLayout" custom={direction}>
+                            <motion.div
+                                key={currentPage}
+                                className={`grid gap-8 ${projectsPerPage === 1 ? "grid-cols-1" : "grid-cols-1 md:grid-cols-2 w-full"}`}
+                                initial={{ opacity: 0, x: direction * 50, filter: "blur(4px)" }}
+                                animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+                                exit={{ opacity: 0, x: -direction * 50, filter: "blur(4px)" }}
+                                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                            >
                             {visibleProjects.map((project) => (
                                 <motion.div
                                     key={project.id}
@@ -163,6 +165,7 @@ export const ProjectsSection = () => {
                             ))}
                         </motion.div>
                     </AnimatePresence>
+                    </div>
 
                     {portfolioData.projects.length > projectsPerPage && (
                     <div className="flex justify-center mt-8 gap-2 items-center">
