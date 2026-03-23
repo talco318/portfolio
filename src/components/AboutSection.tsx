@@ -1,9 +1,10 @@
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { TerminalEasterEgg } from './TerminalEasterEgg';
-import { GitHubCalendar } from 'react-github-calendar';
+import React, { useState, useEffect, useRef, Suspense, lazy } from 'react';
 import { Globe, Cpu, Database, Server, Layout, Code2, Bot, Terminal, Globe2 } from 'lucide-react';
-import { useState, useEffect, useRef } from 'react';
 import { PortfolioData } from '../data/portfolio';
+
+const GitHubCalendar = lazy(() => import('react-github-calendar').then(module => ({ default: module.GitHubCalendar })));
 
 interface AboutSectionProps {
     personal: PortfolioData['personal'];
@@ -186,12 +187,14 @@ export const AboutSection = ({ personal, skills }: AboutSectionProps) => {
                 <BentoCard className="hidden md:flex md:col-span-2 overflow-hidden flex flex-col justify-center" title="Activity">
                     <div className="w-full flex justify-center py-2 md:py-4 opacity-90 transition-opacity flex-1 items-center">
                          <div className="scale-[0.8] lg:scale-[0.95] origin-center min-w-[320px] md:min-w-0 flex justify-center">
-                            <GitHubCalendar 
-                                username={personal.githubUsername} 
-                                blockSize={12}
-                                blockMargin={4}
-                                fontSize={12}
-                            />
+                            <Suspense fallback={<div className="w-[300px] h-[100px] bg-gray-100 dark:bg-gray-800 animate-pulse rounded-lg" />}>
+                                <GitHubCalendar 
+                                    username={personal.githubUsername} 
+                                    blockSize={12}
+                                    blockMargin={4}
+                                    fontSize={12}
+                                />
+                            </Suspense>
                         </div>
                     </div>
                 </BentoCard>
