@@ -7,6 +7,7 @@ import AboutSection from "./AboutSection.tsx";
 import ExperienceSection from "./ExperienceSection.tsx";
 import SocialButtons from './SocialButtons.jsx';
 import SkillsSection from './SkillsSection.tsx';
+import { TechMarquee } from './TechMarquee.tsx';
 import { Footer } from './Footer.tsx';
 
 function App() {
@@ -27,7 +28,7 @@ function App() {
             {/* Projects Section */}
             <ProjectsSection />
 
-            {/* Skills Section */}
+            <TechMarquee />
             <SkillsSection />
 
             {/* Contact Section */}
