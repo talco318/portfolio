@@ -1,7 +1,7 @@
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { TerminalEasterEgg } from './TerminalEasterEgg';
 import { GitHubCalendar } from 'react-github-calendar';
-import { Code2, Globe, Cpu } from 'lucide-react';
+import { Code2, Globe, Cpu, Database, Server, Smartphone, GithubIcon } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 interface PersonalData {
@@ -68,11 +68,11 @@ const BentoCard = ({ children, className, title }: { children: React.ReactNode, 
             }}
             className={`bg-white dark:bg-[#1e1e1e] rounded-[1.5rem] md:rounded-[2rem] p-5 md:p-8 shadow-xl border border-gray-100 dark:border-gray-800 relative overflow-hidden group transition-colors hover:border-purple-500/30 dark:hover:border-purple-500/30 ${className}`}
         >
-            {title && <h3 className="text-[10px] md:text-xs uppercase tracking-widest text-gray-400 font-bold mb-3 md:mb-4 flex items-center gap-2">
+            {title && <h3 className="text-[10px] md:text-xs uppercase tracking-widest text-gray-400 font-bold mb-3 md:mb-6 flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-purple-500"></span>
                 {title}
             </h3>}
-            <div style={{ transform: isTouch ? "none" : "translateZ(20px)" }}>
+            <div className="h-full flex flex-col" style={{ transform: isTouch ? "none" : "translateZ(20px)" }}>
                 {children}
             </div>
         </motion.div>
@@ -96,7 +96,7 @@ export const AboutSection = ({ personal }: AboutSectionProps) => {
             </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6">
-                {/* 1. Bio Block (Full width on mobile, 3/4 on desktop) */}
+                {/* 1. Bio Block */}
                 <BentoCard className="md:col-span-3 min-h-0 md:min-h-[280px]">
                     <h3 className="text-xl md:text-3xl font-bold mb-4 md:mb-6 text-gray-900 dark:text-white leading-tight">
                         I build <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500">robust backend systems</span> and interactive user experiences.
@@ -113,7 +113,7 @@ export const AboutSection = ({ personal }: AboutSectionProps) => {
                     </div>
                 </BentoCard>
 
-                {/* 2. Photo (Hidden on mobile) */}
+                {/* 2. Photo */}
                 <BentoCard className="hidden md:flex md:col-span-1 aspect-square p-2 items-center justify-center">
                     <div className="w-full h-full rounded-[1.5rem] overflow-hidden transition-all duration-700">
                         <img 
@@ -129,41 +129,49 @@ export const AboutSection = ({ personal }: AboutSectionProps) => {
                     <TerminalEasterEgg />
                 </motion.div>
 
-                {/* 4. Location (Hidden on mobile) */}
+                {/* 4. Location */}
                 <BentoCard className="hidden md:flex md:col-span-1 flex-col items-center justify-center text-center py-10" title="Location">
-                    <div className="relative mb-4">
-                        <div className="absolute inset-0 bg-blue-500/30 blur-2xl rounded-full" />
-                        <Globe className="w-10 h-10 text-blue-500 relative z-10" />
-                    </div>
-                    <div className="flex flex-col gap-1">
-                        <span className="text-xl font-bold text-gray-900 dark:text-white block">Tel Aviv, Israel</span>
-                        <span className="text-sm text-gray-500 dark:text-gray-400 block">Remote-first mindset</span>
+                    <div className="relative mb-4 flex-1 flex flex-col items-center justify-center">
+                        <div className="relative">
+                            <div className="absolute inset-0 bg-blue-500/30 blur-2xl rounded-full" />
+                            <Globe className="w-10 h-10 text-blue-500 relative z-10" />
+                        </div>
+                        <div className="flex flex-col gap-1 mt-4">
+                            <span className="text-xl font-bold text-gray-900 dark:text-white block">Tel Aviv, Israel</span>
+                            <span className="text-sm text-gray-500 dark:text-gray-400 block">Remote-first mindset</span>
+                        </div>
                     </div>
                 </BentoCard>
 
-                {/* 5. Tech Stack (Full width mobile, compact) */}
-                <BentoCard className="md:col-span-2 py-6" title="Technologies">
-                    <div className="flex justify-between md:justify-around items-center px-2">
-                        {[
-                            { name: 'Python', icon: <Code2 className="w-5 h-5 md:w-6 md:h-6 text-yellow-500" /> },
-                            { name: 'React', icon: <Code2 className="w-5 h-5 md:w-6 md:h-6 text-blue-400" /> },
-                            { name: 'AWS', icon: <Globe className="w-5 h-5 md:w-6 md:h-6 text-orange-400" /> },
-                            { name: 'Linux', icon: <Cpu className="w-5 h-5 md:w-6 md:h-6 text-emerald-500" /> },
-                        ].map((tech) => (
-                            <div key={tech.name} className="flex flex-col items-center gap-2 group/icon">
-                                <div className="p-3 bg-gray-50 dark:bg-gray-800 rounded-xl md:rounded-2xl transition-all">
-                                    {tech.icon}
+                {/* 5. Tech Stack */}
+                <BentoCard className="md:col-span-2 min-h-0 flex flex-col justify-center" title="Technologies">
+                    <div className="flex-1 flex flex-col justify-center py-2 md:py-0">
+                        <div className="grid grid-cols-4 gap-4 md:gap-8 justify-items-center">
+                            {[
+                                { name: 'Python', icon: <Code2 className="w-5 h-5 md:w-6 md:h-6 text-yellow-500" /> },
+                                { name: 'React', icon: <Smartphone className="w-5 h-5 md:w-6 md:h-6 text-blue-400" /> },
+                                { name: 'AWS', icon: <Globe className="w-5 h-5 md:w-6 md:h-6 text-orange-400" /> },
+                                { name: 'Linux', icon: <Cpu className="w-5 h-5 md:w-6 md:h-6 text-emerald-500" /> },
+                                { name: 'MongoDB', icon: <Database className="w-5 h-5 md:w-6 md:h-6 text-green-500" /> },
+                                { name: 'Node.js', icon: <Server className="w-5 h-5 md:w-6 md:h-6 text-green-600" /> },
+                                { name: 'TypeScript', icon: <Code2 className="w-5 h-5 md:w-6 md:h-6 text-blue-600" /> },
+                                { name: 'SQL', icon: <Database className="w-5 h-5 md:w-6 md:h-6 text-blue-500" /> },
+                            ].map((tech) => (
+                                <div key={tech.name} className="flex flex-col items-center gap-2 group/icon transition-transform hover:-translate-y-1">
+                                    <div className="p-2 md:p-3 bg-gray-50 dark:bg-gray-800 rounded-xl md:rounded-2xl shadow-sm group-hover/icon:shadow-md transition-all">
+                                        {tech.icon}
+                                    </div>
+                                    <span className="text-[9px] md:text-xs font-semibold text-gray-500 dark:text-gray-400">{tech.name}</span>
                                 </div>
-                                <span className="text-[10px] md:text-xs font-medium text-gray-500 dark:text-gray-400">{tech.name}</span>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
                     </div>
                 </BentoCard>
 
-                {/* 6. GitHub Activity (Full width mobile) */}
-                <BentoCard className="md:col-span-2 overflow-hidden" title="Activity">
-                    <div className="w-full flex justify-center py-2 opacity-90 transition-opacity">
-                         <div className="scale-[0.6] md:scale-100 lg:scale-110 origin-center min-w-[320px] md:min-w-0 flex justify-center overflow-x-auto no-scrollbar">
+                {/* 6. GitHub Activity - HIDDEN ON MOBILE (Clean UX) */}
+                <BentoCard className="hidden md:flex md:col-span-2 overflow-hidden flex flex-col justify-center" title="Activity">
+                    <div className="w-full flex justify-center py-2 md:py-4 opacity-90 transition-opacity flex-1 items-center">
+                         <div className="scale-[0.8] lg:scale-[0.95] origin-center min-w-[320px] md:min-w-0 flex justify-center">
                             <GitHubCalendar 
                                 username="talco318" 
                                 blockSize={12}
@@ -173,6 +181,20 @@ export const AboutSection = ({ personal }: AboutSectionProps) => {
                         </div>
                     </div>
                 </BentoCard>
+
+                {/* Mobile GitHub Placeholder (Small sleek card) */}
+                <a 
+                    href="https://github.com/talco318" 
+                    target="_blank" 
+                    rel="noreferrer"
+                    className="md:hidden flex items-center justify-between p-5 bg-white dark:bg-[#1e1e1e] rounded-[1.5rem] border border-gray-100 dark:border-gray-800 shadow-md active:scale-95 transition-all"
+                >
+                    <div className="flex items-center gap-3">
+                        <GithubIcon className="w-6 h-6 text-gray-900 dark:text-white" />
+                        <span className="font-bold text-gray-900 dark:text-white">View GitHub Activity</span>
+                    </div>
+                    <Globe className="w-5 h-5 text-purple-500" />
+                </a>
             </div>
         </motion.section>
     );
