@@ -87,7 +87,17 @@ export const ProjectsSection = () => {
     return (
         <section id="projects" className="py-10 bg-indigo-20 dark:bg-slate-800">
             <div className="section-container">
-                <h2 className="text-3xl font-bold mb-8">Projects</h2>
+                <motion.div 
+                    className="flex items-center gap-4 mb-10 md:mb-16"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                >
+                    <div className="h-px bg-gray-300 dark:bg-gray-700 flex-1" />
+                    <h2 className="text-3xl md:text-5xl font-black text-gray-900 dark:text-white uppercase transition-all hover:tracking-widest duration-500">Projects</h2>
+                    <div className="h-px bg-gray-300 dark:bg-gray-700 flex-1" />
+                </motion.div>
 
                 <div className="relative">
                     {portfolioData.projects.length > projectsPerPage && (

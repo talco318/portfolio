@@ -104,12 +104,14 @@ const SkillsSection = () => {
             whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
         >
-            <motion.h2
-                className="text-3xl font-bold mb-8 text-center dark:text-white"
+            <motion.div 
+                className="flex items-center gap-4 mb-10 md:mb-16"
                 variants={cardVariants}
             >
-                Skills
-            </motion.h2>
+                <div className="h-px bg-gray-300 dark:bg-gray-700 flex-1" />
+                <h2 className="text-3xl md:text-5xl font-black text-gray-900 dark:text-white uppercase transition-all hover:tracking-widest duration-500">Skills</h2>
+                <div className="h-px bg-gray-300 dark:bg-gray-700 flex-1" />
+            </motion.div>
 
             {chunkedCategories.map((row, rowIndex) => (
                 <div key={rowIndex} className="grid md:grid-cols-3 gap-6 mb-6">

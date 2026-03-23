@@ -24,15 +24,17 @@ const ExperienceSection = ({ experience }: ExperienceSectionProps) => {
     return (
         <section id="experience" className="py-12 bg-indigo-50 dark:bg-slate-800">
             <div className="max-w-7xl mx-auto px-4">
-                <motion.h2
-                    className="text-3xl font-bold mb-8 text-center"
+                <motion.div 
+                    className="flex items-center gap-4 mb-10 md:mb-16"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
+                    transition={{ duration: 0.6 }}
                 >
-                    Experience
-                </motion.h2>
+                    <div className="h-px bg-gray-300 dark:bg-gray-700 flex-1" />
+                    <h2 className="text-3xl md:text-5xl font-black text-gray-900 dark:text-white uppercase transition-all hover:tracking-widest duration-500">Experience</h2>
+                    <div className="h-px bg-gray-300 dark:bg-gray-700 flex-1" />
+                </motion.div>
                 <motion.div
                     className="relative border-l-2 border-indigo-500 dark:border-indigo-300 pl-4 space-y-4"
                     variants={containerVariants}

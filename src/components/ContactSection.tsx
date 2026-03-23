@@ -71,12 +71,14 @@ export const ContactSection = () => {
             variants={staggerContainer}
         >
             <div className="max-w-7xl mx-auto px-4">
-                <motion.h2
-                    className="text-3xl font-bold mb-8"
+                <motion.div 
+                    className="flex items-center gap-4 mb-10 md:mb-16 px-2 md:px-0"
                     variants={fadeInUp}
                 >
-                    Contact Me
-                </motion.h2>
+                    <div className="h-px bg-gray-300 dark:bg-gray-700 flex-1" />
+                    <h2 className="text-3xl md:text-5xl font-black text-gray-900 dark:text-white uppercase transition-all hover:tracking-widest duration-500">Contact</h2>
+                    <div className="h-px bg-gray-300 dark:bg-gray-700 flex-1" />
+                </motion.div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <motion.div variants={fadeInUp}>
                         <p className="text-lg mb-6">
