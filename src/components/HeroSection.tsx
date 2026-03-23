@@ -22,20 +22,14 @@ export const HeroSection = () => {
         >
 
             {/* Background Image Layer */}
-            <div
-                className="absolute inset-0 z-0"
-                style={{
-                    backgroundImage: `url('${portfolioData.personal.backgroundImage}')`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    backgroundRepeat: 'no-repeat',
-                    opacity: 0.10,
-
-                    //Try these if there's a problem with the image covering the whole screen.
-                    height: '100%',
-                    width: '100%',
-                }}
-            ></div>
+            <div className="absolute inset-0 z-0 overflow-hidden">
+                <img
+                    src={portfolioData.personal.backgroundImage }
+                    alt="Hero Background"
+                    className="w-full h-full object-cover opacity-10"
+                    fetchpriority="high"
+                />
+            </div>
 
             {/* Glowing Aurora Background Effect */}
             <div className="absolute inset-0 overflow-hidden z-0 pointer-events-none blur-[100px] opacity-70">
@@ -146,6 +140,7 @@ export const HeroSection = () => {
                                     whileHover={{ scale: 1.2 }}
                                 >
                                     <Github className="w-6 h-6" />
+                                    <span className="sr-only">GitHub Profile</span>
                                 </motion.a>
                             </MagneticWrapper>
                             <MagneticWrapper strength={0.2}>
@@ -158,6 +153,7 @@ export const HeroSection = () => {
                                     whileHover={{ scale: 1.2 }}
                                 >
                                     <Linkedin className="w-6 h-6" />
+                                    <span className="sr-only">LinkedIn Profile</span>
                                 </motion.a>
                             </MagneticWrapper>
                         </motion.div>
