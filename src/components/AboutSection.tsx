@@ -1,18 +1,13 @@
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { TerminalEasterEgg } from './TerminalEasterEgg';
 import { GitHubCalendar } from 'react-github-calendar';
-import { Code2, Globe, Cpu, Database, Server, Smartphone, GithubIcon } from 'lucide-react';
+import { Globe, Cpu, Database, Server, Smartphone, Layout, Code2, Bot, GithubIcon, Terminal, Globe2 } from 'lucide-react';
 import { useState, useEffect } from 'react';
-
-interface PersonalData {
-    bio: string;
-    interests: string[];
-    avatar: string;
-    name: string;
-}
+import { PortfolioData } from '../data/portfolio';
 
 interface AboutSectionProps {
-    personal: PersonalData;
+    personal: PortfolioData['personal'];
+    skills: PortfolioData['skills'];
 }
 
 const containerVariants = {
@@ -23,6 +18,20 @@ const containerVariants = {
 const fadeUp = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+};
+
+// Icon Mapping Helper for the mini-tech-stack
+const getTechIcon = (name: string) => {
+    const n = name.toLowerCase();
+    if (n.includes('python') || n.includes('c++')) return <Code2 className="w-5 h-5 md:w-6 md:h-6 text-yellow-500" />;
+    if (n.includes('react') || n.includes('html')) return <Layout className="w-5 h-5 md:w-6 md:h-6 text-blue-400" />;
+    if (n.includes('node') || n.includes('server')) return <Server className="w-5 h-5 md:w-6 md:h-6 text-green-600" />;
+    if (n.includes('sql') || n.includes('mongo')) return <Database className="w-5 h-5 md:w-6 md:h-6 text-blue-500" />;
+    if (n.includes('aws') || n.includes('gcp')) return <Globe2 className="w-5 h-5 md:w-6 md:h-6 text-orange-400" />;
+    if (n.includes('linux') || n.includes('bash')) return <Terminal className="w-5 h-5 md:w-6 md:h-6 text-emerald-500" />;
+    if (n.includes('ai') || n.includes('gemini')) return <Bot className="w-5 h-5 md:w-6 md:h-6 text-purple-400" />;
+    if (n.includes('typescript')) return <Code2 className="w-5 h-5 md:w-6 md:h-6 text-blue-600" />;
+    return <Cpu className="w-5 h-5 md:w-6 md:h-6 text-gray-400" />;
 };
 
 const BentoCard = ({ children, className, title }: { children: React.ReactNode, className?: string, title?: string }) => {
@@ -79,7 +88,10 @@ const BentoCard = ({ children, className, title }: { children: React.ReactNode, 
     );
 };
 
-export const AboutSection = ({ personal }: AboutSectionProps) => {
+export const AboutSection = ({ personal, skills }: AboutSectionProps) => {
+    // Take first 8 important skills for the mini-grid
+    const topSkills = skills.slice(0, 8);
+
     return (
         <motion.section 
             id="about"
@@ -137,8 +149,8 @@ export const AboutSection = ({ personal }: AboutSectionProps) => {
                             <Globe className="w-10 h-10 text-blue-500 relative z-10" />
                         </div>
                         <div className="flex flex-col gap-1 mt-4">
-                            <span className="text-xl font-bold text-gray-900 dark:text-white block">Tel Aviv, Israel</span>
-                            <span className="text-sm text-gray-500 dark:text-gray-400 block">Remote-first mindset</span>
+                            <span className="text-xl font-bold text-gray-900 dark:text-white block">{personal.location}</span>
+                            <span className="text-sm text-gray-500 dark:text-gray-400 block">{personal.locationDetail}</span>
                         </div>
                     </div>
                 </BentoCard>
@@ -147,19 +159,10 @@ export const AboutSection = ({ personal }: AboutSectionProps) => {
                 <BentoCard className="md:col-span-2 min-h-0 flex flex-col justify-center" title="Technologies">
                     <div className="flex-1 flex flex-col justify-center py-2 md:py-0">
                         <div className="grid grid-cols-4 gap-4 md:gap-8 justify-items-center">
-                            {[
-                                { name: 'Python', icon: <Code2 className="w-5 h-5 md:w-6 md:h-6 text-yellow-500" /> },
-                                { name: 'React', icon: <Smartphone className="w-5 h-5 md:w-6 md:h-6 text-blue-400" /> },
-                                { name: 'AWS', icon: <Globe className="w-5 h-5 md:w-6 md:h-6 text-orange-400" /> },
-                                { name: 'Linux', icon: <Cpu className="w-5 h-5 md:w-6 md:h-6 text-emerald-500" /> },
-                                { name: 'MongoDB', icon: <Database className="w-5 h-5 md:w-6 md:h-6 text-green-500" /> },
-                                { name: 'Node.js', icon: <Server className="w-5 h-5 md:w-6 md:h-6 text-green-600" /> },
-                                { name: 'TypeScript', icon: <Code2 className="w-5 h-5 md:w-6 md:h-6 text-blue-600" /> },
-                                { name: 'SQL', icon: <Database className="w-5 h-5 md:w-6 md:h-6 text-blue-500" /> },
-                            ].map((tech) => (
+                            {topSkills.map((tech) => (
                                 <div key={tech.name} className="flex flex-col items-center gap-2 group/icon transition-transform hover:-translate-y-1">
                                     <div className="p-2 md:p-3 bg-gray-50 dark:bg-gray-800 rounded-xl md:rounded-2xl shadow-sm group-hover/icon:shadow-md transition-all">
-                                        {tech.icon}
+                                        {getTechIcon(tech.name)}
                                     </div>
                                     <span className="text-[9px] md:text-xs font-semibold text-gray-500 dark:text-gray-400">{tech.name}</span>
                                 </div>
@@ -168,12 +171,12 @@ export const AboutSection = ({ personal }: AboutSectionProps) => {
                     </div>
                 </BentoCard>
 
-                {/* 6. GitHub Activity - HIDDEN ON MOBILE (Clean UX) */}
+                {/* 6. GitHub Activity */}
                 <BentoCard className="hidden md:flex md:col-span-2 overflow-hidden flex flex-col justify-center" title="Activity">
                     <div className="w-full flex justify-center py-2 md:py-4 opacity-90 transition-opacity flex-1 items-center">
                          <div className="scale-[0.8] lg:scale-[0.95] origin-center min-w-[320px] md:min-w-0 flex justify-center">
                             <GitHubCalendar 
-                                username="talco318" 
+                                username={personal.githubUsername} 
                                 blockSize={12}
                                 blockMargin={4}
                                 fontSize={12}
@@ -181,20 +184,6 @@ export const AboutSection = ({ personal }: AboutSectionProps) => {
                         </div>
                     </div>
                 </BentoCard>
-
-                {/* Mobile GitHub Placeholder (Small sleek card) */}
-                <a 
-                    href="https://github.com/talco318" 
-                    target="_blank" 
-                    rel="noreferrer"
-                    className="md:hidden flex items-center justify-between p-5 bg-white dark:bg-[#1e1e1e] rounded-[1.5rem] border border-gray-100 dark:border-gray-800 shadow-md active:scale-95 transition-all"
-                >
-                    <div className="flex items-center gap-3">
-                        <GithubIcon className="w-6 h-6 text-gray-900 dark:text-white" />
-                        <span className="font-bold text-gray-900 dark:text-white">View GitHub Activity</span>
-                    </div>
-                    <Globe className="w-5 h-5 text-purple-500" />
-                </a>
             </div>
         </motion.section>
     );
