@@ -33,6 +33,7 @@ export const TechMarquee = () => {
 
             <motion.div
                 className="flex whitespace-nowrap items-center w-max"
+                style={{ willChange: 'transform' }}
                 animate={{ x: ["0%", "-50%"] }}
                 transition={{
                     repeat: Infinity,
