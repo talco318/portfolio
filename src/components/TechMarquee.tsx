@@ -32,12 +32,12 @@ export const TechMarquee = () => {
             <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-gray-100 dark:from-gray-800 to-transparent z-10 pointer-events-none" />
 
             <motion.div
-                className="flex whitespace-nowrap items-center w-[200%]"
+                className="flex whitespace-nowrap items-center w-max"
                 animate={{ x: ["0%", "-50%"] }}
                 transition={{
                     repeat: Infinity,
                     ease: "linear",
-                    duration: 25, // Adjust speed here
+                    duration: 30, // Uniform speed across all devices (content width based instead of viewport based)
                 }}
             >
                 {duplicatedStack.map((tech, index) => {
