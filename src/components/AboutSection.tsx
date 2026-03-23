@@ -2,6 +2,7 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { TerminalEasterEgg } from './TerminalEasterEgg';
 import { GitHubCalendar } from 'react-github-calendar';
 import { Code2, Globe, Cpu } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 interface PersonalData {
     bio: string;
@@ -31,8 +32,14 @@ const BentoCard = ({ children, className, title }: { children: React.ReactNode, 
     const mouseYSpring = useSpring(y);
     const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["7deg", "-7deg"]);
     const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-7deg", "7deg"]);
+    const [isTouch, setIsTouch] = useState(false);
+
+    useEffect(() => {
+        setIsTouch('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    }, []);
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (isTouch) return;
         const rect = e.currentTarget.getBoundingClientRect();
         const width = rect.width;
         const height = rect.height;
@@ -54,14 +61,18 @@ const BentoCard = ({ children, className, title }: { children: React.ReactNode, 
             variants={fadeUp}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
-            style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-            className={`bg-white dark:bg-[#1e1e1e] rounded-[2rem] p-6 shadow-xl border border-gray-100 dark:border-gray-800 relative overflow-hidden group transition-colors hover:border-purple-500/30 dark:hover:border-purple-500/30 ${className}`}
+            style={{ 
+                rotateX: isTouch ? 0 : rotateX, 
+                rotateY: isTouch ? 0 : rotateY, 
+                transformStyle: "preserve-3d" 
+            }}
+            className={`bg-white dark:bg-[#1e1e1e] rounded-[1.5rem] md:rounded-[2rem] p-5 md:p-8 shadow-xl border border-gray-100 dark:border-gray-800 relative overflow-hidden group transition-colors hover:border-purple-500/30 dark:hover:border-purple-500/30 ${className}`}
         >
-            {title && <h3 className="text-xs uppercase tracking-widest text-gray-400 font-bold mb-4 flex items-center gap-2">
+            {title && <h3 className="text-[10px] md:text-xs uppercase tracking-widest text-gray-400 font-bold mb-3 md:mb-4 flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-purple-500"></span>
                 {title}
             </h3>}
-            <div style={{ transform: "translateZ(20px)" }}>
+            <div style={{ transform: isTouch ? "none" : "translateZ(20px)" }}>
                 {children}
             </div>
         </motion.div>
@@ -72,38 +83,38 @@ export const AboutSection = ({ personal }: AboutSectionProps) => {
     return (
         <motion.section 
             id="about"
-            className="w-full max-w-7xl mx-auto p-4 md:p-6 my-20"
+            className="w-full max-w-7xl mx-auto p-4 md:p-6 my-4 md:my-20"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
+            viewport={{ once: true, amount: 0.05 }}
         >
-            <motion.div className="flex items-center gap-4 mb-12 px-4" variants={fadeUp}>
+            <motion.div className="flex items-center gap-4 mb-6 md:mb-12 px-2 md:px-4" variants={fadeUp}>
                 <div className="h-px bg-gray-200 dark:bg-gray-800 flex-1" />
-                <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white">ABOUT</h2>
+                <h2 className="text-3xl md:text-5xl font-black text-gray-900 dark:text-white uppercase transition-all hover:tracking-widest duration-500">About</h2>
                 <div className="h-px bg-gray-200 dark:bg-gray-800 flex-1" />
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6 auto-rows-auto">
-                {/* 1. Main Bio (Span 3) */}
-                <BentoCard className="md:col-span-3 min-h-[280px] flex flex-col justify-center">
-                    <h3 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white leading-tight">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6">
+                {/* 1. Bio Block (Full width on mobile, 3/4 on desktop) */}
+                <BentoCard className="md:col-span-3 min-h-0 md:min-h-[280px]">
+                    <h3 className="text-xl md:text-3xl font-bold mb-4 md:mb-6 text-gray-900 dark:text-white leading-tight">
                         I build <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500">robust backend systems</span> and interactive user experiences.
                     </h3>
-                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-lg mb-8 max-w-3xl">
+                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-base md:text-lg mb-6 md:mb-8">
                         {personal.bio}
                     </p>
                     <div className="flex flex-wrap gap-2">
                         {personal.interests.map((interest) => (
-                            <span key={interest} className="px-3 py-1 bg-gray-50 dark:bg-gray-800/50 text-gray-500 dark:text-gray-400 rounded-lg text-sm border border-gray-100 dark:border-gray-800">
+                            <span key={interest} className="px-2.5 py-1 bg-gray-50 dark:bg-gray-800/50 text-gray-500 dark:text-gray-400 rounded-lg text-xs md:text-sm border border-gray-100 dark:border-gray-800">
                                 {interest}
                             </span>
                         ))}
                     </div>
                 </BentoCard>
 
-                {/* 2. Photo (1x1 - Smaller) */}
-                <BentoCard className="md:col-span-1 aspect-square p-2 flex items-center justify-center">
+                {/* 2. Photo (Hidden on mobile) */}
+                <BentoCard className="hidden md:flex md:col-span-1 aspect-square p-2 items-center justify-center">
                     <div className="w-full h-full rounded-[1.5rem] overflow-hidden transition-all duration-700">
                         <img 
                             src={personal.avatar} 
@@ -113,8 +124,13 @@ export const AboutSection = ({ personal }: AboutSectionProps) => {
                     </div>
                 </BentoCard>
 
-                {/* 3. Location (1x1) */}
-                <BentoCard className="md:col-span-1 flex flex-col items-center justify-center text-center py-10" title="Location">
+                {/* 3. Terminal Block */}
+                <motion.div className="md:col-span-3 min-h-[250px] md:min-h-[350px] flex" variants={fadeUp}>
+                    <TerminalEasterEgg />
+                </motion.div>
+
+                {/* 4. Location (Hidden on mobile) */}
+                <BentoCard className="hidden md:flex md:col-span-1 flex-col items-center justify-center text-center py-10" title="Location">
                     <div className="relative mb-4">
                         <div className="absolute inset-0 bg-blue-500/30 blur-2xl rounded-full" />
                         <Globe className="w-10 h-10 text-blue-500 relative z-10" />
@@ -125,34 +141,29 @@ export const AboutSection = ({ personal }: AboutSectionProps) => {
                     </div>
                 </BentoCard>
 
-                {/* 4. Terminal (Span 3) */}
-                <motion.div className="md:col-span-3 min-h-[300px]" variants={fadeUp}>
-                    <TerminalEasterEgg />
-                </motion.div>
-
-                {/* 5. Tech Stack Mini Grid (2x1) */}
-                <BentoCard className="md:col-span-2 flex flex-col justify-center" title="Core Stack">
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-2">
+                {/* 5. Tech Stack (Full width mobile, compact) */}
+                <BentoCard className="md:col-span-2 py-6" title="Technologies">
+                    <div className="flex justify-between md:justify-around items-center px-2">
                         {[
-                            { name: 'Python', icon: <Code2 className="w-6 h-6 text-yellow-500" /> },
-                            { name: 'React', icon: <Code2 className="w-6 h-6 text-blue-400" /> },
-                            { name: 'AWS', icon: <Globe className="w-6 h-6 text-orange-400" /> },
-                            { name: 'Linux', icon: <Cpu className="w-6 h-6 text-emerald-500" /> },
+                            { name: 'Python', icon: <Code2 className="w-5 h-5 md:w-6 md:h-6 text-yellow-500" /> },
+                            { name: 'React', icon: <Code2 className="w-5 h-5 md:w-6 md:h-6 text-blue-400" /> },
+                            { name: 'AWS', icon: <Globe className="w-5 h-5 md:w-6 md:h-6 text-orange-400" /> },
+                            { name: 'Linux', icon: <Cpu className="w-5 h-5 md:w-6 md:h-6 text-emerald-500" /> },
                         ].map((tech) => (
                             <div key={tech.name} className="flex flex-col items-center gap-2 group/icon">
-                                <div className="p-3 bg-gray-50 dark:bg-gray-800 rounded-2xl group-hover/icon:scale-110 group-hover/icon:bg-gray-100 dark:group-hover/icon:bg-gray-700 transition-all">
+                                <div className="p-3 bg-gray-50 dark:bg-gray-800 rounded-xl md:rounded-2xl transition-all">
                                     {tech.icon}
                                 </div>
-                                <span className="text-xs font-medium text-gray-500 dark:text-gray-400">{tech.name}</span>
+                                <span className="text-[10px] md:text-xs font-medium text-gray-500 dark:text-gray-400">{tech.name}</span>
                             </div>
                         ))}
                     </div>
                 </BentoCard>
 
-                {/* 6. GitHub Heatmap (2x1 - Smaller focus) */}
-                <BentoCard className="md:col-span-2" title="GitHub Contributions">
-                    <div className="w-full h-full flex items-center justify-center pt-2 md:pt-4">
-                         <div className="scale-[0.85] origin-center opacity-80 group-hover:opacity-100 transition-opacity whitespace-nowrap overflow-hidden">
+                {/* 6. GitHub Activity (Full width mobile) */}
+                <BentoCard className="md:col-span-2 overflow-hidden" title="Activity">
+                    <div className="w-full flex justify-center py-2 opacity-90 transition-opacity">
+                         <div className="scale-[0.6] md:scale-100 lg:scale-110 origin-center min-w-[320px] md:min-w-0 flex justify-center overflow-x-auto no-scrollbar">
                             <GitHubCalendar 
                                 username="talco318" 
                                 blockSize={12}
