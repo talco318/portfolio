@@ -5,7 +5,7 @@ import { ContactSection } from "./ContactSection.tsx";
 import { HeroSection } from "./HeroSection.tsx";
 import AboutSection from "./AboutSection.tsx";
 import ExperienceSection from "./ExperienceSection.tsx";
-import SocialButtons from './SocialButtons.jsx';
+import SocialButtons from './SocialButtons.tsx';
 import SkillsSection from './SkillsSection.tsx';
 import { TechMarquee } from './TechMarquee.tsx';
 import { Footer } from './Footer.tsx';
