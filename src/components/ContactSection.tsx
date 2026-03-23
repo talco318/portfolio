@@ -100,6 +100,7 @@ export const ContactSection = () => {
                                     className="ml-1 p-1 rounded text-gray-400 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors"
                                     whileHover={{ scale: 1.1 }}
                                     whileTap={{ scale: 0.9 }}
+                                    aria-label="Copy email address to clipboard"
                                     title="Copy email"
                                 >
                                     <AnimatePresence mode="wait" initial={false}>
@@ -129,8 +130,10 @@ export const ContactSection = () => {
                                     rel="noopener noreferrer"
                                     className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
                                     whileHover={{ scale: 1.2 }}
+                                    aria-label="Visit my GitHub profile"
                                 >
                                     <Github className="w-6 h-6" />
+                                    <span className="sr-only">GitHub Profile</span>
                                 </motion.a>
                                 <motion.a
                                     href={portfolioData.personal.socialLinks.linkedin}
@@ -138,8 +141,10 @@ export const ContactSection = () => {
                                     rel="noopener noreferrer"
                                     className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
                                     whileHover={{ scale: 1.2 }}
+                                    aria-label="Visit my LinkedIn profile"
                                 >
                                     <Linkedin className="w-6 h-6" />
+                                    <span className="sr-only">LinkedIn Profile</span>
                                 </motion.a>
                             </motion.div>
                         </div>
