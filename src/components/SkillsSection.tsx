@@ -2,10 +2,15 @@ import {
     Code2, Database, Globe, Layout,
     Terminal, Cloud, Laptop,
     Languages, FileJson, Server, GithubIcon,
-    ChevronRight
+    ChevronRight, Cpu, Smartphone, Settings, Bot
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useMemo } from 'react';
+import { Skill } from '../data/portfolio';
+
+interface SkillsSectionProps {
+    skills: Skill[];
+}
 
 const containerVariants = {
     hidden: {},
@@ -24,76 +29,44 @@ const skillVariants = {
     visible: { opacity: 1, x: 0, transition: { duration: 0.2 } },
 };
 
-const SkillsSection = () => {
-    const categories = [
-        {
-            id: "prog",
-            title: "Programming",
-            skills: [
-                { name: 'Python', icon: Code2 },
-                { name: 'C', icon: Code2 },
-                { name: 'C++', icon: Code2 },
-                { name: 'C#', icon: Code2 },
-                { name: 'Java', icon: Code2 },
-                { name: 'JavaScript', icon: FileJson },
-                { name: 'TypeScript', icon: FileJson },
-            ]
-        },
-        {
-            id: "web",
-            title: "Web Dev",
-            skills: [
-                { name: 'React', icon: Layout },
-                { name: 'HTML', icon: Code2 },
-                { name: 'CSS', icon: Layout },
-                { name: 'JSON', icon: FileJson },
-                { name: 'Node.js', icon: Server },
-            ]
-        },
-        {
-            id: "db",
-            title: "Databases",
-            skills: [
-                { name: 'SQL (MySQL)', icon: Database },
-                { name: 'SQL (MS SQL)', icon: Database },
-                { name: 'MongoDB', icon: Database },
-            ]
-        },
-        {
-            id: "cloud",
-            title: "Cloud",
-            skills: [
-                { name: 'AWS', icon: Cloud },
-                { name: 'Firebase', icon: Cloud },
-                { name: 'SAS', icon: Cloud },
-                { name: 'Linux', icon: Terminal },
-                { name: 'Windows', icon: Laptop },
-            ]
-        },
-        {
-            id: "tools",
-            title: "Tools & APIs",
-            skills: [
-                { name: 'Git', icon: GithubIcon },
-                { name: 'REST APIs', icon: Globe },
-                { name: 'Selenium', icon: Globe },
-                { name: 'Postman', icon: Globe },
-            ]
-        },
-        {
-            id: "lang",
-            title: "Languages",
-            skills: [
-                { name: 'Hebrew', icon: Languages },
-                { name: 'English', icon: Languages },
-            ]
-        },
-    ];
+// Icon Mapping Helper
+const getSkillIcon = (name: string) => {
+    const n = name.toLowerCase();
+    if (n.includes('python') || n.includes('c++') || n.includes('java') || n.includes('c#') || n === 'c') return Code2;
+    if (n.includes('react') || n.includes('html') || n.includes('css') || n.includes('tailwind')) return Layout;
+    if (n.includes('node') || n.includes('server')) return Server;
+    if (n.includes('sql') || n.includes('mongo') || n.includes('database')) return Database;
+    if (n.includes('aws') || n.includes('gcp') || n.includes('cloud') || n.includes('firebase')) return Cloud;
+    if (n.includes('linux') || n.includes('bash') || n.includes('terminal')) return Terminal;
+    if (n.includes('git') || n.includes('github')) return GithubIcon;
+    if (n.includes('ai') || n.includes('gemini') || n.includes('openai')) return Bot;
+    if (n.includes('api') || n.includes('rest') || n.includes('postman') || n.includes('selenium')) return Globe;
+    if (n.includes('hebrew') || n.includes('english') || n.includes('language')) return Languages;
+    if (n.includes('system') || n.includes('orchestration')) return Cpu;
+    if (n.includes('mobile') || n.includes('smartphone')) return Smartphone;
+    return Settings; // Default
+};
 
-    const [activeTab, setActiveTab] = useState(categories[0].id);
+const SkillsSection = ({ skills }: SkillsSectionProps) => {
+    // Group skills by their `group` property dynamically
+    const categories = useMemo(() => {
+        const groups: Record<string, Skill[]> = {};
+        skills.forEach(skill => {
+            const groupName = skill.group || "Other";
+            if (!groups[groupName]) groups[groupName] = [];
+            groups[groupName].push(skill);
+        });
+
+        return Object.entries(groups).map(([title, skills]) => ({
+            id: title.toLowerCase().replace(/\s+/g, '-'),
+            title,
+            skills
+        }));
+    }, [skills]);
+
+    const [activeTab, setActiveTab] = useState(categories[0]?.id || "");
     const tabsRef = useRef<HTMLDivElement>(null);
 
-    // Scroll to center tab on mobile
     const scrollTabIntoView = (id: string) => {
         const el = document.getElementById(`tab-${id}`);
         if (el && tabsRef.current) {
@@ -109,6 +82,8 @@ const SkillsSection = () => {
     };
 
     const activeCategoryData = categories.find(c => c.id === activeTab);
+
+    if (!categories.length) return null;
 
     return (
         <motion.div
@@ -152,7 +127,7 @@ const SkillsSection = () => {
             </div>
 
             {/* Content Area */}
-            <div className="relative min-h-[400px] md:min-h-0">
+            <div className="relative min-h-[300px] md:min-h-0">
                 {/* Mobile View: Dynamic Card */}
                 <div className="md:hidden">
                     <AnimatePresence mode="wait">
@@ -168,27 +143,30 @@ const SkillsSection = () => {
                                 {activeCategoryData?.title}
                             </h3>
                             <div className="grid grid-cols-1 gap-3">
-                                {activeCategoryData?.skills.map((skill) => (
-                                    <div
-                                        key={skill.name}
-                                        className="flex items-center justify-between p-4 rounded-2xl bg-gray-50 dark:bg-gray-800 border border-transparent hover:border-purple-500/30 transition-all active:scale-[0.98]"
-                                    >
-                                        <div className="flex items-center gap-4">
-                                            <div className="p-2.5 rounded-xl bg-white dark:bg-gray-700 shadow-sm">
-                                                <skill.icon className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+                                {activeCategoryData?.skills.map((skill) => {
+                                    const Icon = getSkillIcon(skill.name);
+                                    return (
+                                        <div
+                                            key={skill.name}
+                                            className="flex items-center justify-between p-4 rounded-2xl bg-gray-50 dark:bg-gray-800 border border-transparent hover:border-purple-500/30 transition-all active:scale-[0.98]"
+                                        >
+                                            <div className="flex items-center gap-4">
+                                                <div className="p-2.5 rounded-xl bg-white dark:bg-gray-700 shadow-sm">
+                                                    <Icon className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+                                                </div>
+                                                <span className="font-bold text-gray-700 dark:text-gray-200">{skill.name}</span>
                                             </div>
-                                            <span className="font-bold text-gray-700 dark:text-gray-200">{skill.name}</span>
+                                            <ChevronRight className="w-4 h-4 text-gray-300 dark:text-gray-600" />
                                         </div>
-                                        <ChevronRight className="w-4 h-4 text-gray-300 dark:text-gray-600" />
-                                    </div>
-                                ))}
+                                    );
+                                })}
                             </div>
                         </motion.div>
                     </AnimatePresence>
                 </div>
 
-                {/* Desktop View: Original Clean Grid but Enhanced */}
-                <div className="hidden md:grid md:grid-cols-3 gap-6">
+                {/* Desktop View: Dynamic Grid */}
+                <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {categories.map((category) => (
                         <motion.div
                             key={category.id}
@@ -201,19 +179,22 @@ const SkillsSection = () => {
                                 {category.title}
                             </h3>
                             <div className="grid gap-2">
-                                {category.skills.map((skill) => (
-                                    <motion.div
-                                        key={skill.name}
-                                        className="flex items-center p-3 rounded-2xl bg-gray-50/50 dark:bg-gray-900/50 border border-transparent hover:border-purple-500/10 transition-all cursor-default"
-                                        variants={skillVariants}
-                                        whileHover={{ x: 4, backgroundColor: "rgba(139, 92, 246, 0.05)" }}
-                                    >
-                                        <div className="p-2 rounded-lg bg-white dark:bg-gray-800 mr-4 shadow-sm">
-                                            <skill.icon className="w-4 h-4 text-purple-600 dark:text-purple-400 flex-shrink-0" />
-                                        </div>
-                                        <span className="font-semibold text-sm text-gray-700 dark:text-gray-300">{skill.name}</span>
-                                    </motion.div>
-                                ))}
+                                {category.skills.map((skill) => {
+                                    const Icon = getSkillIcon(skill.name);
+                                    return (
+                                        <motion.div
+                                            key={skill.name}
+                                            className="flex items-center p-3 rounded-2xl bg-gray-50/50 dark:bg-gray-900/50 border border-transparent hover:border-purple-500/10 transition-all cursor-default"
+                                            variants={skillVariants}
+                                            whileHover={{ x: 4, backgroundColor: "rgba(139, 92, 246, 0.05)" }}
+                                        >
+                                            <div className="p-2 rounded-lg bg-white dark:bg-gray-800 mr-4 shadow-sm">
+                                                <Icon className="w-4 h-4 text-purple-600 dark:text-purple-400 flex-shrink-0" />
+                                            </div>
+                                            <span className="font-semibold text-sm text-gray-700 dark:text-gray-300">{skill.name}</span>
+                                        </motion.div>
+                                    );
+                                })}
                             </div>
                         </motion.div>
                     ))}

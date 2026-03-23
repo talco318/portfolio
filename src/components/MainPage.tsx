@@ -22,16 +22,18 @@ function App() {
             <HeroSection />
 
             {/* About Section */}
-            <AboutSection personal={portfolioData.personal} />
+            <AboutSection personal={portfolioData.personal} skills={portfolioData.skills} />
 
             {/* Experience Section */}
-            <ExperienceSection experience={portfolioData.experience} />
+            <ExperienceSection 
+                experience={portfolioData.experience} 
+            />
 
             {/* Projects Section */}
             <ProjectsSection />
 
             <TechMarquee />
-            <SkillsSection />
+            <SkillsSection skills={portfolioData.skills} />
 
             {/* Contact Section */}
             <ContactSection />
