@@ -27,7 +27,7 @@ export const HeroSection = () => {
                     src={portfolioData.personal.backgroundImage }
                     alt="Hero Background"
                     className="w-full h-full object-cover opacity-10"
-                    fetchpriority="high"
+                    fetchPriority="high"
                 />
             </div>
 
@@ -78,7 +78,7 @@ export const HeroSection = () => {
                             className="text-5xl md:text-7xl font-bold mb-4 text-gradient bg-clip-text dark:text-gradient dark:bg-clip-text dark:bg-gradient-to-r from-blue-400 to-purple-500"
                             initial={{ opacity: 0, x: -50 }}
                             animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 0.2, duration: 0.8 }}
+                            transition={{ delay: 0.05, duration: 0.4 }}
                         >
                             {portfolioData.personal.name}
                         </motion.h1>
