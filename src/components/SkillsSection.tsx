@@ -88,19 +88,20 @@ const SkillsSection = ({ skills }: SkillsSectionProps) => {
     return (
         <motion.section
             id="skills"
-            className="w-full max-w-7xl mx-auto p-4 md:p-6 my-8 md:my-14"
+            className="relative w-full max-w-7xl mx-auto p-4 md:p-6 my-8 md:my-14"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
         >
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-cyan-500/5 rounded-full blur-[100px] pointer-events-none" />
             <motion.div 
-                className="flex items-center gap-4 mb-8 md:mb-10"
+                className="relative z-10 flex items-center gap-4 mb-8 md:mb-10"
                 variants={cardVariants}
             >
-                <div className="h-px bg-gray-300 dark:bg-gray-700 flex-1" />
-                <h2 className="text-3xl md:text-5xl font-black text-gray-900 dark:text-white uppercase transition-all hover:tracking-widest duration-500">Skills</h2>
-                <div className="h-px bg-gray-300 dark:bg-gray-700 flex-1" />
+                <div className="h-px bg-zinc-200 dark:bg-zinc-800 flex-1" />
+                <h2 className="font-heading text-3xl md:text-5xl font-black uppercase tracking-tight bg-gradient-to-r from-cyan-500 to-blue-500 text-transparent bg-clip-text">Skills</h2>
+                <div className="h-px bg-zinc-200 dark:bg-zinc-800 flex-1" />
             </motion.div>
 
             {/* Mobile Tabs Wrapper */}
@@ -114,11 +115,14 @@ const SkillsSection = ({ skills }: SkillsSectionProps) => {
                             key={cat.id}
                             id={`tab-${cat.id}`}
                             onClick={() => handleTabChange(cat.id)}
-                            className={`whitespace-nowrap px-5 py-2.5 rounded-full text-sm font-bold transition-all snap-center border-2 ${
+                            className={`whitespace-nowrap px-5 py-2.5 rounded-xl text-sm font-bold transition-all snap-center border min-h-[44px] flex items-center justify-center cursor-pointer ${
                                 activeTab === cat.id
-                                    ? 'bg-purple-600 border-purple-600 text-white shadow-lg shadow-purple-500/30'
-                                    : 'bg-white dark:bg-gray-800 border-gray-100 dark:border-gray-700 text-gray-500 dark:text-gray-400'
+                                    ? 'bg-zinc-900 dark:bg-white border-zinc-900 dark:border-white text-white dark:text-zinc-900 shadow-lg'
+                                    : 'bg-white dark:bg-zinc-800 border-zinc-100 dark:border-zinc-700 text-zinc-500 dark:text-zinc-400 hover:border-zinc-300 dark:hover:border-zinc-600'
                             }`}
+                            aria-selected={activeTab === cat.id}
+                            role="tab"
+                            aria-label={`View ${cat.title} skills`}
                         >
                             {cat.title}
                         </button>
@@ -137,26 +141,27 @@ const SkillsSection = ({ skills }: SkillsSectionProps) => {
                             animate={{ opacity: 1, y: 0, scale: 1 }}
                             exit={{ opacity: 0, y: -10, scale: 0.98 }}
                             transition={{ duration: 0.3 }}
-                            className="bg-white dark:bg-gray-800/50 backdrop-blur-sm rounded-3xl p-6 shadow-xl border border-gray-100 dark:border-gray-800"
+                            className="bg-white dark:bg-zinc-900/80 rounded-2xl p-6 shadow-sm border border-zinc-100 dark:border-zinc-800"
                         >
-                            <h3 className="text-2xl font-black mb-6 flex items-center gap-3 text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500">
+                            <h3 className="text-xl font-black mb-6 text-zinc-900 dark:text-white font-heading flex items-center gap-2">
+                                <span className="w-1.5 h-5 bg-accent rounded-full" />
                                 {activeCategoryData?.title}
                             </h3>
-                            <div className="grid grid-cols-1 gap-3">
+                            <div className="grid grid-cols-1 gap-2.5">
                                 {activeCategoryData?.skills.map((skill) => {
                                     const Icon = getSkillIcon(skill.name);
                                     return (
                                         <div
                                             key={skill.name}
-                                            className="flex items-center justify-between p-4 rounded-2xl bg-gray-50 dark:bg-gray-800 border border-transparent hover:border-purple-500/30 transition-all active:scale-[0.98]"
+                                            className="flex items-center justify-between p-3.5 rounded-xl bg-zinc-50 dark:bg-zinc-800/50 border border-transparent hover:border-accent/20 transition-all"
                                         >
-                                            <div className="flex items-center gap-4">
-                                                <div className="p-2.5 rounded-xl bg-white dark:bg-gray-700 shadow-sm">
-                                                    <Icon className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+                                            <div className="flex items-center gap-3">
+                                                <div className="p-2 rounded-lg bg-white dark:bg-zinc-700/50 shadow-sm">
+                                                    <Icon className="w-4 h-4 text-accent" />
                                                 </div>
-                                                <span className="font-bold text-gray-700 dark:text-gray-200">{skill.name}</span>
+                                                <span className="font-semibold text-sm text-zinc-700 dark:text-zinc-200">{skill.name}</span>
                                             </div>
-                                            <ChevronRight className="w-4 h-4 text-gray-300 dark:text-gray-600" />
+                                            <ChevronRight className="w-4 h-4 text-zinc-300 dark:text-zinc-600" />
                                         </div>
                                     );
                                 })}
@@ -166,32 +171,32 @@ const SkillsSection = ({ skills }: SkillsSectionProps) => {
                 </div>
 
                 {/* Desktop View: Dynamic Grid */}
-                <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-5">
                     {categories.map((category) => (
                         <motion.div
                             key={category.id}
-                            className="bg-white dark:bg-gray-800/40 backdrop-blur-sm rounded-3xl p-6 shadow-lg border border-gray-100 dark:border-gray-800 group hover:border-purple-500/20 transition-all"
+                            className="bg-white dark:bg-zinc-900/80 rounded-2xl p-6 shadow-sm border border-zinc-100 dark:border-zinc-800 group hover:border-zinc-200 dark:hover:border-zinc-700 transition-all duration-300"
                             variants={cardVariants}
-                            whileHover={{ y: -6, boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}
+                            whileHover={{ y: -4, boxShadow: '0 20px 40px rgba(0,0,0,0.06)' }}
                         >
-                            <h3 className="text-lg font-black mb-5 text-gray-900 dark:text-white flex items-center gap-2 group-hover:text-purple-500 transition-colors">
-                                <span className="w-1.5 h-6 bg-gradient-to-b from-purple-500 to-blue-500 rounded-full" />
+                            <h3 className="text-base font-black mb-5 text-zinc-900 dark:text-white flex items-center gap-2 font-heading">
+                                <span className="w-1 h-5 bg-accent rounded-full" />
                                 {category.title}
                             </h3>
-                            <div className="grid gap-2">
+                            <div className="grid gap-1.5">
                                 {category.skills.map((skill) => {
                                     const Icon = getSkillIcon(skill.name);
                                     return (
                                         <motion.div
                                             key={skill.name}
-                                            className="flex items-center p-3 rounded-2xl bg-gray-50/50 dark:bg-gray-900/50 border border-transparent hover:border-purple-500/10 transition-all cursor-default"
+                                            className="flex items-center p-2.5 rounded-xl bg-zinc-50/50 dark:bg-zinc-800/30 border border-transparent hover:border-blue-500/30 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 hover:shadow-sm transition-all cursor-default group/item"
                                             variants={skillVariants}
-                                            whileHover={{ x: 4, backgroundColor: "rgba(139, 92, 246, 0.05)" }}
+                                            whileHover={{ x: 6 }}
                                         >
-                                            <div className="p-2 rounded-lg bg-white dark:bg-gray-800 mr-4 shadow-sm">
-                                                <Icon className="w-4 h-4 text-purple-600 dark:text-purple-400 flex-shrink-0" />
+                                            <div className="p-1.5 rounded-lg bg-white dark:bg-zinc-800 mr-3 shadow-sm group-hover/item:scale-110 group-hover/item:shadow-md transition-all duration-300">
+                                                <Icon className="w-4 h-4 text-blue-500 dark:text-blue-400 flex-shrink-0" />
                                             </div>
-                                            <span className="font-semibold text-sm text-gray-700 dark:text-gray-300">{skill.name}</span>
+                                            <span className="font-medium text-sm text-zinc-600 dark:text-zinc-300 group-hover/item:text-blue-600 dark:group-hover/item:text-blue-300 transition-colors">{skill.name}</span>
                                         </motion.div>
                                     );
                                 })}

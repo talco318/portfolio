@@ -111,7 +111,7 @@ export const TerminalEasterEgg = () => {
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                className="w-full h-full flex flex-col bg-[#1e1e1e] rounded-3xl overflow-hidden shadow-xl border border-gray-100 dark:border-gray-800 font-mono text-sm md:text-base relative group"
+                className="w-full h-full flex flex-col bg-[#1e1e1e] rounded-2xl overflow-hidden shadow-xl border border-zinc-200 dark:border-zinc-800 font-mono text-sm md:text-base relative group"
                 onClick={() => inputRef.current?.focus()}
             >
                 {/* Mac-style Window Top Bar */}

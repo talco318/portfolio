@@ -26,10 +26,10 @@ export const TechMarquee = () => {
     const duplicatedStack = [...techStack, ...techStack];
 
     return (
-        <div className="w-full overflow-hidden bg-gray-100 dark:bg-gray-800 py-6 my-10 relative flex">
+        <div className="w-full overflow-hidden bg-zinc-50 dark:bg-zinc-900/50 py-8 my-10 relative flex border-y border-zinc-100 dark:border-zinc-800">
             {/* Left and Right gradient fades for smooth entering/exiting */}
-            <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-gray-100 dark:from-gray-800 to-transparent z-10 pointer-events-none" />
-            <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-gray-100 dark:from-gray-800 to-transparent z-10 pointer-events-none" />
+            <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-zinc-50 dark:from-zinc-900/50 to-transparent z-10 pointer-events-none" />
+            <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-zinc-50 dark:from-zinc-900/50 to-transparent z-10 pointer-events-none" />
 
             <motion.div
                 className="flex whitespace-nowrap items-center w-max"
@@ -38,7 +38,7 @@ export const TechMarquee = () => {
                 transition={{
                     repeat: Infinity,
                     ease: "linear",
-                    duration: 30, // Uniform speed across all devices (content width based instead of viewport based)
+                    duration: 30,
                 }}
             >
                 {duplicatedStack.map((tech, index) => {
@@ -46,9 +46,9 @@ export const TechMarquee = () => {
                     return (
                         <div
                             key={index}
-                            className="flex items-center gap-3 px-8 text-xl font-bold text-gray-700 dark:text-gray-300 mx-4"
+                            className="flex items-center gap-3 px-8 text-lg font-semibold text-zinc-500 dark:text-zinc-400 mx-4"
                         >
-                            <Icon size={28} className="text-pink-500" />
+                            <Icon size={24} className="text-accent" />
                             {tech.name}
                         </div>
                     );
