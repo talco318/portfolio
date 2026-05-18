@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, X, Send, Bot, Loader2 } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
 import { portfolioData } from '../data/portfolio';
 
 interface Message {
@@ -157,10 +158,25 @@ export const ChatBot = () => {
                     dir="auto"
                     className={`px-4 py-2 text-sm rounded-2xl max-w-[80%] ${msg.role === 'user'
                       ? 'bg-blue-600 text-white rounded-tr-sm'
-                      : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 rounded-tl-sm whitespace-pre-wrap'
+                      : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 rounded-tl-sm'
                       }`}
                   >
-                    {msg.content}
+                    {msg.role === 'assistant' ? (
+                      <ReactMarkdown
+                        components={{
+                          p: ({ node, ...props }) => <p className="mb-2 last:mb-0" {...props} />,
+                          strong: ({ node, ...props }) => <strong className="font-bold text-blue-600 dark:text-blue-400" {...props} />,
+                          ul: ({ node, ...props }) => <ul className="list-disc ml-4 mb-2" {...props} />,
+                          ol: ({ node, ...props }) => <ol className="list-decimal ml-4 mb-2" {...props} />,
+                          li: ({ node, ...props }) => <li className="mb-1 last:mb-0" {...props} />,
+                          a: ({ node, ...props }) => <a className="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer" {...props} />
+                        }}
+                      >
+                        {msg.content}
+                      </ReactMarkdown>
+                    ) : (
+                      <span className="whitespace-pre-wrap">{msg.content}</span>
+                    )}
                   </div>
                 </div>
               ))}
