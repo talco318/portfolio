@@ -10,6 +10,7 @@ export default {
         accent: '#3b82f6',
         accentDark: '#2563eb',
         surface: '#fafafa',
+        background: 'var(--background)',
       },
       fontFamily: {
         heading: ['Archivo', 'system-ui', '-apple-system', 'sans-serif'],

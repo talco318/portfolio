@@ -1,3 +1,4 @@
+import { Suspense, lazy } from 'react';
 import { Navbar } from './Navbar.tsx';
 import { portfolioData } from '../data/portfolio.ts';
 import { ContactSection } from "./ContactSection.tsx";
@@ -9,11 +10,12 @@ import ProjectsSection from './ProjectsSection.tsx';
 import SkillsSection from './SkillsSection.tsx';
 import { TechMarquee } from './TechMarquee.tsx';
 import { Footer } from './Footer.tsx';
-import { ChatBot } from './ChatBot.tsx';
+
+const ChatBot = lazy(() => import('./ChatBot.tsx'));
 
 function App() {
     return (
-        <div className="min-h-screen bg-surface dark:bg-[#09090b] text-zinc-900 dark:text-zinc-100 transition-colors duration-500 ease-in-out overflow-x-hidden">
+        <div className="min-h-screen bg-background text-zinc-900 dark:text-zinc-100 transition-colors duration-500 ease-in-out overflow-x-hidden">
             <Navbar />
 
             <main id="main-content">
@@ -44,7 +46,9 @@ function App() {
             <SocialButtons socialLinks={portfolioData.personal.socialLinks} />
             
             {/* AI Chatbot */}
-            <ChatBot />
+            <Suspense fallback={null}>
+                <ChatBot />
+            </Suspense>
         </div>
     );
 }

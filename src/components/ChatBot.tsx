@@ -19,7 +19,7 @@ Here is Tal's portfolio data:
 ${JSON.stringify(portfolioData, null, 2)}
 `;
 
-export const ChatBot = () => {
+const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -90,11 +90,12 @@ export const ChatBot = () => {
         content: botReply
       }]);
 
-    } catch (error: any) {
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
       setMessages(prev => [...prev, {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
-        content: `Error: ${error.message}`
+        content: `Error: ${errorMessage}`
       }]);
     } finally {
       setIsLoading(false);
@@ -228,3 +229,5 @@ export const ChatBot = () => {
     </>
   );
 };
+
+export default ChatBot;

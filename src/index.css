@@ -5,6 +5,12 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --background: #fafafa;
+  }
+  .dark {
+    --background: #09090b;
+  }
   html {
     scroll-behavior: smooth;
   }

@@ -15,7 +15,7 @@ export const HeroSection = () => {
 
     return (
         <section
-            className="relative min-h-screen flex items-center justify-center overflow-hidden bg-surface dark:bg-[#09090b]"
+            className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background"
         >
             {/* Soft, Elegant Background Glow */}
             <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none flex items-center justify-center">
