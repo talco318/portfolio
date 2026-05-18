@@ -13,7 +13,7 @@ import { ChatBot } from './ChatBot.tsx';
 
 function App() {
     return (
-        <div className="min-h-screen bg-surface dark:bg-[#09090b] text-zinc-900 dark:text-zinc-100 transition-colors duration-500 ease-in-out">
+        <div className="min-h-screen bg-surface dark:bg-[#09090b] text-zinc-900 dark:text-zinc-100 transition-colors duration-500 ease-in-out overflow-x-hidden">
             <Navbar />
 
             <main id="main-content">

@@ -107,7 +107,7 @@ export const AboutSection = ({ personal, skills }: AboutSectionProps) => {
     return (
         <motion.section 
             id="about"
-            className="w-full max-w-7xl mx-auto p-4 md:p-6 my-6 md:my-14"
+            className="relative w-full max-w-7xl mx-auto p-4 md:p-6 my-6 md:my-14 overflow-hidden"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
