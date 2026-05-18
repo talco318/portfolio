@@ -17,20 +17,20 @@ export function Navbar() {
   const [lastScrollTop, setLastScrollTop] = useState(0);
   const [activeSection, setActiveSection] = useState('');
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isScrolled, setIsScrolled] = useState(false);
 
-  // Fix: hide on scroll DOWN, show on scroll UP + track progress
+  // Hide on scroll DOWN, show on scroll UP + track progress
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       setScrollProgress(docHeight > 0 ? (scrollTop / docHeight) * 100 : 0);
+      setIsScrolled(scrollTop > 50);
 
       if (scrollTop > lastScrollTop && scrollTop > 100) {
-        // Scrolling DOWN — hide navbar
         setIsNavbarVisible(false);
         if (isOpen) setIsOpen(false);
       } else {
-        // Scrolling UP or at top — show navbar
         setIsNavbarVisible(true);
       }
       setLastScrollTop(scrollTop);
@@ -63,138 +63,150 @@ export function Navbar() {
 
   return (
     <>
-      {/* Progress Bar — always visible, independent of navbar */}
+      {/* Skip to Content Link (Accessibility & SEO) */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:bg-accent focus:text-white focus:rounded-lg focus:text-sm focus:font-bold"
+      >
+        Skip to main content
+      </a>
+
+      {/* Progress Bar */}
       <motion.div
-        className="fixed top-0 left-0 h-0.5 bg-gradient-to-r from-pink-400 via-purple-300 to-blue-300 z-[60] pointer-events-none"
+        className="fixed top-0 left-0 h-[2px] bg-gradient-to-r from-accent via-blue-400 to-accent z-[60] pointer-events-none"
         style={{ width: `${scrollProgress}%` }}
         transition={{ ease: 'linear', duration: 0.1 }}
       />
 
       <nav
-        className={`fixed top-0 left-0 right-0 bg-gradient-to-r from-purple-600 via-indigo-500 to-blue-600 dark:from-gray-900 dark:via-gray-800 dark:to-gray-700 shadow-sm z-50 transition-transform duration-300 ${
-          isNavbarVisible ? 'translate-y-0' : '-translate-y-full'
+        aria-label="Main navigation"
+        className={`fixed top-4 left-4 right-4 z-50 transition-all duration-500 ${
+          isNavbarVisible ? 'translate-y-0 opacity-100' : '-translate-y-[calc(100%+2rem)] opacity-0'
         }`}
       >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
-          <div className="flex items-center">
-            <a
-              href="#"
-              className="text-xl font-bold text-white"
-            >
-              Tal Cohen - Software Developer
-            </a>
-          </div>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => {
-              const id = item.href.replace('#', '');
-              const isActive = activeSection === id;
-              return (
+        <div className={`max-w-6xl mx-auto rounded-2xl border transition-all duration-300 overflow-hidden ${
+          isScrolled || isOpen
+            ? 'bg-white/90 dark:bg-[#09090b]/95 backdrop-blur-xl border-zinc-200/50 dark:border-zinc-800/80 shadow-2xl shadow-black/10 dark:shadow-black/40'
+            : 'bg-white/40 dark:bg-[#09090b]/40 backdrop-blur-md border-white/20 dark:border-zinc-800/30'
+        }`}>
+          <div className="px-6 lg:px-8">
+            <div className="flex justify-between h-14">
+              <div className="flex items-center">
                 <a
-                  key={item.label}
-                  href={item.href}
-                  className={`relative pb-1 transition-all font-medium ${
-                    isActive
-                      ? 'text-white'
-                      : 'text-white/70 hover:text-white'
-                  }`}
+                  href="#"
+                  className="font-heading text-lg font-bold text-zinc-900 dark:text-white tracking-tight hover:text-accent transition-colors duration-200 cursor-pointer"
+                  onClick={() => setIsOpen(false)}
                 >
-                  {item.label}
-                  {/* Active underline indicator */}
-                  <span
-                    className={`absolute bottom-0 left-0 h-0.5 bg-pink-300 rounded-full transition-all duration-300 ${
-                      isActive ? 'w-full' : 'w-0'
-                    }`}
-                  />
+                  TC<span className="text-accent">.</span>
                 </a>
-              );
-            })}
-            <ThemeToggle />
+              </div>
+
+              {/* Desktop Navigation */}
+              <div className="hidden md:flex items-center gap-1">
+                {navItems.map((item) => {
+                  const id = item.href.replace('#', '');
+                  const isActive = activeSection === id;
+                  return (
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      className={`relative px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 cursor-pointer ${
+                        isActive
+                          ? 'text-accent bg-accent/10 dark:bg-accent/15'
+                          : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800/50'
+                      }`}
+                    >
+                      {item.label}
+                    </a>
+                  );
+                })}
+                <div className="ml-2 pl-2 border-l border-zinc-200 dark:border-zinc-700">
+                  <ThemeToggle />
+                </div>
+              </div>
+
+              {/* Mobile menu button */}
+              <div className="flex items-center md:hidden gap-2">
+                <ThemeToggle />
+                <motion.button
+                  onClick={() => setIsOpen(!isOpen)}
+                  className="p-2 rounded-xl text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all cursor-pointer"
+                  whileTap={{ scale: 0.9 }}
+                  aria-label={isOpen ? "Close main menu" : "Open main menu"}
+                >
+                  <span className="sr-only">{isOpen ? "Close main menu" : "Open main menu"}</span>
+                  <AnimatePresence mode="wait" initial={false}>
+                    {isOpen ? (
+                      <motion.span
+                        key="close"
+                        initial={{ rotate: -90, opacity: 0 }}
+                        animate={{ rotate: 0, opacity: 1 }}
+                        exit={{ rotate: 90, opacity: 0 }}
+                        transition={{ duration: 0.15 }}
+                      >
+                        <X className="h-5 w-5" />
+                      </motion.span>
+                    ) : (
+                      <motion.span
+                        key="menu"
+                        initial={{ rotate: 90, opacity: 0 }}
+                        animate={{ rotate: 0, opacity: 1 }}
+                        exit={{ rotate: -90, opacity: 0 }}
+                        transition={{ duration: 0.15 }}
+                      >
+                        <Menu className="h-5 w-5" />
+                      </motion.span>
+                    )}
+                  </AnimatePresence>
+                </motion.button>
+              </div>
+            </div>
           </div>
 
-          {/* Mobile menu button */}
-          <div className="flex items-center md:hidden">
-            <ThemeToggle />
-            <motion.button
-              onClick={() => setIsOpen(!isOpen)}
-              className="ml-2 p-2 rounded-md text-white hover:text-pink-300 transition-all"
-              whileTap={{ scale: 0.9 }}
-              aria-label={isOpen ? "Close main menu" : "Open main menu"}
-            >
-              <span className="sr-only">{isOpen ? "Close main menu" : "Open main menu"}</span>
-              <AnimatePresence mode="wait" initial={false}>
-                {isOpen ? (
-                  <motion.span
-                    key="close"
-                    initial={{ rotate: -90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: 90, opacity: 0 }}
-                    transition={{ duration: 0.15 }}
-                  >
-                    <X className="h-6 w-6" />
-                  </motion.span>
-                ) : (
-                  <motion.span
-                    key="menu"
-                    initial={{ rotate: 90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: -90, opacity: 0 }}
-                    transition={{ duration: 0.15 }}
-                  >
-                    <Menu className="h-6 w-6" />
-                  </motion.span>
-                )}
-              </AnimatePresence>
-            </motion.button>
-          </div>
+          {/* Mobile Navigation */}
+          <AnimatePresence>
+            {isOpen && (
+              <motion.div
+                className="md:hidden border-t border-zinc-200/50 dark:border-zinc-800/50 bg-white/50 dark:bg-[#09090b]/50"
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
+              >
+                <motion.div
+                  className="px-4 py-6 flex flex-col gap-2"
+                  initial="hidden"
+                  animate="visible"
+                  variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.05 } } }}
+                >
+                  {navItems.map((item) => {
+                    const id = item.href.replace('#', '');
+                    const isActive = activeSection === id;
+                    return (
+                      <motion.a
+                        key={item.label}
+                        href={item.href}
+                        className={`block px-6 py-4 rounded-2xl transition-all font-heading font-bold text-lg text-center tracking-wide cursor-pointer ${
+                          isActive
+                            ? 'text-white bg-gradient-to-r from-blue-600 to-purple-600 shadow-md'
+                            : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800/50'
+                        }`}
+                        onClick={() => setIsOpen(false)}
+                        variants={{
+                          hidden: { opacity: 0, y: -10 },
+                          visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
+                        }}
+                      >
+                        {item.label}
+                      </motion.a>
+                    );
+                  })}
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
-      </div>
-
-      {/* Mobile Navigation */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            className="md:hidden overflow-hidden"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25, ease: 'easeInOut' }}
-          >
-            <motion.div
-              className="px-2 pt-2 pb-3 space-y-1"
-              initial="hidden"
-              animate="visible"
-              variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.06 } } }}
-            >
-              {navItems.map((item) => {
-                const id = item.href.replace('#', '');
-                const isActive = activeSection === id;
-                return (
-                  <motion.a
-                    key={item.label}
-                    href={item.href}
-                    className={`block px-3 py-2 rounded-md transition-all font-medium ${
-                      isActive
-                        ? 'text-white bg-white/20'
-                        : 'text-white/80 hover:text-white hover:bg-white/10'
-                    }`}
-                    onClick={() => setIsOpen(false)}
-                    variants={{
-                      hidden: { opacity: 0, x: -16 },
-                      visible: { opacity: 1, x: 0, transition: { duration: 0.2 } },
-                    }}
-                  >
-                    {item.label}
-                  </motion.a>
-                );
-              })}
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </nav>
+      </nav>
     </>
   );
-}
+}
