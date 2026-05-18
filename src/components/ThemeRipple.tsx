@@ -16,7 +16,7 @@ export const ThemeRipple = () => {
                 setRipple({
                     x: rect.left + rect.width / 2,
                     y: rect.top + rect.height / 2,
-                    color: theme === 'dark' ? '#111827' : '#f9fafb' // tailwind gray-900 or gray-50
+                    color: theme === 'dark' ? '#09090b' : '#FAFAFA' // zinc-950 or surface
                 });
             }
             prevTheme.current = theme;
