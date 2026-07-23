@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://talcohen.co.il/</loc>
-    <lastmod>2026-05-18</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://lh3.googleusercontent.com/d/1_Geshyn3WEDM7U9UnDuDZYbUhngvysLj</image:loc>
+      <image:title>Tal Cohen - Full Stack Software Developer</image:title>
+      <image:caption>Tal Cohen Profile and Portfolio Cover</image:caption>
+    </image:image>
   </url>
 </urlset>
