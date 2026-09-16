@@ -114,6 +114,16 @@ export const portfolioData: PortfolioData = {
   ],
   projects: [
     {
+      id: "rtl-support",
+      title: "Universal IDE RTL Support",
+      description: "Architected and actively maintain a widely adopted open-source IDE extension providing Right-to-Left (RTL & BiDi) text rendering for Hebrew, Arabic, and Persian in AI chat panels (Cursor, Windsurf, Claude Code, Antigravity, VS Code). Engineered dynamic CSS & JS DOM injection that strictly preserves code blocks and terminal UI. Surpassed 5,400+ downloads with a 5.0★ rating on Open VSX.",
+      technologies: ["TypeScript", "VS Code API", "DOM Injection", "BiDi / RTL", "Open Source"],
+      image: "/universal-ide-rtl.png",
+      liveUrl: "https://open-vsx.org/extension/talco/universal-ide-rtl",
+      githubUrl: "https://github.com/talco318/universal-ide-rtl",
+      category: "Developer Tools"
+    },
+    {
       id: "1",
       title: "Yad2 Apartment Finder Bot",
       description: "Engineered an automated Python bot for real-time apartment tracking with instant user notifications. Designed scalable data pipelines using MongoDB to handle concurrent processing, effectively reducing manual apartment search time to zero.",

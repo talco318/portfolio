@@ -167,7 +167,7 @@ export const ProjectsSection = () => {
                                                     onClick={(e) => e.stopPropagation()}
                                                 >
                                                     <ExternalLink className="w-4 h-4" />
-                                                    Live Demo
+                                                    {project.liveUrl.includes('open-vsx.org') || project.liveUrl.includes('visualstudio.com') ? 'Extension' : 'Live Demo'}
                                                 </a>
                                             )}
                                             {project.githubUrl && (
