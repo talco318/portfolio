@@ -111,21 +111,21 @@ export const TerminalEasterEgg = () => {
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                className="w-full h-full flex flex-col bg-[#1e1e1e] rounded-2xl overflow-hidden shadow-xl border border-zinc-200 dark:border-zinc-800 font-mono text-sm md:text-base relative group"
+                className="w-full h-full flex flex-col glass-card rounded-2xl md:rounded-3xl overflow-hidden font-mono text-sm md:text-base relative group shadow-2xl"
                 onClick={() => inputRef.current?.focus()}
             >
-                {/* Mac-style Window Top Bar */}
-                <div className="flex items-center px-6 py-4 bg-[#2d2d2d] border-b border-gray-800 shrink-0">
+                {/* Mac-style Glass Top Bar */}
+                <div className="flex items-center px-6 py-3.5 bg-white/40 dark:bg-white/5 border-b border-white/20 dark:border-white/10 shrink-0">
                     <div className="flex gap-2">
-                        <div className="w-3.5 h-3.5 rounded-full bg-red-500" title="Close" />
-                        <div className="w-3.5 h-3.5 rounded-full bg-yellow-500" />
-                        <div className="w-3.5 h-3.5 rounded-full bg-green-500" />
+                        <div className="w-3 h-3 rounded-full bg-rose-500 shadow-[0_0_6px_rgba(244,63,94,0.6)]" title="Close" />
+                        <div className="w-3 h-3 rounded-full bg-amber-500 shadow-[0_0_6px_rgba(245,158,11,0.6)]" />
+                        <div className="w-3 h-3 rounded-full bg-emerald-500 shadow-[0_0_6px_rgba(16,185,129,0.6)]" />
                     </div>
-                    <div className="mx-auto text-gray-400 text-xs tracking-wider opacity-60">guest@talcohen:~</div>
+                    <div className="mx-auto text-zinc-500 dark:text-zinc-400 text-xs tracking-wider opacity-75 font-semibold">guest@talcohen:~</div>
                 </div>
 
                 {/* Terminal Window */}
-                <div ref={containerRef} className="flex-1 p-6 overflow-y-auto text-gray-300 scroll-smooth">
+                <div ref={containerRef} className="flex-1 p-6 overflow-y-auto text-zinc-800 dark:text-zinc-200 scroll-smooth">
                     <AnimatePresence>
                         {lines.map((line, i) => (
                             <motion.div
@@ -135,24 +135,24 @@ export const TerminalEasterEgg = () => {
                                 transition={{ duration: 0.2 }}
                                 className="mb-2 whitespace-pre-wrap leading-relaxed"
                             >
-                                {line.type === "input" && <span className="text-blue-400">{line.text}</span>}
-                                {line.type === "output" && <span className="text-gray-300">{line.text}</span>}
-                                {line.type === "error" && <span className="text-red-400">{line.text}</span>}
-                                {line.type === "system" && <span className="text-emerald-400">{line.text}</span>}
+                                {line.type === "input" && <span className="text-indigo-600 dark:text-indigo-400 font-semibold">{line.text}</span>}
+                                {line.type === "output" && <span className="text-zinc-700 dark:text-zinc-300">{line.text}</span>}
+                                {line.type === "error" && <span className="text-rose-500 dark:text-rose-400 font-semibold">{line.text}</span>}
+                                {line.type === "system" && <span className="text-emerald-600 dark:text-emerald-400 font-semibold">{line.text}</span>}
                             </motion.div>
                         ))}
                     </AnimatePresence>
                     
                     {/* Input Line */}
-                    <div className="flex items-center mt-2 group">
-                        <span className="text-blue-400 mr-3 shrink-0">guest@talcohen:~$</span>
+                    <div className="flex items-center mt-3 group">
+                        <span className="text-indigo-600 dark:text-indigo-400 font-semibold mr-3 shrink-0">guest@talcohen:~$</span>
                         <input
                             ref={inputRef}
                             type="text"
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
                             onKeyDown={handleKeyDown}
-                            className="bg-transparent outline-none flex-1 text-gray-300 caret-emerald-500 font-bold"
+                            className="bg-transparent outline-none flex-1 text-zinc-900 dark:text-white caret-indigo-500 font-bold"
                             spellCheck="false"
                             autoComplete="off"
                             aria-label="Terminal command input"

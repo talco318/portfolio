@@ -116,7 +116,7 @@ export const portfolioData: PortfolioData = {
     {
       id: "rtl-support",
       title: "Universal IDE RTL Support",
-      description: "Architected and actively maintain a widely adopted open-source IDE extension providing Right-to-Left (RTL & BiDi) text rendering for Hebrew, Arabic, and Persian in AI chat panels (Cursor, Windsurf, Claude Code, Antigravity, VS Code). Engineered dynamic CSS & JS DOM injection that strictly preserves code blocks and terminal UI. Surpassed 5,400+ downloads with a 5.0★ rating on Open VSX.",
+      description: "Architected and actively maintain a widely adopted open-source IDE extension providing Right-to-Left (RTL & BiDi) text rendering for Hebrew, Arabic, and Persian in AI chat panels (Cursor, Windsurf, Claude Code, Antigravity, VS Code). Engineered dynamic CSS & JS DOM injection that strictly preserves code blocks and terminal UI. Surpassed 6.7K+ downloads with a 5.0★ rating on Open VSX.",
       technologies: ["TypeScript", "VS Code API", "DOM Injection", "BiDi / RTL", "Open Source"],
       image: "/universal-ide-rtl.png",
       liveUrl: "https://open-vsx.org/extension/talco/universal-ide-rtl",

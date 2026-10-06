@@ -80,29 +80,107 @@ export function Navbar() {
 
       <nav
         aria-label="Main navigation"
-        className={`fixed top-4 left-4 right-4 z-50 transition-all duration-500 ${
-          isNavbarVisible ? 'translate-y-0 opacity-100' : '-translate-y-[calc(100%+2rem)] opacity-0'
+        className={`fixed top-4 md:top-6 left-1/2 -translate-x-1/2 z-50 w-[94%] max-w-4xl transition-all duration-500 ${
+          isNavbarVisible ? 'translate-y-0 opacity-100' : '-translate-y-24 opacity-0'
         }`}
       >
-        <div className={`max-w-6xl mx-auto rounded-2xl border transition-all duration-300 overflow-hidden ${
-          isScrolled || isOpen
-            ? 'bg-white/90 dark:bg-[#09090b]/95 backdrop-blur-xl border-zinc-200/50 dark:border-zinc-800/80 shadow-2xl shadow-black/10 dark:shadow-black/40'
-            : 'bg-white/40 dark:bg-[#09090b]/40 backdrop-blur-md border-white/20 dark:border-zinc-800/30'
-        }`}>
-          <div className="px-6 lg:px-8">
-            <div className="flex justify-between h-14">
-              <div className="flex items-center">
-                <a
-                  href="#"
-                  className="font-heading text-lg font-bold text-zinc-900 dark:text-white tracking-tight hover:text-accent transition-colors duration-200 cursor-pointer"
-                  onClick={() => setIsOpen(false)}
-                >
-                  TC<span className="text-accent">.</span>
-                </a>
-              </div>
+        <div
+          className={`rounded-full border transition-all duration-300 px-4 sm:px-6 py-2.5 ${
+            isScrolled || isOpen
+              ? 'bg-white/80 dark:bg-zinc-950/75 backdrop-blur-2xl border-white/40 dark:border-white/10 shadow-2xl shadow-indigo-500/5 dark:shadow-black/60'
+              : 'bg-white/60 dark:bg-zinc-900/50 backdrop-blur-xl border-white/30 dark:border-white/10 shadow-lg shadow-black/5'
+          }`}
+        >
+          <div className="flex items-center justify-between">
+            {/* Left: Logo */}
+            <div className="flex items-center w-20 md:w-28 shrink-0">
+              <a
+                href="#"
+                className="group flex items-center gap-1.5 font-heading text-lg font-black tracking-tight text-zinc-900 dark:text-white cursor-pointer"
+                onClick={() => setIsOpen(false)}
+              >
+                <span>TC</span>
+                <span className="inline-block w-2 h-2 rounded-full bg-gradient-to-tr from-blue-500 to-indigo-500 group-hover:scale-125 transition-transform duration-300" />
+              </a>
+            </div>
 
-              {/* Desktop Navigation */}
-              <div className="hidden md:flex items-center gap-1">
+            {/* Center: Desktop Navigation Links */}
+            <div className="hidden md:flex items-center justify-center gap-1 flex-1">
+              {navItems.map((item) => {
+                const id = item.href.replace('#', '');
+                const isActive = activeSection === id;
+                return (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    className={`relative px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-colors duration-200 cursor-pointer ${
+                      isActive
+                        ? 'text-blue-600 dark:text-blue-400 font-bold'
+                        : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white'
+                    }`}
+                  >
+                    {isActive && (
+                      <motion.div
+                        layoutId="activeNavPill"
+                        className="absolute inset-0 rounded-full bg-blue-500/10 dark:bg-indigo-500/20 border border-blue-500/20 dark:border-indigo-400/30"
+                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                    <span className="relative z-10">{item.label}</span>
+                  </a>
+                );
+              })}
+            </div>
+
+            {/* Right: Theme Toggle & Mobile Menu */}
+            <div className="flex items-center justify-end w-20 md:w-28 shrink-0 gap-1 sm:gap-2">
+              <ThemeToggle />
+              <motion.button
+                onClick={() => setIsOpen(!isOpen)}
+                className="p-2 rounded-full text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800/60 transition-all cursor-pointer md:hidden"
+                whileTap={{ scale: 0.9 }}
+                aria-label={isOpen ? "Close main menu" : "Open main menu"}
+              >
+                <span className="sr-only">{isOpen ? "Close main menu" : "Open main menu"}</span>
+                <AnimatePresence mode="wait" initial={false}>
+                  {isOpen ? (
+                    <motion.span
+                      key="close"
+                      initial={{ rotate: -90, opacity: 0 }}
+                      animate={{ rotate: 0, opacity: 1 }}
+                      exit={{ rotate: 90, opacity: 0 }}
+                      transition={{ duration: 0.15 }}
+                    >
+                      <X className="h-5 w-5" />
+                    </motion.span>
+                  ) : (
+                    <motion.span
+                      key="menu"
+                      initial={{ rotate: 90, opacity: 0 }}
+                      animate={{ rotate: 0, opacity: 1 }}
+                      exit={{ rotate: -90, opacity: 0 }}
+                      transition={{ duration: 0.15 }}
+                    >
+                      <Menu className="h-5 w-5" />
+                    </motion.span>
+                  )}
+                </AnimatePresence>
+              </motion.button>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile Navigation Dropdown */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              className="md:hidden mt-2 rounded-3xl border border-white/30 dark:border-white/10 bg-white/90 dark:bg-zinc-950/90 backdrop-blur-2xl shadow-2xl p-4 overflow-hidden"
+              initial={{ height: 0, opacity: 0, y: -10 }}
+              animate={{ height: 'auto', opacity: 1, y: 0 }}
+              exit={{ height: 0, opacity: 0, y: -10 }}
+              transition={{ duration: 0.25, ease: 'easeOut' }}
+            >
+              <div className="flex flex-col gap-1.5">
                 {navItems.map((item) => {
                   const id = item.href.replace('#', '');
                   const isActive = activeSection === id;
@@ -110,102 +188,21 @@ export function Navbar() {
                     <a
                       key={item.label}
                       href={item.href}
-                      className={`relative px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 cursor-pointer ${
+                      className={`block px-5 py-3 rounded-2xl transition-all font-heading font-semibold text-base tracking-wide cursor-pointer ${
                         isActive
-                          ? 'text-accent bg-accent/10 dark:bg-accent/15'
-                          : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800/50'
+                          ? 'text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 shadow-md shadow-indigo-500/25'
+                          : 'text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800/60'
                       }`}
+                      onClick={() => setIsOpen(false)}
                     >
                       {item.label}
                     </a>
                   );
                 })}
-                <div className="ml-2 pl-2 border-l border-zinc-200 dark:border-zinc-700">
-                  <ThemeToggle />
-                </div>
               </div>
-
-              {/* Mobile menu button */}
-              <div className="flex items-center md:hidden gap-2">
-                <ThemeToggle />
-                <motion.button
-                  onClick={() => setIsOpen(!isOpen)}
-                  className="p-2 rounded-xl text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all cursor-pointer"
-                  whileTap={{ scale: 0.9 }}
-                  aria-label={isOpen ? "Close main menu" : "Open main menu"}
-                >
-                  <span className="sr-only">{isOpen ? "Close main menu" : "Open main menu"}</span>
-                  <AnimatePresence mode="wait" initial={false}>
-                    {isOpen ? (
-                      <motion.span
-                        key="close"
-                        initial={{ rotate: -90, opacity: 0 }}
-                        animate={{ rotate: 0, opacity: 1 }}
-                        exit={{ rotate: 90, opacity: 0 }}
-                        transition={{ duration: 0.15 }}
-                      >
-                        <X className="h-5 w-5" />
-                      </motion.span>
-                    ) : (
-                      <motion.span
-                        key="menu"
-                        initial={{ rotate: 90, opacity: 0 }}
-                        animate={{ rotate: 0, opacity: 1 }}
-                        exit={{ rotate: -90, opacity: 0 }}
-                        transition={{ duration: 0.15 }}
-                      >
-                        <Menu className="h-5 w-5" />
-                      </motion.span>
-                    )}
-                  </AnimatePresence>
-                </motion.button>
-              </div>
-            </div>
-          </div>
-
-          {/* Mobile Navigation */}
-          <AnimatePresence>
-            {isOpen && (
-              <motion.div
-                className="md:hidden border-t border-zinc-200/50 dark:border-zinc-800/50 bg-white/50 dark:bg-[#09090b]/50"
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: 'auto', opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
-              >
-                <motion.div
-                  className="px-4 py-6 flex flex-col gap-2"
-                  initial="hidden"
-                  animate="visible"
-                  variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.05 } } }}
-                >
-                  {navItems.map((item) => {
-                    const id = item.href.replace('#', '');
-                    const isActive = activeSection === id;
-                    return (
-                      <motion.a
-                        key={item.label}
-                        href={item.href}
-                        className={`block px-6 py-4 rounded-2xl transition-all font-heading font-bold text-lg text-center tracking-wide cursor-pointer ${
-                          isActive
-                            ? 'text-white bg-gradient-to-r from-blue-600 to-purple-600 shadow-md'
-                            : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800/50'
-                        }`}
-                        onClick={() => setIsOpen(false)}
-                        variants={{
-                          hidden: { opacity: 0, y: -10 },
-                          visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
-                        }}
-                      >
-                        {item.label}
-                      </motion.a>
-                    );
-                  })}
-                </motion.div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
     </>
   );

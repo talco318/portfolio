@@ -19,7 +19,7 @@ const SocialButtons: React.FC<SocialButtonsProps> = ({ socialLinks }) => {
     }, []);
 
     return (
-        <div className="fixed bottom-4 right-4 z-50 flex flex-col items-center space-y-2">
+        <div className="fixed bottom-5 right-5 z-50 flex flex-col items-center space-y-2.5">
             {/* Scroll to Top */}
             <AnimatePresence>
                 {showScrollTop && (
@@ -32,7 +32,7 @@ const SocialButtons: React.FC<SocialButtonsProps> = ({ socialLinks }) => {
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.9 }}
                             transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                            className="p-3 rounded-xl bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 shadow-lg hover:shadow-xl transition-shadow block cursor-pointer"
+                            className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white shadow-xl shadow-indigo-500/25 border border-white/20 hover:shadow-indigo-500/40 transition-all flex items-center justify-center shrink-0 cursor-pointer"
                             aria-label="Scroll to top"
                         >
                             <ArrowUp size={18} />
@@ -49,7 +49,7 @@ const SocialButtons: React.FC<SocialButtonsProps> = ({ socialLinks }) => {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="View my GitHub profile"
-                        className="bg-white dark:bg-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-700 text-zinc-700 dark:text-zinc-300 p-3 rounded-xl shadow-lg border border-zinc-100 dark:border-zinc-700 transition-all duration-200 block cursor-pointer"
+                        className="glass-card text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white w-11 h-11 rounded-2xl hover:border-indigo-500/40 transition-all flex items-center justify-center shrink-0 cursor-pointer"
                     >
                         <Github size={20} />
                     </a>
@@ -64,7 +64,7 @@ const SocialButtons: React.FC<SocialButtonsProps> = ({ socialLinks }) => {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="View my LinkedIn profile"
-                        className="bg-white dark:bg-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-700 text-zinc-700 dark:text-zinc-300 p-3 rounded-xl shadow-lg border border-zinc-100 dark:border-zinc-700 transition-all duration-200 block cursor-pointer"
+                        className="glass-card text-zinc-700 dark:text-zinc-300 hover:text-[#0a66c2] dark:hover:text-sky-400 w-11 h-11 rounded-2xl hover:border-indigo-500/40 transition-all flex items-center justify-center shrink-0 cursor-pointer"
                     >
                         <Linkedin size={20} />
                     </a>
