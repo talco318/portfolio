@@ -136,14 +136,14 @@ export const FaqSection = () => {
         </div>
 
         {/* 2-Column Bento Showcase Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
           
           {/* Left Column: Unified Spacious Bento Card for Questions (7 cols) */}
-          <div className="lg:col-span-7 flex flex-col">
-            <div className="rounded-3xl border border-zinc-200/80 dark:border-white/10 bg-white/70 dark:bg-zinc-900/40 backdrop-blur-xl p-6 sm:p-8 md:p-10 shadow-xl shadow-zinc-900/5 dark:shadow-black/40 flex-1 flex flex-col justify-between">
+          <div className="lg:col-span-7">
+            <div className="rounded-3xl border border-zinc-200/80 dark:border-white/10 bg-white/70 dark:bg-zinc-900/40 backdrop-blur-xl p-6 sm:p-8 md:p-10 shadow-xl shadow-zinc-900/5 dark:shadow-black/40">
               
               {/* Card Header */}
-              <div className="flex items-center justify-between pb-6 border-b border-zinc-200/80 dark:border-zinc-800/80 mb-2">
+              <div className="flex items-center justify-between pb-5 border-b border-zinc-200/80 dark:border-zinc-800/80 mb-2">
                 <div className="flex items-center gap-2.5">
                   <div className="p-2 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20">
                     <Terminal className="w-4 h-4" />
@@ -167,7 +167,7 @@ export const FaqSection = () => {
                 {faqs.map((faq) => {
                   const isOpen = openId === faq.id;
                   return (
-                    <div key={faq.id} className="py-6 first:pt-4 last:pb-2 transition-colors">
+                    <div key={faq.id} className="py-5 md:py-6 first:pt-3 last:pb-1 transition-colors">
                       <button
                         onClick={() => toggleFaq(faq.id)}
                         aria-expanded={isOpen}
@@ -233,11 +233,11 @@ export const FaqSection = () => {
           </div>
 
           {/* Right Column: Unified Spacious Bento Card for Capabilities (5 cols) */}
-          <div className="lg:col-span-5 flex flex-col">
-            <div className="rounded-3xl border border-zinc-200/80 dark:border-white/10 bg-white/70 dark:bg-zinc-900/40 backdrop-blur-xl p-6 sm:p-8 md:p-10 shadow-xl shadow-zinc-900/5 dark:shadow-black/40 flex-1 flex flex-col justify-between">
+          <div className="lg:col-span-5">
+            <div className="rounded-3xl border border-zinc-200/80 dark:border-white/10 bg-white/70 dark:bg-zinc-900/40 backdrop-blur-xl p-6 sm:p-8 md:p-10 shadow-xl shadow-zinc-900/5 dark:shadow-black/40">
               
               {/* Card Header */}
-              <div className="flex items-center justify-between pb-6 border-b border-zinc-200/80 dark:border-zinc-800/80 mb-5">
+              <div className="flex items-center justify-between pb-5 border-b border-zinc-200/80 dark:border-zinc-800/80 mb-5">
                 <div className="flex items-center gap-2.5">
                   <div className="p-2 rounded-xl bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20">
                     <Cpu className="w-4 h-4" />
@@ -257,7 +257,7 @@ export const FaqSection = () => {
               </div>
 
               {/* 4 Elegant Bento Sub-Cards */}
-              <div className="space-y-4 flex-1 flex flex-col justify-between">
+              <div className="space-y-3.5">
                 {capabilityCards.map((card, idx) => {
                   const IconComponent = card.icon;
                   return (
