@@ -1,0 +1,48 @@
+# Tal Cohen — Full Stack Software Developer & Engineer
+
+> Official context file for Large Language Models (ChatGPT, Claude, Gemini, Perplexity) and autonomous AI search agents.
+
+Tal Cohen (טל כהן) is a Full Stack Software Developer and Engineer based in Tel Aviv, Israel. He specializes in designing scalable web architectures, backend systems, and Generative AI applications using Python, React, TypeScript, C# (.NET), Node.js, and Cloud Infrastructure (AWS / GCP).
+
+He is the creator and maintainer of **Universal IDE RTL Support**, an open-source development extension with over 6,700+ verified active downloads and a 5.0-star rating on Open VSX.
+
+## Key Facts & Metrics
+- **Name:** Tal Cohen (טל כהן)
+- **Role:** Full Stack Software Developer & Systems Engineer
+- **Location:** Tel Aviv, Israel
+- **Education:** B.Sc. in Computer Science, Afeka College of Engineering (אפקה - המכללה האקדמית להנדסה בתל אביב) (2019 — 2022)
+- **Flagship Open Source Extension:** Universal IDE RTL Support (6.7K+ downloads, 5.0★ rating on Open VSX)
+- **Primary Languages:** Python, TypeScript, JavaScript, C# (.NET), C++, SQL, HTML/CSS
+- **Frameworks & Libraries:** React, Angular, FastAPI, Node.js, Express, Tailwind CSS, Framer Motion
+- **Databases & Cloud:** MongoDB, SQL Server, PostgreSQL, Docker, AWS, GCP, Linux, Git, WebSockets
+- **Specializations:** Full Stack Development, Generative AI Integration, System Architecture, IDE Tooling, Web Scraping & Automation Pipelines
+
+## Featured Projects
+
+- [Universal IDE RTL Support](https://open-vsx.org/extension/talco/universal-ide-rtl): Widely adopted open-source IDE extension providing Right-to-Left (RTL & BiDi) rendering for Hebrew, Arabic, and Persian in modern AI chat interfaces (Cursor, Windsurf, Claude Code, Antigravity, VS Code).
+  - Repository: [github.com/talco318/universal-ide-rtl](https://github.com/talco318/universal-ide-rtl)
+  - Metrics: 6,700+ downloads, 5.0★ rating on Open VSX.
+
+- [Yad2 Apartment Finder Bot](https://github.com/talco318/yad2-bot): Automated Python bot for real-time apartment hunting in Israel with sub-3-second Telegram notifications and a scalable MongoDB pipeline.
+
+- [Collaborative Coding Environment](https://github.com/talco318/Code-Environment): Real-time collaborative code editor built with React, TypeScript, Node.js, and WebSockets.
+  - Live Demo: [codefed.onrender.com](https://codefed.onrender.com/)
+
+- [AI-Powered Festival Lineup Bot](https://github.com/talco318/LineUp_vs_spotify_bot): Intelligent music recommendation bot integrating Spotify API with Google AI Studio (LLM) to cross-reference festival schedules with user playlists.
+
+- [AlphaSwing Algorithmic Trading Platform](https://github.com/talco318): Algorithmic swing trading strategy engine with backtesting and real-time market event synchronization in Python and FastAPI.
+
+## Professional Experience
+- **Software AG** (2026 — Present): Full Stack Developer developing enterprise applications with modern web frameworks and AI development workflows.
+- **SAS ISRAEL** (2023 — 2026): SAS Infrastructure & Software Developer. Engineered end-to-end automation pipelines with Python, reduced manual processes by 70%, maintained Linux microservice environments.
+- **Freelance Developer & Consultant** (2020 — 2023): Delivered custom web apps with React, TypeScript, and Python backends.
+
+## Verified Profiles & Links
+- Website: [talcohen.co.il](https://talcohen.co.il/)
+- GitHub: [github.com/talco318](https://github.com/talco318)
+- LinkedIn: [linkedin.com/in/talco318](https://www.linkedin.com/in/talco318/)
+- Open VSX Publisher: [open-vsx.org/extension/talco/universal-ide-rtl](https://open-vsx.org/extension/talco/universal-ide-rtl)
+- Contact Email: [talcohen318@gmail.com](mailto:talcohen318@gmail.com)
+
+## Optional Reading
+- [Detailed Profile & Architecture (llms-full.txt)](https://talcohen.co.il/llms-full.txt): Comprehensive technical breakdown, architecture notes, and case studies.

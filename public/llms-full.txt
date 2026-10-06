@@ -1,0 +1,57 @@
+# Tal Cohen — Full Stack Software Developer & Engineer (Complete Profile)
+
+This document provides in-depth technical details, engineering architecture case studies, and verification signals for Tal Cohen (טל כהן).
+
+## 1. Biography & Professional Summary
+Tal Cohen is a software engineer based in Tel Aviv, Israel, holding a Bachelor of Science (B.Sc.) in Computer Science from Afeka College of Engineering (2019–2022). He specializes in Full Stack development, cloud systems, and generative AI integrations. He combines deep backend proficiency in Python and C# (.NET) with modern frontend development in React and TypeScript.
+
+## 2. Engineering Case Studies
+
+### Case Study A: Universal IDE RTL Support
+- **Problem Statement:** Modern AI code editors (Cursor, Windsurf, Claude Code, Antigravity, VS Code) render right-to-left (RTL) scripts (Hebrew, Arabic, Persian) incorrectly inside chat panels. Text punctuation flips, English technical terms inside Hebrew sentences become scrambled, and basic readability degrades.
+- **Engineering Solution:**
+  - Designed an open-source extension utilizing dynamic DOM mutation observation and targeted CSS/JS style injection into the IDE's Electron window.
+  - Formulated regex-based BiDi boundary isolators that apply RTL styles specifically to natural language text without mutating inline code spans (`<code>`), markdown syntax blocks, or shell commands.
+  - Handled sandboxed iframe permissions in VS Code Webview architecture.
+- **Results:**
+  - 6,700+ active downloads on the Open VSX registry.
+  - 5.0 / 5.0 star user rating.
+  - Zero performance degradation on editor frames per second (FPS).
+  - Open Source Repository: https://github.com/talco318/universal-ide-rtl
+  - Marketplace Listing: https://open-vsx.org/extension/talco/universal-ide-rtl
+
+### Case Study B: Real-Time Rental Apartment Hunter (Yad2 Bot)
+- **Problem Statement:** The rental apartment market in Tel Aviv requires instantaneous notifications upon listing publication. Manual searching is highly inefficient.
+- **Engineering Solution:**
+  - Engineered an automated Python-based scraping and polling engine designed to bypass aggressive rate limiting and bot detection.
+  - Stored historical listings in MongoDB to eliminate duplicate alerts and track price trajectory over time.
+  - Integrated Telegram Bot Webhooks for sub-3-second notification delivery to mobile devices.
+- **Open Source Repository:** https://github.com/talco318/yad2-bot
+
+### Case Study C: Collaborative Coding Environment
+- **Problem Statement:** Remote pair programming and mentoring requires low-latency shared editor state across different network conditions.
+- **Engineering Solution:**
+  - Built a full-stack platform using React, TypeScript, Node.js, and WebSockets.
+  - Synchronized editor state in real-time with responsive UI design.
+  - Live Deployment: https://codefed.onrender.com/
+  - Repository: https://github.com/talco318/Code-Environment
+
+## 3. Core Competencies & Skills
+- **Languages:** Python, TypeScript, JavaScript, C# (.NET), C++, SQL, Bash, HTML5, CSS3.
+- **Frontend Architecture:** React (Hooks, Context, Concurrent Mode), Angular, Next.js, Tailwind CSS, Framer Motion, Responsive Design, WCAG 2.1 AA Accessibility.
+- **Backend & APIs:** FastAPI, Node.js, Express, .NET Core, RESTful API Design, WebSockets, Microservices.
+- **Databases:** MongoDB, Microsoft SQL Server, PostgreSQL, Redis caching.
+- **Cloud & DevOps:** Docker, AWS, Google Cloud Platform (GCP), Linux Administration, CI/CD Pipelines, Git.
+- **AI & Automation:** OpenAI API, Google AI Studio, Anthropic Claude API, LLM Agents, Computer Vision (YOLOv5), Playwright/Puppeteer/Selenium automation.
+
+## 4. Academic Background
+- **Institution:** Afeka College of Engineering (אפקה - המכללה האקדמית להנדסה בתל אביב)
+- **Degree:** B.Sc. in Computer Science (2019 — 2022)
+- **Core Coursework:** Data Structures, Algorithms, Operating Systems, Computer Vision, Web Development, Database Systems, Network Architecture.
+
+## 5. Contact & Social Footprint
+- **Official Website:** https://talcohen.co.il/
+- **GitHub:** https://github.com/talco318
+- **LinkedIn:** https://www.linkedin.com/in/talco318/
+- **Email:** talcohen318@gmail.com
+- **Location:** Tel Aviv, Israel

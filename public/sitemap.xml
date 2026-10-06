@@ -9,7 +9,6 @@
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://talcohen.co.il/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://talcohen.co.il/" />
-    <xhtml:link rel="alternate" hreflang="he" href="https://talcohen.co.il/" />
     <image:image>
       <image:loc>https://lh3.googleusercontent.com/d/1_Geshyn3WEDM7U9UnDuDZYbUhngvysLj</image:loc>
       <image:title>Tal Cohen - Full Stack Software Developer &amp; Engineer</image:title>
@@ -40,5 +39,17 @@
       <image:title>ParkHere Computer Vision Assistant - Tal Cohen</image:title>
       <image:caption>Smart Telegram bot for real-time parking detection using YOLOv5 and Google Maps API</image:caption>
     </image:image>
+  </url>
+  <url>
+    <loc>https://talcohen.co.il/llms.txt</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://talcohen.co.il/llms-full.txt</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>

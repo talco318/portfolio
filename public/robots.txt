@@ -1,5 +1,26 @@
 User-agent: *
 Allow: /
+Disallow: /linkedin
 
-# Sitemap Location
+# AI Search & LLM Crawlers (OpenAI, Anthropic, Perplexity, Google)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Sitemap & LLM Context
 Sitemap: https://talcohen.co.il/sitemap.xml
+# LLM Context: https://talcohen.co.il/llms.txt

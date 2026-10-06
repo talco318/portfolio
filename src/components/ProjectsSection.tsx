@@ -62,6 +62,7 @@ export const ProjectsSection = () => {
                                     <button
                                         key={cat}
                                         onClick={() => setSelectedCategory(cat)}
+                                        aria-label={`Filter projects by category: ${cat}`}
                                         className={`relative px-4 py-2 rounded-full text-xs font-mono tracking-wider transition-all duration-200 cursor-pointer ${
                                             isSelected
                                                 ? 'bg-white text-zinc-950 font-semibold shadow-md'
@@ -102,6 +103,7 @@ export const ProjectsSection = () => {
                                                     src={project.image}
                                                     alt={`Screenshot of ${project.title}`}
                                                     loading="lazy"
+                                                    decoding="async"
                                                     width={600}
                                                     height={375}
                                                     className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-103"
@@ -148,6 +150,7 @@ export const ProjectsSection = () => {
                                                     href={project.liveUrl}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
+                                                    aria-label={`View live deployment for ${project.title}`}
                                                     className="group/btn inline-flex items-center gap-1.5 text-sm font-semibold text-white hover:text-cyan-400 transition-colors cursor-pointer"
                                                 >
                                                     <span>Live Deployment</span>
@@ -159,6 +162,7 @@ export const ProjectsSection = () => {
                                                     href={project.githubUrl}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
+                                                    aria-label={`View GitHub repository for ${project.title}`}
                                                     className="group/btn inline-flex items-center gap-1.5 text-sm font-semibold text-zinc-300 dark:text-zinc-400 hover:text-white transition-colors cursor-pointer ml-auto"
                                                 >
                                                     <GithubIcon className="w-4 h-4" />
