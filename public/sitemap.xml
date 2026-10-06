@@ -20,5 +20,25 @@
       <image:title>Universal IDE RTL Support Extension - by Tal Cohen</image:title>
       <image:caption>Right-to-Left (RTL) IDE extension for AI chat interfaces with 6.7K+ downloads</image:caption>
     </image:image>
+    <image:image>
+      <image:loc>https://lh3.googleusercontent.com/d/1nb5RBI6Wmo1pfr2yFswFDeY1D0ONuYPE=s800</image:loc>
+      <image:title>Yad2 Apartment Finder Bot - Tal Cohen</image:title>
+      <image:caption>Automated Python bot for real-time apartment hunting with Telegram alerts and MongoDB</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://lh3.googleusercontent.com/d/1BphxwbLAQOFYwCoLvysudJVFd3Fgaiue=s800</image:loc>
+      <image:title>Collaborative Coding Environment - Tal Cohen</image:title>
+      <image:caption>Real-time collaborative code editor built with React, TypeScript, and WebSockets</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://lh3.googleusercontent.com/d/103C0arvOTdomwkmoG3tCI5m0XRAAYY4t=s800</image:loc>
+      <image:title>AI-Powered Festival Lineup Bot - Tal Cohen</image:title>
+      <image:caption>Generative AI music scheduling system integrating Spotify API and Google AI Studio</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://lh3.googleusercontent.com/d/1TL7nPjQNMnlR9pSUtd5aJKRYuVfimc1B=s800</image:loc>
+      <image:title>ParkHere Computer Vision Assistant - Tal Cohen</image:title>
+      <image:caption>Smart Telegram bot for real-time parking detection using YOLOv5 and Google Maps API</image:caption>
+    </image:image>
   </url>
 </urlset>
