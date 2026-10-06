@@ -10,6 +10,7 @@ import SocialButtons from './SocialButtons.tsx';
 import ProjectsSection from './ProjectsSection.tsx';
 import SkillsSection from './SkillsSection.tsx';
 import { TechMarquee } from './TechMarquee.tsx';
+import { FaqSection } from './FaqSection.tsx';
 import { Footer } from './Footer.tsx';
 
 const ChatBot = lazy(() => import('./ChatBot.tsx'));
@@ -46,6 +47,9 @@ function App() {
 
                 <TechMarquee />
                 <SkillsSection skills={portfolioData.skills} />
+
+                {/* Technical Knowledge Base & Capabilities Matrix */}
+                <FaqSection />
 
                 {/* Contact Section */}
                 <ContactSection />

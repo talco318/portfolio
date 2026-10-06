@@ -38,9 +38,19 @@ export const Footer = () => {
                                 <Linkedin className="w-4 h-4" />
                             </a>
                         </div>
-                        <p className="text-xs font-medium text-zinc-500 dark:text-zinc-400">
-                            Crafted with React, TypeScript & Framer Motion
-                        </p>
+                        <div className="flex items-center gap-3 text-xs font-mono text-zinc-500 dark:text-zinc-400">
+                            <a
+                                href="/llms.txt"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors cursor-pointer"
+                                title="LLM context file for AI search engines"
+                            >
+                                llms.txt
+                            </a>
+                            <span>•</span>
+                            <span>Updated: <time dateTime="2026-10-06" className="font-semibold text-zinc-700 dark:text-zinc-300">Oct 2026</time></span>
+                        </div>
                     </div>
                 </div>
             </div>

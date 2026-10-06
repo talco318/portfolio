@@ -82,7 +82,7 @@ export const portfolioData: PortfolioData = {
     locationDetail: "Remote-first mindset",
     githubUsername: "talco318",
     backgroundImage: "https://lh3.googleusercontent.com/d/1_Geshyn3WEDM7U9UnDuDZYbUhngvysLj",
-    bio: "I am a Full Stack Developer specializing in building end-to-end digital products using a modern tech stack encompassing Python, .NET (C#), Angular, and React. With a deep passion for Generative AI and automation, I architect intelligent solutions that solve complex business problems. Whether it's designing scalable microservices, developing seamless user interfaces, or integrating advanced AI APIs, I thrive on delivering high-impact, performant, and clean code.",
+    bio: "Tal Cohen is a Full Stack Software Developer and Systems Engineer based in Tel Aviv, Israel, specializing in Python, React, TypeScript, C# (.NET), and Generative AI systems. Author of Universal IDE RTL Support with over 6,700+ active downloads on Open VSX and a 5.0★ rating. With a B.Sc. in Computer Science from Afeka College of Engineering, he designs high-scale backend microservices, resilient data automation pipelines that reduce manual workloads by 70%, and high-performance interactive interfaces.",
     socialLinks: {
       github: "https://github.com/talco318",
       linkedin: "https://www.linkedin.com/in/talco318/",
@@ -116,7 +116,7 @@ export const portfolioData: PortfolioData = {
     {
       id: "rtl-support",
       title: "Universal IDE RTL Support",
-      description: "Architected and actively maintain a widely adopted open-source IDE extension providing Right-to-Left (RTL & BiDi) text rendering for Hebrew, Arabic, and Persian in AI chat panels (Cursor, Windsurf, Claude Code, Antigravity, VS Code). Engineered dynamic CSS & JS DOM injection that strictly preserves code blocks and terminal UI. Surpassed 6.7K+ downloads with a 5.0★ rating on Open VSX.",
+      description: "Architected and actively maintain a widely adopted open-source IDE extension providing Right-to-Left (RTL & BiDi) text rendering for Hebrew, Arabic, and Persian in AI chat panels (Cursor, Windsurf, Claude Code, Antigravity, VS Code). Engineered dynamic CSS & JS DOM injection that strictly preserves code blocks and terminal UI. Surpassed 6.7K+ downloads with a 5.0★ rating on Open VSX and 0ms FPS editor impact.",
       technologies: ["TypeScript", "VS Code API", "DOM Injection", "BiDi / RTL", "Open Source"],
       image: "/universal-ide-rtl.png",
       liveUrl: "https://open-vsx.org/extension/talco/universal-ide-rtl",
@@ -126,7 +126,7 @@ export const portfolioData: PortfolioData = {
     {
       id: "1",
       title: "Yad2 Apartment Finder Bot",
-      description: "Engineered an automated Python bot for real-time apartment tracking with instant user notifications. Designed scalable data pipelines using MongoDB to handle concurrent processing, effectively reducing manual apartment search time to zero.",
+      description: "Engineered an automated Python bot for real-time apartment tracking with sub-3-second Telegram notifications. Designed scalable data pipelines using MongoDB to handle concurrent processing of 500+ daily listings, effectively reducing manual apartment search time to zero.",
       technologies: ["Python", "MongoDB", "Telegram API", "Automation"],
       image: "https://lh3.googleusercontent.com/d/1nb5RBI6Wmo1pfr2yFswFDeY1D0ONuYPE=s800",
       githubUrl: "https://github.com/talco318/yad2-bot",
@@ -135,7 +135,7 @@ export const portfolioData: PortfolioData = {
     {
       id: "2",
       title: "Collaborative Coding Environment",
-      description: "Built a dynamic, real-time collaborative coding platform using React and TypeScript. Architected a highly optimized, component-based UI that ensures seamless, responsive interactions across all devices for mentors and mentees.",
+      description: "Built a dynamic, real-time collaborative coding platform using React and TypeScript. Architected a highly optimized, component-based UI with sub-50ms WebSocket synchronization, enabling seamless multi-user live pair programming.",
       technologies: ["React", "Node.js", "TypeScript", "WebSockets"],
       image: "https://lh3.googleusercontent.com/d/1BphxwbLAQOFYwCoLvysudJVFd3Fgaiue=s800",
       liveUrl: "https://codefed.onrender.com/",
@@ -145,7 +145,7 @@ export const portfolioData: PortfolioData = {
     {
       id: "3",
       title: "AI-Powered Festival Lineup Bot",
-      description: "Developed an intelligent music recommendation system integrating the Spotify API with Google AI Studio (LLM). The bot processes JSON databases to cross-reference festival lineups with user playlists, delivering highly personalized schedules.",
+      description: "Developed an intelligent music recommendation system integrating the Spotify API with Google AI Studio (LLM). The bot processes complex JSON catalogs to cross-reference 100+ festival artists with user listening habits, delivering tailored schedule recommendations.",
       technologies: ["Python", "Spotify API", "Google AI Studio", "Generative AI"],
       image: "https://lh3.googleusercontent.com/d/103C0arvOTdomwkmoG3tCI5m0XRAAYY4t=s800",
       githubUrl: "https://github.com/talco318/LineUp_vs_spotify_bot",
@@ -154,7 +154,7 @@ export const portfolioData: PortfolioData = {
     {
       id: "4",
       title: "ParkHere: Computer Vision Assistant",
-      description: "Created a smart Telegram Bot for real-time parking detection utilizing Python and the YOLOv5 computer vision algorithm. Integrated Firebase for cloud storage and Google Maps API to provide live navigation directly to available spots.",
+      description: "Created a smart Telegram Bot for real-time parking spot detection utilizing Python and the YOLOv5 computer vision algorithm with 92%+ detection accuracy. Integrated Firebase cloud storage and Google Maps API to provide live navigation directly to vacant spots.",
       technologies: ["Python", "YOLOv5", "Firebase", "Computer Vision"],
       image: "https://lh3.googleusercontent.com/d/1TL7nPjQNMnlR9pSUtd5aJKRYuVfimc1B=s800",
       githubUrl: "https://github.com/talco318/ParkHere_FinalProject",

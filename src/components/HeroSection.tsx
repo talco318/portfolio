@@ -128,6 +128,8 @@ export const HeroSection = () => {
                             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)]" />
                         </span>
                         <span className="uppercase tracking-widest text-[11px] font-semibold text-zinc-600 dark:text-zinc-400">Available For Opportunities</span>
+                        <span className="text-zinc-300 dark:text-zinc-700 hidden sm:inline">•</span>
+                        <time dateTime="2026-10-06" className="text-[11px] text-zinc-500 dark:text-zinc-400 hidden sm:inline">2026 Edition</time>
                     </motion.div>
 
                     {/* Bold Clean Title - OpenAI Pure Luxury */}
