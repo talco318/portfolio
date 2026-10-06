@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://talcohen.co.il/</loc>
-    <lastmod>2026-07-23</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://talcohen.co.il/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://talcohen.co.il/" />
+    <xhtml:link rel="alternate" hreflang="he" href="https://talcohen.co.il/" />
     <image:image>
       <image:loc>https://lh3.googleusercontent.com/d/1_Geshyn3WEDM7U9UnDuDZYbUhngvysLj</image:loc>
-      <image:title>Tal Cohen - Full Stack Software Developer</image:title>
+      <image:title>Tal Cohen - Full Stack Software Developer &amp; Engineer</image:title>
       <image:caption>Tal Cohen Profile and Portfolio Cover</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://talcohen.co.il/universal-ide-rtl.png</image:loc>
+      <image:title>Universal IDE RTL Support Extension - by Tal Cohen</image:title>
+      <image:caption>Right-to-Left (RTL) IDE extension for AI chat interfaces with 6.7K+ downloads</image:caption>
     </image:image>
   </url>
 </urlset>

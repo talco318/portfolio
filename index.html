@@ -7,11 +7,22 @@
     
     <!-- SEO & Basic Meta Tags -->
     <title>Tal Cohen | Full Stack Software Developer & Engineer (טל כהן)</title>
-    <meta name="description" content="Tal Cohen (טל כהן) — Full Stack Software Developer specializing in Python, React, TypeScript, Node.js, and Cloud Infrastructure in Israel. Explore portfolio, projects, and skills." />
-    <meta name="keywords" content="Tal Cohen, טל כהן, טל כהן מפתח תוכנה, Software Developer, Full Stack Developer Israel, Backend Engineer, Frontend Engineer, Python Developer, React Engineer, Node.js, TypeScript, Israel Software Engineer" />
+    <meta name="description" content="Tal Cohen (טל כהן) — Full Stack Software Developer & Engineer based in Israel. Creator of Universal IDE RTL (6.7K+ downloads, 5★). Specializing in Python, React, TypeScript, Node.js, AI systems, and Cloud Infrastructure." />
+    <meta name="keywords" content="Tal Cohen, טל כהן, טל כהן מפתח תוכנה, Software Developer, Full Stack Developer Israel, Backend Engineer, Frontend Engineer, Python Developer, React Engineer, Node.js, TypeScript, Israel Software Engineer, Universal IDE RTL, Cursor RTL, Windsurf RTL, Claude Code RTL" />
     <meta name="author" content="Tal Cohen" />
     <link rel="canonical" href="https://talcohen.co.il/" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+    <!-- Multilingual & Regional Alternate Links (Hreflang) -->
+    <link rel="alternate" hreflang="x-default" href="https://talcohen.co.il/" />
+    <link rel="alternate" hreflang="en" href="https://talcohen.co.il/" />
+    <link rel="alternate" hreflang="he" href="https://talcohen.co.il/" />
+
+    <!-- Geo Meta Tags (Local SEO & Regional Signals) -->
+    <meta name="geo.region" content="IL" />
+    <meta name="geo.placename" content="Tel Aviv" />
+    <meta name="geo.position" content="32.0853;34.7818" />
+    <meta name="ICBM" content="32.0853, 34.7818" />
 
     <!-- Preconnect & Preload for performance (LCP Optimization) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -26,10 +37,10 @@
     <meta name="theme-color" content="#111827" />
 
     <!-- Open Graph / LinkedIn / Facebook -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content="profile" />
     <meta property="og:url" content="https://talcohen.co.il/" />
     <meta property="og:title" content="Tal Cohen | Full Stack Software Developer & Engineer (טל כהן)" />
-    <meta property="og:description" content="Portfolio of Tal Cohen (טל כהן), Full Stack Software Developer specializing in Python, React, TypeScript, Node.js & Cloud Systems in Israel." />
+    <meta property="og:description" content="Tal Cohen (טל כהן) — Full Stack Software Developer & Engineer in Israel. Creator of Universal IDE RTL (6.7K+ downloads, 5.0★). Building high-scale web apps, Python automation, and AI systems." />
     <meta property="og:image" content="https://lh3.googleusercontent.com/d/1_Geshyn3WEDM7U9UnDuDZYbUhngvysLj" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -41,7 +52,7 @@
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:title" content="Tal Cohen | Full Stack Software Developer & Engineer (טל כהן)" />
-    <meta property="twitter:description" content="Portfolio of Tal Cohen (טל כהן), Full Stack Software Developer building scalable applications and elegant solutions." />
+    <meta property="twitter:description" content="Tal Cohen (טל כהן) — Full Stack Software Developer & Engineer. Creator of Universal IDE RTL (6.7K+ downloads, 5.0★)." />
     <meta property="twitter:image" content="https://lh3.googleusercontent.com/d/1_Geshyn3WEDM7U9UnDuDZYbUhngvysLj" />
 
     <!-- Google Search Structured Data (JSON-LD Schema) -->
@@ -49,7 +60,20 @@
       [
         {
           "@context": "https://schema.org",
+          "@type": "ProfilePage",
+          "@id": "https://talcohen.co.il/#profilepage",
+          "url": "https://talcohen.co.il/",
+          "name": "Tal Cohen | Full Stack Software Developer Portfolio",
+          "dateCreated": "2024-01-01",
+          "dateModified": "2026-10-06",
+          "mainEntity": {
+            "@id": "https://talcohen.co.il/#person"
+          }
+        },
+        {
+          "@context": "https://schema.org",
           "@type": "Person",
+          "@id": "https://talcohen.co.il/#person",
           "name": "Tal Cohen",
           "givenName": "Tal",
           "familyName": "Cohen",
@@ -57,29 +81,63 @@
           "jobTitle": "Full Stack Software Developer",
           "url": "https://talcohen.co.il/",
           "image": "https://lh3.googleusercontent.com/d/1_Geshyn3WEDM7U9UnDuDZYbUhngvysLj",
+          "email": "mailto:talcohen318@gmail.com",
+          "nationality": "Israeli",
+          "alumniOf": {
+            "@type": "CollegeOrUniversity",
+            "name": "The Academic College of Tel Aviv-Yaffo",
+            "sameAs": "https://www.mta.ac.il/"
+          },
           "address": {
             "@type": "PostalAddress",
+            "addressLocality": "Tel Aviv",
             "addressCountry": "IL"
           },
           "sameAs": [
             "https://github.com/talco318",
-            "https://www.linkedin.com/in/talco318"
+            "https://www.linkedin.com/in/talco318",
+            "https://open-vsx.org/extension/talco/universal-ide-rtl"
           ],
           "knowsAbout": [
-            "Python", "React", "TypeScript", "Node.js", "Full Stack Development",
-            "AWS", "Backend Engineering", "C++", "SQL", "MongoDB", "REST APIs", "Docker"
+            "Full Stack Development", "Python", "React", "TypeScript", "Node.js",
+            "FastAPI", "MongoDB", "SQL", "Docker", "AWS", "GCP", "REST APIs",
+            "WebSockets", "IDE Extension Development", "AI Agents", "System Architecture"
           ]
         },
         {
           "@context": "https://schema.org",
           "@type": "WebSite",
+          "@id": "https://talcohen.co.il/#website",
           "name": "Tal Cohen Portfolio",
           "alternateName": "תיק עבודות טל כהן",
           "url": "https://talcohen.co.il/",
           "inLanguage": ["en", "he"],
           "author": {
-            "@type": "Person",
-            "name": "Tal Cohen"
+            "@id": "https://talcohen.co.il/#person"
+          }
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "Universal IDE RTL Support",
+          "applicationCategory": "DeveloperApplication",
+          "operatingSystem": "VS Code, Cursor, Windsurf, Claude Code, Antigravity",
+          "downloadUrl": "https://open-vsx.org/extension/talco/universal-ide-rtl",
+          "description": "Open-source IDE extension providing Right-to-Left (RTL & BiDi) text rendering for Hebrew, Arabic, and Persian in AI chat panels with 6,700+ downloads.",
+          "author": {
+            "@id": "https://talcohen.co.il/#person"
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "5.0",
+            "ratingCount": "12",
+            "bestRating": "5",
+            "worstRating": "1"
           }
         },
         {
@@ -93,8 +151,8 @@
               "item": {
                 "@type": "SoftwareSourceCode",
                 "name": "Universal IDE RTL Support",
-                "description": "Widely adopted open-source IDE extension enabling Right-to-Left (RTL & BiDi) text rendering for Hebrew, Arabic & Persian across AI chat interfaces (Cursor, Windsurf, Claude Code, Antigravity, VS Code).",
-                "programmingLanguage": ["TypeScript", "JavaScript", "CSS"],
+                "description": "Architected and actively maintain a widely adopted open-source IDE extension providing Right-to-Left (RTL & BiDi) text rendering for Hebrew, Arabic, and Persian in AI chat panels. Over 6.7K+ downloads on Open VSX with a 5.0★ rating.",
+                "programmingLanguage": ["TypeScript", "CSS", "VS Code API"],
                 "codeRepository": "https://github.com/talco318/universal-ide-rtl"
               }
             },
@@ -103,9 +161,10 @@
               "position": 2,
               "item": {
                 "@type": "SoftwareSourceCode",
-                "name": "Affiliate Management Platform",
-                "description": "Full-stack affiliate tracking and attribution engine with real-time conversion monitoring and analytics.",
-                "programmingLanguage": ["Python", "React", "TypeScript", "Node.js"]
+                "name": "Yad2 Apartment Finder Bot",
+                "description": "Automated Python bot for real-time apartment tracking with instant Telegram notifications and MongoDB data pipelines.",
+                "programmingLanguage": ["Python", "MongoDB", "Telegram API"],
+                "codeRepository": "https://github.com/talco318/yad2-bot"
               }
             },
             {
@@ -113,9 +172,21 @@
               "position": 3,
               "item": {
                 "@type": "SoftwareSourceCode",
-                "name": "Coupon & Voucher Management System",
-                "description": "Enterprise coupon distribution and validation service built for high-throughput transactional efficiency.",
-                "programmingLanguage": ["Python", "React", "REST API", "SQL"]
+                "name": "Collaborative Coding Environment",
+                "description": "Real-time collaborative coding platform using React, TypeScript, and WebSockets with optimized responsive layout.",
+                "programmingLanguage": ["React", "TypeScript", "Node.js", "WebSockets"],
+                "codeRepository": "https://github.com/talco318"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "item": {
+                "@type": "SoftwareSourceCode",
+                "name": "AlphaSwing Algorithmic Trading Platform",
+                "description": "Data-driven algorithmic swing trading strategy platform with backtesting and real-time market event synchronization.",
+                "programmingLanguage": ["Python", "FastAPI", "React", "TypeScript"],
+                "codeRepository": "https://github.com/talco318"
               }
             }
           ]
