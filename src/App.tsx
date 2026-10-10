@@ -1,8 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import MainPage from './components/MainPage'; // Assuming MainPage.tsx exists
+import MainPage from './components/MainPage';
 import LinkedinRedirect from './components/LinkedinRedirect';
 import NotFound from './components/NotFound';
-
 
 function App() {
     return (

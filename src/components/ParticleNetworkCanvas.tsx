@@ -142,8 +142,24 @@ export const ParticleNetworkCanvas = () => {
                 }
             }
 
-            animationFrameId = requestAnimationFrame(render);
+            if (isVisible) {
+                animationFrameId = requestAnimationFrame(render);
+            }
         };
+
+        let isVisible = true;
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                const wasVisible = isVisible;
+                isVisible = entry.isIntersecting;
+                if (!wasVisible && isVisible) {
+                    cancelAnimationFrame(animationFrameId);
+                    animationFrameId = requestAnimationFrame(render);
+                }
+            },
+            { threshold: 0.05 }
+        );
+        observer.observe(canvas);
 
         render();
 
@@ -151,6 +167,7 @@ export const ParticleNetworkCanvas = () => {
             window.removeEventListener('mousemove', handleMouseMove);
             document.removeEventListener('mouseleave', handleMouseLeave);
             window.removeEventListener('resize', handleResize);
+            observer.disconnect();
             cancelAnimationFrame(animationFrameId);
         };
     }, []);

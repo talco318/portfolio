@@ -1,10 +1,29 @@
-import { motion } from 'framer-motion';
+import { motion, useInView, useMotionValue, animate } from 'framer-motion';
 import { Download, Layers, ShieldCheck, Star, ExternalLink } from 'lucide-react';
+import { useRef, useEffect, useState } from 'react';
+import { soundFx } from '../utils/soundEffects';
 
-const metrics = [
+interface MetricItem {
+    id: string;
+    numValue: number;
+    prefix?: string;
+    suffix: string;
+    decimals: number;
+    label: string;
+    detail: string;
+    icon: typeof Download;
+    highlight: string;
+    highlightColor: string;
+    href?: string;
+    hrefTitle?: string;
+}
+
+const metrics: MetricItem[] = [
     {
         id: 'downloads',
-        value: '6.7K+',
+        numValue: 6.7,
+        suffix: 'K+',
+        decimals: 1,
         label: 'Universal IDE RTL Downloads',
         detail: '5.0★ rating on Open VSX • Global Developer Tool',
         icon: Download,
@@ -15,7 +34,9 @@ const metrics = [
     },
     {
         id: 'projects',
-        value: '15+',
+        numValue: 15,
+        suffix: '+',
+        decimals: 0,
         label: 'Production & AI Systems',
         detail: 'Full-Stack Platforms, Automation & Cloud Microservices',
         icon: Layers,
@@ -24,7 +45,9 @@ const metrics = [
     },
     {
         id: 'quality',
-        value: '100%',
+        numValue: 100,
+        suffix: '%',
+        decimals: 0,
         label: 'Code Integrity & DX',
         detail: 'Type-Safe Architecture, High Performance & Maintainability',
         icon: ShieldCheck,
@@ -32,6 +55,45 @@ const metrics = [
         highlightColor: 'text-emerald-500 bg-emerald-500/10 border-emerald-500/20',
     },
 ];
+
+const AnimatedCounter = ({
+    target,
+    decimals,
+    suffix,
+    prefix = '',
+}: {
+    target: number;
+    decimals: number;
+    suffix: string;
+    prefix?: string;
+}) => {
+    const ref = useRef<HTMLSpanElement>(null);
+    const inView = useInView(ref, { once: true, margin: '-40px' });
+    const count = useMotionValue(0);
+    const [display, setDisplay] = useState('0');
+
+    useEffect(() => {
+        if (!inView) return;
+
+        const controls = animate(count, target, {
+            duration: 1.8,
+            ease: [0.16, 1, 0.3, 1],
+            onUpdate: (latest) => {
+                setDisplay(latest.toFixed(decimals));
+            },
+        });
+
+        return () => controls.stop();
+    }, [inView, target, decimals, count]);
+
+    return (
+        <span ref={ref} className="tabular-nums">
+            {prefix}
+            {display}
+            {suffix}
+        </span>
+    );
+};
 
 export const MetricsBar = () => {
     return (
@@ -63,6 +125,7 @@ export const MetricsBar = () => {
                                             href={metric.href}
                                             target="_blank"
                                             rel="noopener noreferrer"
+                                            onClick={() => soundFx.playClick()}
                                             aria-label={metric.hrefTitle || metric.label}
                                             title={metric.hrefTitle}
                                             className="w-10 h-10 rounded-xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 flex items-center justify-center text-zinc-700 dark:text-zinc-300 hover:text-white hover:bg-indigo-600 hover:border-indigo-500 dark:hover:bg-indigo-600 dark:hover:border-indigo-500 group-hover:scale-105 transition-all cursor-pointer shadow-sm relative group/btn"
@@ -81,6 +144,7 @@ export const MetricsBar = () => {
                                             href={metric.href}
                                             target="_blank"
                                             rel="noopener noreferrer"
+                                            onClick={() => soundFx.playClick()}
                                             title={metric.hrefTitle}
                                             className={`px-2.5 py-0.5 rounded-full text-[11px] font-mono font-bold border flex items-center gap-1.5 transition-all hover:scale-105 cursor-pointer ${metric.highlightColor}`}
                                         >
@@ -106,17 +170,28 @@ export const MetricsBar = () => {
                                                 href={metric.href}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
+                                                onClick={() => soundFx.playClick()}
                                                 title={metric.hrefTitle}
                                                 className="group/num flex items-center gap-2 cursor-pointer"
                                             >
                                                 <span className="font-heading font-black text-3xl md:text-4xl tracking-tight text-zinc-950 dark:text-white group-hover/num:text-indigo-600 dark:group-hover/num:text-indigo-400 transition-colors">
-                                                    {metric.value}
+                                                    <AnimatedCounter
+                                                        target={metric.numValue}
+                                                        decimals={metric.decimals}
+                                                        suffix={metric.suffix}
+                                                        prefix={metric.prefix}
+                                                    />
                                                 </span>
                                                 <ExternalLink className="w-4 h-4 text-zinc-400 group-hover/num:text-indigo-500 opacity-0 group-hover/num:opacity-100 transition-all -translate-y-0.5" />
                                             </a>
                                         ) : (
                                             <span className="font-heading font-black text-3xl md:text-4xl tracking-tight text-zinc-950 dark:text-white">
-                                                {metric.value}
+                                                <AnimatedCounter
+                                                    target={metric.numValue}
+                                                    decimals={metric.decimals}
+                                                    suffix={metric.suffix}
+                                                    prefix={metric.prefix}
+                                                />
                                             </span>
                                         )}
                                     </div>

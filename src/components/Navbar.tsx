@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
+import { AudioToggle } from './AudioToggle';
+import { soundFx } from '../utils/soundEffects';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const navItems = [
@@ -114,6 +116,7 @@ export function Navbar() {
                   <a
                     key={item.label}
                     href={item.href}
+                    onClick={() => soundFx.playClick()}
                     className={`relative px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-colors duration-200 cursor-pointer ${
                       isActive
                         ? 'text-blue-600 dark:text-blue-400 font-bold'
@@ -133,11 +136,15 @@ export function Navbar() {
               })}
             </div>
 
-            {/* Right: Theme Toggle & Mobile Menu */}
-            <div className="flex items-center justify-end w-20 md:w-28 shrink-0 gap-1 sm:gap-2">
+            {/* Right: Theme Toggle, Audio Toggle & Mobile Menu */}
+            <div className="flex items-center justify-end w-24 md:w-32 shrink-0 gap-1 sm:gap-2">
+              <AudioToggle />
               <ThemeToggle />
               <motion.button
-                onClick={() => setIsOpen(!isOpen)}
+                onClick={() => {
+                  soundFx.playPop(600, 0.04);
+                  setIsOpen(!isOpen);
+                }}
                 className="p-2 rounded-full text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800/60 transition-all cursor-pointer md:hidden"
                 whileTap={{ scale: 0.9 }}
                 aria-label={isOpen ? "Close main menu" : "Open main menu"}

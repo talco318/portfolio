@@ -13,15 +13,19 @@ import { TechMarquee } from './TechMarquee.tsx';
 import { FaqSection } from './FaqSection.tsx';
 import { Footer } from './Footer.tsx';
 
+import { useSmoothScroll } from '../hooks/useSmoothScroll.ts';
+
 const ChatBot = lazy(() => import('./ChatBot.tsx'));
 
 function App() {
+    useSmoothScroll();
+
     return (
-        <div className="relative min-h-screen bg-background text-zinc-900 dark:text-zinc-100 transition-colors duration-500 ease-in-out overflow-x-hidden">
-            {/* Ambient Background Flow */}
-            <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
-                <div className="absolute top-[25%] -left-48 w-[600px] h-[600px] rounded-full bg-indigo-500/8 dark:bg-indigo-600/12 blur-[160px] animate-pulse-slow" />
-                <div className="absolute top-[65%] -right-48 w-[650px] h-[650px] rounded-full bg-purple-500/8 dark:bg-purple-600/12 blur-[170px] animate-pulse-slow" style={{ animationDelay: '3s' }} />
+        <div className="relative min-h-screen bg-background text-zinc-900 dark:text-zinc-100 transition-colors duration-500 ease-in-out overflow-x-clip">
+            {/* Ambient Background Flow with GPU hardware layer */}
+            <div className="fixed inset-0 pointer-events-none overflow-hidden z-0" style={{ transform: 'translateZ(0)' }}>
+                <div className="absolute top-[25%] -left-48 w-[500px] h-[500px] rounded-full bg-indigo-500/8 dark:bg-indigo-600/10 blur-[120px]" />
+                <div className="absolute top-[65%] -right-48 w-[550px] h-[550px] rounded-full bg-purple-500/8 dark:bg-purple-600/10 blur-[130px]" />
             </div>
 
             <Navbar />
