@@ -1,47 +1,52 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
 import { AudioToggle } from './AudioToggle';
 import { soundFx } from '../utils/soundEffects';
-import { motion, AnimatePresence } from 'framer-motion';
 
-const navItems = [
+interface NavItem {
+  label: string;
+  href: string;
+}
+
+const navItems: NavItem[] = [
   { label: 'About', href: '#about' },
   { label: 'Experience', href: '#experience' },
   { label: 'Projects', href: '#projects' },
   { label: 'Skills', href: '#skills' },
-  { label: 'Q&A', href: '#faq' },
+  { label: 'FAQ', href: '#faq' },
   { label: 'Contact', href: '#contact' },
 ];
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
-  const [lastScrollTop, setLastScrollTop] = useState(0);
-  const [activeSection, setActiveSection] = useState('');
-  const [scrollProgress, setScrollProgress] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
+  const lastScrollYRef = useRef(0);
 
-  // Hide on scroll DOWN, show on scroll UP + track progress
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      setScrollProgress(docHeight > 0 ? (scrollTop / docHeight) * 100 : 0);
-      setIsScrolled(scrollTop > 50);
+  const { scrollY, scrollYProgress } = useScroll();
 
-      if (scrollTop > lastScrollTop && scrollTop > 100) {
-        setIsNavbarVisible(false);
-        if (isOpen) setIsOpen(false);
-      } else {
-        setIsNavbarVisible(true);
-      }
-      setLastScrollTop(scrollTop);
-    };
+  useMotionValueEvent(scrollY, 'change', (latest) => {
+    const prev = lastScrollYRef.current;
+    lastScrollYRef.current = latest;
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollTop, isOpen]);
+    const shouldBeScrolled = latest > 50;
+    setIsScrolled((curr) => (curr !== shouldBeScrolled ? shouldBeScrolled : curr));
+
+    if (latest > prev && latest > 120) {
+      setIsNavbarVisible((curr) => {
+        if (curr) {
+          if (isOpen) setIsOpen(false);
+          return false;
+        }
+        return curr;
+      });
+    } else if (latest < prev) {
+      setIsNavbarVisible((curr) => (!curr ? true : curr));
+    }
+  });
 
   // Active section tracking via IntersectionObserver
   useEffect(() => {
@@ -74,11 +79,10 @@ export function Navbar() {
         Skip to main content
       </a>
 
-      {/* Progress Bar */}
+      {/* Hardware-accelerated Progress Bar */}
       <motion.div
-        className="fixed top-0 left-0 h-[2px] bg-gradient-to-r from-accent via-blue-400 to-accent z-[60] pointer-events-none"
-        style={{ width: `${scrollProgress}%` }}
-        transition={{ ease: 'linear', duration: 0.1 }}
+        className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-accent via-blue-400 to-accent z-[60] pointer-events-none origin-left"
+        style={{ scaleX: scrollYProgress }}
       />
 
       <nav
@@ -215,3 +219,4 @@ export function Navbar() {
     </>
   );
 }
+export default Navbar;

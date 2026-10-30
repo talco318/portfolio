@@ -36,28 +36,28 @@ const getSkillIcon = (name: string) => {
 const SECTOR_ACCENTS: Record<string, { color: string; badge: string; text: string }> = {
     Backend: {
         color: '#06b6d4',
-        badge: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/30',
-        text: 'text-cyan-400',
+        badge: 'bg-cyan-500/15 text-cyan-700 dark:text-cyan-400 border-cyan-500/30',
+        text: 'text-cyan-700 dark:text-cyan-400',
     },
     Frontend: {
         color: '#6366f1',
-        badge: 'bg-indigo-500/10 text-indigo-400 border-indigo-500/30',
-        text: 'text-indigo-400',
+        badge: 'bg-indigo-500/15 text-indigo-700 dark:text-indigo-400 border-indigo-500/30',
+        text: 'text-indigo-700 dark:text-indigo-400',
     },
     'AI & Tools': {
         color: '#a855f7',
-        badge: 'bg-purple-500/10 text-purple-400 border-purple-500/30',
-        text: 'text-purple-400',
+        badge: 'bg-purple-500/15 text-purple-700 dark:text-purple-400 border-purple-500/30',
+        text: 'text-purple-700 dark:text-purple-400',
     },
     'Databases & Cloud': {
         color: '#10b981',
-        badge: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30',
-        text: 'text-emerald-400',
+        badge: 'bg-emerald-500/15 text-emerald-800 dark:text-emerald-400 border-emerald-500/30',
+        text: 'text-emerald-800 dark:text-emerald-400',
     },
     Languages: {
         color: '#f59e0b',
-        badge: 'bg-amber-500/10 text-amber-400 border-amber-500/30',
-        text: 'text-amber-400',
+        badge: 'bg-amber-500/15 text-amber-800 dark:text-amber-400 border-amber-500/30',
+        text: 'text-amber-800 dark:text-amber-400',
     },
 };
 
@@ -79,8 +79,8 @@ export const SkillsSection = ({ skills }: SkillsSectionProps) => {
             skills: catSkills,
             accent: SECTOR_ACCENTS[title] || {
                 color: '#6366f1',
-                badge: 'bg-indigo-500/10 text-indigo-400 border-indigo-500/30',
-                text: 'text-indigo-400',
+                badge: 'bg-indigo-500/15 text-indigo-700 dark:text-indigo-400 border-indigo-500/30',
+                text: 'text-indigo-700 dark:text-indigo-400',
             },
         }));
     }, [skills]);
@@ -164,7 +164,7 @@ export const SkillsSection = ({ skills }: SkillsSectionProps) => {
 
                 {/* Section Header */}
                 <div className="flex flex-col items-center mb-8 relative z-10 text-center">
-                    <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-xs font-mono text-indigo-400 mb-3 font-semibold">
+                    <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-xs font-mono text-indigo-700 dark:text-indigo-400 mb-3 font-semibold">
                         <Disc className="w-3.5 h-3.5 animate-spin" style={{ animationDuration: '8s' }} />
                         <span>SCROLL TO ROTATE TECHNICAL ARSENAL</span>
                     </div>
@@ -182,7 +182,7 @@ export const SkillsSection = ({ skills }: SkillsSectionProps) => {
                 <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 xl:gap-8 items-start">
                     {/* LEFT PANEL: The Rotary Sector Dial & Channels (4 cols) */}
                     <div className="lg:col-span-4 rounded-3xl border border-zinc-200/80 dark:border-white/10 bg-white/80 dark:bg-[#12131b]/90 backdrop-blur-2xl p-5 sm:p-6 shadow-xl shadow-zinc-900/5 dark:shadow-2xl">
-                        <div className="flex items-center justify-between text-xs font-mono text-zinc-500 dark:text-zinc-400 uppercase tracking-widest mb-4 pb-3 border-b border-zinc-200/80 dark:border-zinc-800">
+                        <div className="flex items-center justify-between text-xs font-mono text-zinc-600 dark:text-zinc-400 uppercase tracking-widest mb-4 pb-3 border-b border-zinc-200/80 dark:border-zinc-800">
                             <span>SECTORS</span>
                             <span className="font-bold text-indigo-600 dark:text-indigo-400">
                                 CHANNEL [0{activeIndex + 1}/0{categories.length}]
@@ -219,7 +219,7 @@ export const SkillsSection = ({ skills }: SkillsSectionProps) => {
                                                 <div className="text-xs font-mono font-bold tracking-tight">
                                                     {cat.title}
                                                 </div>
-                                                <div className={`text-[10px] font-mono ${isSelected ? 'opacity-80' : 'text-zinc-400'}`}>
+                                                <div className={`text-[10px] font-mono ${isSelected ? 'opacity-90' : 'text-zinc-600 dark:text-zinc-400'}`}>
                                                     CHANNEL 0{idx + 1} • {cat.skills.length} MODULES
                                                 </div>
                                             </div>
@@ -237,9 +237,9 @@ export const SkillsSection = ({ skills }: SkillsSectionProps) => {
                         </div>
 
                         {/* Interactive Rotary Gauge Helper */}
-                        <div className="mt-5 pt-3 border-t border-zinc-200/80 dark:border-zinc-800 text-[11px] font-mono text-zinc-500 flex items-center justify-between">
+                        <div className="mt-5 pt-3 border-t border-zinc-200/80 dark:border-zinc-800 text-[11px] font-mono text-zinc-600 dark:text-zinc-400 flex items-center justify-between">
                             <span>Scroll mouse to rotate sectors</span>
-                            <span className="text-indigo-500 font-bold">Auto-Sync</span>
+                            <span className="text-indigo-600 dark:text-indigo-400 font-bold">Auto-Sync</span>
                         </div>
                     </div>
 
@@ -256,13 +256,13 @@ export const SkillsSection = ({ skills }: SkillsSectionProps) => {
                                         <h3 className="font-heading text-2xl sm:text-3xl font-black text-zinc-950 dark:text-white">
                                             {activeCategory.title}
                                         </h3>
-                                        <span className="text-xs font-mono text-zinc-500 dark:text-zinc-400">
+                                        <span className="text-xs font-mono text-zinc-600 dark:text-zinc-400">
                                             Sector Readiness Index // {activeCategory.skills.length} Production Systems
                                         </span>
                                     </div>
                                 </div>
 
-                                <span className="px-3 py-1 rounded-full text-xs font-mono bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 flex items-center gap-1.5 font-bold">
+                                <span className="px-3 py-1 rounded-full text-xs font-mono bg-emerald-500/15 text-emerald-800 dark:text-emerald-400 border border-emerald-500/30 flex items-center gap-1.5 font-bold">
                                     <CheckCircle className="w-3.5 h-3.5" />
                                     <span>ACTIVE</span>
                                 </span>
@@ -299,7 +299,7 @@ export const SkillsSection = ({ skills }: SkillsSectionProps) => {
                                                         </h4>
                                                     </div>
 
-                                                    <span className="text-[11px] font-mono font-bold text-zinc-500 dark:text-zinc-400 px-2 py-0.5 rounded bg-zinc-200/60 dark:bg-white/5">
+                                                    <span className="text-[11px] font-mono font-bold text-zinc-700 dark:text-zinc-300 px-2 py-0.5 rounded bg-zinc-200/80 dark:bg-white/10">
                                                         {skill.proficiency}%
                                                     </span>
                                                 </div>
@@ -322,7 +322,7 @@ export const SkillsSection = ({ skills }: SkillsSectionProps) => {
                         </div>
 
                         {/* Bottom Status Bar */}
-                        <div className="mt-6 pt-4 border-t border-zinc-200/80 dark:border-zinc-800 flex items-center justify-between text-xs font-mono text-zinc-500">
+                        <div className="mt-6 pt-4 border-t border-zinc-200/80 dark:border-zinc-800 flex items-center justify-between text-xs font-mono text-zinc-600 dark:text-zinc-400">
                             <span>Scroll down to advance to next sector</span>
                             <span className="text-zinc-700 dark:text-zinc-300 font-semibold flex items-center gap-1">
                                 <span>60 FPS Hardware Sync</span>

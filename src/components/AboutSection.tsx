@@ -1,10 +1,34 @@
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { motion, useMotionValue, useSpring, useTransform, useInView } from 'framer-motion';
 import { TerminalEasterEgg } from './TerminalEasterEgg';
 import React, { useState, useEffect, useRef, Suspense, lazy } from 'react';
 import { Globe, Cpu, Database, Server, Layout, Code2, Bot, Terminal, Globe2 } from 'lucide-react';
 import { PortfolioData } from '../data/portfolio';
 
 const GitHubCalendar = lazy(() => import('react-github-calendar').then(module => ({ default: module.GitHubCalendar })));
+
+const LazyGitHubCalendar = ({ username }: { username: string }) => {
+    const containerRef = useRef<HTMLDivElement>(null);
+    const inView = useInView(containerRef, { once: true, margin: '200px' });
+
+    return (
+        <div ref={containerRef} className="w-full flex justify-center py-2 md:py-4 opacity-90 transition-opacity flex-1 items-center min-h-[140px]">
+            <div className="scale-[0.8] lg:scale-[0.95] origin-center min-w-[320px] md:min-w-0 flex justify-center">
+                {inView ? (
+                    <Suspense fallback={<div className="w-[300px] h-[100px] bg-zinc-100 dark:bg-zinc-800 animate-pulse rounded-lg" />}>
+                        <GitHubCalendar 
+                            username={username} 
+                            blockSize={12}
+                            blockMargin={4}
+                            fontSize={12}
+                        />
+                    </Suspense>
+                ) : (
+                    <div className="w-[300px] h-[100px] bg-zinc-100 dark:bg-zinc-800/50 rounded-lg animate-pulse" />
+                )}
+            </div>
+        </div>
+    );
+};
 
 interface AboutSectionProps {
     personal: PortfolioData['personal'];
@@ -90,10 +114,10 @@ const BentoCard = ({ children, className, title }: { children: React.ReactNode, 
             className={`glass-card rounded-2xl md:rounded-3xl p-5 md:p-8 relative overflow-hidden group transition-all duration-500 hover:border-indigo-500/40 hover:shadow-2xl hover:shadow-indigo-500/10 ${className}`}
         >
             {title && (
-                <h3 className="text-[10px] md:text-xs uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500 font-bold mb-3 md:mb-6 flex items-center gap-2">
+                <div className="text-[10px] md:text-xs uppercase tracking-[0.2em] text-zinc-600 dark:text-zinc-400 font-bold mb-3 md:mb-6 flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 shadow-[0_0_8px_rgba(99,102,241,0.8)]"></span>
                     {title}
-                </h3>
+                </div>
             )}
             <div className="h-full flex flex-col" style={{ transform: isTouch ? "none" : "translateZ(20px)" }}>
                 {children}
@@ -152,6 +176,11 @@ export const AboutSection = ({ personal, skills }: AboutSectionProps) => {
                             alt={`Portrait photo of ${personal.name}, Full Stack Software Developer`} 
                             width={300}
                             height={300}
+                            loading="lazy"
+                            decoding="async"
+                            onError={(e) => {
+                                (e.target as HTMLImageElement).src = '/icon.svg';
+                            }}
                             className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-700" 
                         />
                     </div>
@@ -194,18 +223,7 @@ export const AboutSection = ({ personal, skills }: AboutSectionProps) => {
 
                 {/* 6. GitHub Activity */}
                 <BentoCard className="hidden md:flex md:col-span-2 overflow-hidden flex flex-col justify-center" title="Activity">
-                    <div className="w-full flex justify-center py-2 md:py-4 opacity-90 transition-opacity flex-1 items-center">
-                         <div className="scale-[0.8] lg:scale-[0.95] origin-center min-w-[320px] md:min-w-0 flex justify-center">
-                            <Suspense fallback={<div className="w-[300px] h-[100px] bg-zinc-100 dark:bg-zinc-800 animate-pulse rounded-lg" />}>
-                                <GitHubCalendar 
-                                    username={personal.githubUsername} 
-                                    blockSize={12}
-                                    blockMargin={4}
-                                    fontSize={12}
-                                />
-                            </Suspense>
-                        </div>
-                    </div>
+                    <LazyGitHubCalendar username={personal.githubUsername} />
                 </BentoCard>
             </div>
         </motion.section>

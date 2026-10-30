@@ -23,7 +23,7 @@ export const ParticleNetworkCanvas = () => {
         let height = (canvas.height = canvas.parentElement?.clientHeight || window.innerHeight);
 
         const darkColors = [
-            'rgba(6, 182, 212, ',   // Cyan (OpenAI Astra tone)
+            'rgba(6, 182, 212, ',   // Cyan
             'rgba(99, 102, 241, ',  // Indigo
             'rgba(14, 165, 233, ',  // Sky Blue
             'rgba(255, 255, 255, ', // Starlight White
@@ -35,6 +35,13 @@ export const ParticleNetworkCanvas = () => {
             'rgba(2, 132, 199, ',   // Blue
             'rgba(147, 51, 234, ',  // Purple
         ];
+
+        // Cache dark mode state via MutationObserver instead of checking DOM on every frame
+        let isDark = document.documentElement.classList.contains('dark');
+        const themeObserver = new MutationObserver(() => {
+            isDark = document.documentElement.classList.contains('dark');
+        });
+        themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 
         // Create particles
         const particleCount = Math.min(Math.floor((width * height) / 16000), 55);
@@ -51,13 +58,17 @@ export const ParticleNetworkCanvas = () => {
             });
         }
 
-        // Mouse interaction
+        // Mouse interaction with cached rect to avoid forced reflows
         const mouse = { x: -1000, y: -1000, radius: 140 };
+        let cachedRect = canvas.getBoundingClientRect();
+
+        const updateCachedRect = () => {
+            if (canvas) cachedRect = canvas.getBoundingClientRect();
+        };
 
         const handleMouseMove = (e: MouseEvent) => {
-            const rect = canvas.getBoundingClientRect();
-            mouse.x = e.clientX - rect.left;
-            mouse.y = e.clientY - rect.top;
+            mouse.x = e.clientX - cachedRect.left;
+            mouse.y = e.clientY - cachedRect.top;
         };
 
         const handleMouseLeave = () => {
@@ -65,22 +76,23 @@ export const ParticleNetworkCanvas = () => {
             mouse.y = -1000;
         };
 
-        window.addEventListener('mousemove', handleMouseMove);
+        window.addEventListener('mousemove', handleMouseMove, { passive: true });
         document.addEventListener('mouseleave', handleMouseLeave);
+        window.addEventListener('scroll', updateCachedRect, { passive: true });
 
         const handleResize = () => {
             if (!canvas) return;
             width = canvas.width = canvas.parentElement?.clientWidth || window.innerWidth;
             height = canvas.height = canvas.parentElement?.clientHeight || window.innerHeight;
+            cachedRect = canvas.getBoundingClientRect();
         };
 
-        window.addEventListener('resize', handleResize);
+        window.addEventListener('resize', handleResize, { passive: true });
 
         // Render loop
         const render = () => {
             ctx.clearRect(0, 0, width, height);
 
-            const isDark = document.documentElement.classList.contains('dark');
             const palette = isDark ? darkColors : lightColors;
             const baseAlpha = isDark ? 0.6 : 0.45;
             const lineAlpha = isDark ? 0.15 : 0.09;
@@ -166,7 +178,9 @@ export const ParticleNetworkCanvas = () => {
         return () => {
             window.removeEventListener('mousemove', handleMouseMove);
             document.removeEventListener('mouseleave', handleMouseLeave);
+            window.removeEventListener('scroll', updateCachedRect);
             window.removeEventListener('resize', handleResize);
+            themeObserver.disconnect();
             observer.disconnect();
             cancelAnimationFrame(animationFrameId);
         };

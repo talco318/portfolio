@@ -97,7 +97,8 @@ const AnimatedCounter = ({
 
 export const MetricsBar = () => {
     return (
-        <section className="relative z-20 max-w-6xl mx-auto px-4 -mt-4 mb-16 md:mb-24">
+        <section className="relative z-20 max-w-6xl mx-auto px-4 -mt-4 mb-16 md:mb-24" aria-label="Key Impact & Metrics">
+            <h2 className="sr-only">Key Impact &amp; Metrics</h2>
             <motion.div
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}

@@ -157,7 +157,7 @@ export const FaqSection = () => {
                     </p>
                   </div>
                 </div>
-                <span className="text-xs font-mono font-bold text-zinc-400 dark:text-zinc-500">
+                <span className="text-xs font-mono font-bold text-zinc-600 dark:text-zinc-400">
                   [04 QUERIES]
                 </span>
               </div>
@@ -251,7 +251,7 @@ export const FaqSection = () => {
                     </p>
                   </div>
                 </div>
-                <span className="text-xs font-mono font-bold text-zinc-400 dark:text-zinc-500">
+                <span className="text-xs font-mono font-bold text-zinc-600 dark:text-zinc-400">
                   [BENCHMARK]
                 </span>
               </div>
