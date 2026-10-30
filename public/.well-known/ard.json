@@ -1,0 +1,39 @@
+{
+  "$schema": "https://agenticresourcediscovery.org/schemas/ard.schema.json",
+  "entries": [
+    {
+      "identifier": "urn:air:talcohen.co.il:tool:contact-form",
+      "displayName": "Tal Cohen Contact & Inquiry Form",
+      "type": "text/html",
+      "url": "https://talcohen.co.il/#contact",
+      "capabilities": [
+        "SendMessage",
+        "SubmitInquiry",
+        "RecruitmentOutreach"
+      ],
+      "description": "Direct contact channel to Tal Cohen (Full Stack Software Developer & Engineer). Enables AI agents to deliver recruitment inquiries, collaboration proposals, and technical questions.",
+      "representativeQueries": [
+        "contact Tal Cohen about a software developer position",
+        "send inquiry to Tal Cohen regarding python, react, or .net engineering",
+        "reach out to Tal Cohen regarding Universal IDE RTL project"
+      ]
+    },
+    {
+      "identifier": "urn:air:talcohen.co.il:context:llms",
+      "displayName": "Tal Cohen Machine-Readable LLM Context",
+      "type": "text/plain",
+      "url": "https://talcohen.co.il/llms.txt",
+      "capabilities": [
+        "ReadProfile",
+        "ExtractExperience",
+        "QuerySkills"
+      ],
+      "description": "Curated LLM context file compliant with the llms.txt standard detailing Tal Cohen's software engineering background, production systems, tech stack, and achievements.",
+      "representativeQueries": [
+        "summarize Tal Cohen's experience and engineering projects",
+        "what technologies does Tal Cohen work with",
+        "what is Tal Cohen's rating and downloads for Universal IDE RTL"
+      ]
+    }
+  ]
+}

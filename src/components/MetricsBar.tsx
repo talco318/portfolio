@@ -196,9 +196,9 @@ export const MetricsBar = () => {
                                             </span>
                                         )}
                                     </div>
-                                    <h3 className="font-heading font-bold text-sm md:text-base text-zinc-800 dark:text-zinc-200 mb-1">
+                                    <p className="font-heading font-bold text-sm md:text-base text-zinc-800 dark:text-zinc-200 mb-1">
                                         {metric.label}
-                                    </h3>
+                                    </p>
                                     <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed font-normal">
                                         {metric.detail}
                                     </p>

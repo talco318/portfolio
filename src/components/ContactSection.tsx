@@ -170,6 +170,8 @@ export const ContactSection = () => {
                             id="contact-form"
                             ref={form}
                             onSubmit={handleSubmit}
+                            toolname="sendMessageToTal"
+                            tooldescription="Send a direct contact inquiry or job opportunity message to Tal Cohen (Full Stack Software Developer)."
                         >
                             {status === 'success' && (
                                 <div className="p-4 rounded-2xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-sm font-medium border border-emerald-500/20 flex items-center gap-2">
